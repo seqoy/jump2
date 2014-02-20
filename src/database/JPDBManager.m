@@ -239,8 +239,7 @@
 // Returns the persistent store coordinator for the application.
 //
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinator {
-	//Debug( @"Init Persitent Store Coordinator" );
-	
+
 	// Return Persistent Coordinator if is already started...
     if (persistentStoreCoordinator != nil) {
         return persistentStoreCoordinator;
@@ -412,9 +411,6 @@
 			[format appendString:NSFormatString( @"%@, ", key)];
 		}
 	}
-	//// //// //// //// //// //// //// //// //// //// //// //// //// //// //// 
-	// Log
-	//Debug(@"%@", format);
 		
 	/// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// 
 	// If doesn't exist the Entity, return nothing.
@@ -569,7 +565,6 @@
 //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //
 // Create and return a new empty Record for specified Entity.
 -(id)createNewRecordForEntity:(NSString*)anEntityName {
-	//Debug( @"Creating New Record For Entity:[[%@]] %@", anEntityName, (automaticallyCommit ? @"[COMMIT]" : @"") );
 	
 	// If not exist, return nothing.
 	if ( _NOT_ [self existEntity:anEntityName] ) 

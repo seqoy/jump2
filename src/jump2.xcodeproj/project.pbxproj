@@ -30,31 +30,6 @@
 		3AFCCF7118B69F6B00A7FC29 /* IAThreadSafeContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFCCF6D18B69F6B00A7FC29 /* IAThreadSafeContext.m */; };
 		3AFCCF7218B69F6B00A7FC29 /* IAThreadSafeManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFCCF6F18B69F6B00A7FC29 /* IAThreadSafeManagedObject.m */; };
 		3AFCCF7318B69F6B00A7FC29 /* IAThreadSafeManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFCCF6F18B69F6B00A7FC29 /* IAThreadSafeManagedObject.m */; };
-		3AFCCF7D18B6A06F00A7FC29 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AFCCEF518B699F700A7FC29 /* Foundation.framework */; };
-		3AFCCF8A18B6A07000A7FC29 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AFCCF0318B699F700A7FC29 /* XCTest.framework */; };
-		3AFCCF8B18B6A07000A7FC29 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AFCCEF518B699F700A7FC29 /* Foundation.framework */; };
-		3AFCCF8F18B6A07000A7FC29 /* libjumpLogger.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AFCCF7C18B6A06F00A7FC29 /* libjumpLogger.a */; };
-		3AFCCFA018B6A0F000A7FC29 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AFCCF9F18B6A0F000A7FC29 /* SystemConfiguration.framework */; };
-		3AFCCFA218B6A0FB00A7FC29 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AFCCFA118B6A0FB00A7FC29 /* UIKit.framework */; };
-		3AFCCFA418B6A10400A7FC29 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AFCCFA318B6A10400A7FC29 /* CFNetwork.framework */; };
-		3AFCCFBC18B6A15B00A7FC29 /* JPLog4CocoaFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFCCFA818B6A15B00A7FC29 /* JPLog4CocoaFactory.m */; };
-		3AFCCFBD18B6A15B00A7FC29 /* JPLog4CocoaFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFCCFA818B6A15B00A7FC29 /* JPLog4CocoaFactory.m */; };
-		3AFCCFBE18B6A15B00A7FC29 /* JPLog4CocoaLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFCCFAA18B6A15B00A7FC29 /* JPLog4CocoaLogger.m */; };
-		3AFCCFBF18B6A15B00A7FC29 /* JPLog4CocoaLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFCCFAA18B6A15B00A7FC29 /* JPLog4CocoaLogger.m */; };
-		3AFCCFC018B6A15B00A7FC29 /* JPLoggerAbstractFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFCCFAD18B6A15B00A7FC29 /* JPLoggerAbstractFactory.m */; };
-		3AFCCFC118B6A15B00A7FC29 /* JPLoggerAbstractFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFCCFAD18B6A15B00A7FC29 /* JPLoggerAbstractFactory.m */; };
-		3AFCCFC218B6A15B00A7FC29 /* JPLoggerMetadata.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFCCFB118B6A15B00A7FC29 /* JPLoggerMetadata.m */; };
-		3AFCCFC318B6A15B00A7FC29 /* JPLoggerMetadata.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFCCFB118B6A15B00A7FC29 /* JPLoggerMetadata.m */; };
-		3AFCCFC418B6A15B00A7FC29 /* JPLoggerShortcuts.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFCCFB318B6A15B00A7FC29 /* JPLoggerShortcuts.m */; };
-		3AFCCFC518B6A15B00A7FC29 /* JPLoggerShortcuts.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFCCFB318B6A15B00A7FC29 /* JPLoggerShortcuts.m */; };
-		3AFCCFC618B6A15B00A7FC29 /* JPLogNSLogLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFCCFB518B6A15B00A7FC29 /* JPLogNSLogLogger.m */; };
-		3AFCCFC718B6A15B00A7FC29 /* JPLogNSLogLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFCCFB518B6A15B00A7FC29 /* JPLogNSLogLogger.m */; };
-		3AFCCFC818B6A15B00A7FC29 /* JPNSLogFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFCCFB718B6A15B00A7FC29 /* JPNSLogFactory.m */; };
-		3AFCCFC918B6A15B00A7FC29 /* JPNSLogFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFCCFB718B6A15B00A7FC29 /* JPNSLogFactory.m */; };
-		3AFCCFCA18B6A15B00A7FC29 /* JUMPLoggerConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFCCFB918B6A15B00A7FC29 /* JUMPLoggerConfig.m */; };
-		3AFCCFCB18B6A15B00A7FC29 /* JUMPLoggerConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFCCFB918B6A15B00A7FC29 /* JUMPLoggerConfig.m */; };
-		3AFCCFCC18B6A15B00A7FC29 /* L4NSLoggerAppender.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFCCFBB18B6A15B00A7FC29 /* L4NSLoggerAppender.m */; };
-		3AFCCFCD18B6A15B00A7FC29 /* L4NSLoggerAppender.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFCCFBB18B6A15B00A7FC29 /* L4NSLoggerAppender.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,13 +47,6 @@
 			remoteGlobalIDString = 3AFCCF3618B69C6300A7FC29;
 			remoteInfo = jumpDatabase;
 		};
-		3AFCCF8D18B6A07000A7FC29 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3AFCCEB518B6970100A7FC29 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 3AFCCF7B18B6A06F00A7FC29;
-			remoteInfo = jumpLogger;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -92,15 +60,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		3AFCCF3518B69C6300A7FC29 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "include/$(PRODUCT_NAME)";
-			dstSubfolderSpec = 16;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3AFCCF7A18B6A06F00A7FC29 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "include/$(PRODUCT_NAME)";
@@ -143,33 +102,9 @@
 		3AFCCF6E18B69F6B00A7FC29 /* IAThreadSafeManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IAThreadSafeManagedObject.h; path = database/IAThreadSafeManagedObject.h; sourceTree = "<group>"; };
 		3AFCCF6F18B69F6B00A7FC29 /* IAThreadSafeManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IAThreadSafeManagedObject.m; path = database/IAThreadSafeManagedObject.m; sourceTree = "<group>"; };
 		3AFCCF7518B69FD300A7FC29 /* jump2.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; name = jump2.podspec; path = ../jump2.podspec; sourceTree = "<group>"; };
-		3AFCCF7C18B6A06F00A7FC29 /* libjumpLogger.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libjumpLogger.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		3AFCCF8918B6A06F00A7FC29 /* jumpLoggerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = jumpLoggerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		3AFCCF9E18B6A0BD00A7FC29 /* deps */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = deps; path = logger/deps; sourceTree = "<group>"; };
 		3AFCCF9F18B6A0F000A7FC29 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		3AFCCFA118B6A0FB00A7FC29 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3AFCCFA318B6A10400A7FC29 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
-		3AFCCFA718B6A15B00A7FC29 /* JPLog4CocoaFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JPLog4CocoaFactory.h; path = logger/JPLog4CocoaFactory.h; sourceTree = "<group>"; };
-		3AFCCFA818B6A15B00A7FC29 /* JPLog4CocoaFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JPLog4CocoaFactory.m; path = logger/JPLog4CocoaFactory.m; sourceTree = "<group>"; };
-		3AFCCFA918B6A15B00A7FC29 /* JPLog4CocoaLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JPLog4CocoaLogger.h; path = logger/JPLog4CocoaLogger.h; sourceTree = "<group>"; };
-		3AFCCFAA18B6A15B00A7FC29 /* JPLog4CocoaLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JPLog4CocoaLogger.m; path = logger/JPLog4CocoaLogger.m; sourceTree = "<group>"; };
-		3AFCCFAB18B6A15B00A7FC29 /* JPLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JPLogger.h; path = logger/JPLogger.h; sourceTree = "<group>"; };
-		3AFCCFAC18B6A15B00A7FC29 /* JPLoggerAbstractFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JPLoggerAbstractFactory.h; path = logger/JPLoggerAbstractFactory.h; sourceTree = "<group>"; };
-		3AFCCFAD18B6A15B00A7FC29 /* JPLoggerAbstractFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JPLoggerAbstractFactory.m; path = logger/JPLoggerAbstractFactory.m; sourceTree = "<group>"; };
-		3AFCCFAE18B6A15B00A7FC29 /* JPLoggerFactoryInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JPLoggerFactoryInterface.h; path = logger/JPLoggerFactoryInterface.h; sourceTree = "<group>"; };
-		3AFCCFAF18B6A15B00A7FC29 /* JPLoggerInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JPLoggerInterface.h; path = logger/JPLoggerInterface.h; sourceTree = "<group>"; };
-		3AFCCFB018B6A15B00A7FC29 /* JPLoggerMetadata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JPLoggerMetadata.h; path = logger/JPLoggerMetadata.h; sourceTree = "<group>"; };
-		3AFCCFB118B6A15B00A7FC29 /* JPLoggerMetadata.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JPLoggerMetadata.m; path = logger/JPLoggerMetadata.m; sourceTree = "<group>"; };
-		3AFCCFB218B6A15B00A7FC29 /* JPLoggerShortcuts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JPLoggerShortcuts.h; path = logger/JPLoggerShortcuts.h; sourceTree = "<group>"; };
-		3AFCCFB318B6A15B00A7FC29 /* JPLoggerShortcuts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JPLoggerShortcuts.m; path = logger/JPLoggerShortcuts.m; sourceTree = "<group>"; };
-		3AFCCFB418B6A15B00A7FC29 /* JPLogNSLogLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JPLogNSLogLogger.h; path = logger/JPLogNSLogLogger.h; sourceTree = "<group>"; };
-		3AFCCFB518B6A15B00A7FC29 /* JPLogNSLogLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JPLogNSLogLogger.m; path = logger/JPLogNSLogLogger.m; sourceTree = "<group>"; };
-		3AFCCFB618B6A15B00A7FC29 /* JPNSLogFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JPNSLogFactory.h; path = logger/JPNSLogFactory.h; sourceTree = "<group>"; };
-		3AFCCFB718B6A15B00A7FC29 /* JPNSLogFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JPNSLogFactory.m; path = logger/JPNSLogFactory.m; sourceTree = "<group>"; };
-		3AFCCFB818B6A15B00A7FC29 /* JUMPLoggerConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JUMPLoggerConfig.h; path = logger/JUMPLoggerConfig.h; sourceTree = "<group>"; };
-		3AFCCFB918B6A15B00A7FC29 /* JUMPLoggerConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JUMPLoggerConfig.m; path = logger/JUMPLoggerConfig.m; sourceTree = "<group>"; };
-		3AFCCFBA18B6A15B00A7FC29 /* L4NSLoggerAppender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = L4NSLoggerAppender.h; path = logger/L4NSLoggerAppender.h; sourceTree = "<group>"; };
-		3AFCCFBB18B6A15B00A7FC29 /* L4NSLoggerAppender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = L4NSLoggerAppender.m; path = logger/L4NSLoggerAppender.m; sourceTree = "<group>"; };
 		3AFCCFCF18B6A4B800A7FC29 /* Rakefile */ = {isa = PBXFileReference; lastKnownFileType = text; name = Rakefile; path = ../Rakefile; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -211,27 +146,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3AFCCF7918B6A06F00A7FC29 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3AFCCFA418B6A10400A7FC29 /* CFNetwork.framework in Frameworks */,
-				3AFCCFA218B6A0FB00A7FC29 /* UIKit.framework in Frameworks */,
-				3AFCCFA018B6A0F000A7FC29 /* SystemConfiguration.framework in Frameworks */,
-				3AFCCF7D18B6A06F00A7FC29 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3AFCCF8618B6A06F00A7FC29 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3AFCCF8A18B6A07000A7FC29 /* XCTest.framework in Frameworks */,
-				3AFCCF8F18B6A07000A7FC29 /* libjumpLogger.a in Frameworks */,
-				3AFCCF8B18B6A07000A7FC29 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -241,7 +155,6 @@
 				3AFCCEEC18B697FC00A7FC29 /* Configs */,
 				3AFCCEE818B6976B00A7FC29 /* Core */,
 				3AFCCEE918B6977000A7FC29 /* Database */,
-				3AFCCF7718B6A05A00A7FC29 /* Logger */,
 				3AFCCF1918B69A1E00A7FC29 /* Product */,
 				3AFCCEEB18B697DE00A7FC29 /* Frameworks */,
 			);
@@ -307,8 +220,6 @@
 		3AFCCF1918B69A1E00A7FC29 /* Product */ = {
 			isa = PBXGroup;
 			children = (
-				3AFCCF7C18B6A06F00A7FC29 /* libjumpLogger.a */,
-				3AFCCF8918B6A06F00A7FC29 /* jumpLoggerTests.xctest */,
 				3AFCCF3718B69C6300A7FC29 /* libjumpDatabase.a */,
 				3AFCCF4418B69C6300A7FC29 /* jumpDatabaseTests.xctest */,
 				3AFCCEF418B699F700A7FC29 /* libjumpCore.a */,
@@ -328,15 +239,6 @@
 			name = "Thread Safe";
 			sourceTree = "<group>";
 		};
-		3AFCCF7718B6A05A00A7FC29 /* Logger */ = {
-			isa = PBXGroup;
-			children = (
-				3AFCCFA618B6A13600A7FC29 /* src */,
-				3AFCCF9E18B6A0BD00A7FC29 /* deps */,
-			);
-			name = Logger;
-			sourceTree = "<group>";
-		};
 		3AFCCFA518B6A12B00A7FC29 /* src */ = {
 			isa = PBXGroup;
 			children = (
@@ -348,34 +250,6 @@
 				3AFCCF6218B69DD600A7FC29 /* JPDBManagerDefinitions.h */,
 				3AFCCF6318B69DD600A7FC29 /* JPDBManagerSingleton.h */,
 				3AFCCF6418B69DD600A7FC29 /* JPDBManagerSingleton.m */,
-			);
-			name = src;
-			sourceTree = "<group>";
-		};
-		3AFCCFA618B6A13600A7FC29 /* src */ = {
-			isa = PBXGroup;
-			children = (
-				3AFCCFA718B6A15B00A7FC29 /* JPLog4CocoaFactory.h */,
-				3AFCCFA818B6A15B00A7FC29 /* JPLog4CocoaFactory.m */,
-				3AFCCFA918B6A15B00A7FC29 /* JPLog4CocoaLogger.h */,
-				3AFCCFAA18B6A15B00A7FC29 /* JPLog4CocoaLogger.m */,
-				3AFCCFAB18B6A15B00A7FC29 /* JPLogger.h */,
-				3AFCCFAC18B6A15B00A7FC29 /* JPLoggerAbstractFactory.h */,
-				3AFCCFAD18B6A15B00A7FC29 /* JPLoggerAbstractFactory.m */,
-				3AFCCFAE18B6A15B00A7FC29 /* JPLoggerFactoryInterface.h */,
-				3AFCCFAF18B6A15B00A7FC29 /* JPLoggerInterface.h */,
-				3AFCCFB018B6A15B00A7FC29 /* JPLoggerMetadata.h */,
-				3AFCCFB118B6A15B00A7FC29 /* JPLoggerMetadata.m */,
-				3AFCCFB218B6A15B00A7FC29 /* JPLoggerShortcuts.h */,
-				3AFCCFB318B6A15B00A7FC29 /* JPLoggerShortcuts.m */,
-				3AFCCFB418B6A15B00A7FC29 /* JPLogNSLogLogger.h */,
-				3AFCCFB518B6A15B00A7FC29 /* JPLogNSLogLogger.m */,
-				3AFCCFB618B6A15B00A7FC29 /* JPNSLogFactory.h */,
-				3AFCCFB718B6A15B00A7FC29 /* JPNSLogFactory.m */,
-				3AFCCFB818B6A15B00A7FC29 /* JUMPLoggerConfig.h */,
-				3AFCCFB918B6A15B00A7FC29 /* JUMPLoggerConfig.m */,
-				3AFCCFBA18B6A15B00A7FC29 /* L4NSLoggerAppender.h */,
-				3AFCCFBB18B6A15B00A7FC29 /* L4NSLoggerAppender.m */,
 			);
 			name = src;
 			sourceTree = "<group>";
@@ -453,41 +327,6 @@
 			productReference = 3AFCCF4418B69C6300A7FC29 /* jumpDatabaseTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		3AFCCF7B18B6A06F00A7FC29 /* jumpLogger */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 3AFCCF9818B6A07000A7FC29 /* Build configuration list for PBXNativeTarget "jumpLogger" */;
-			buildPhases = (
-				3AFCCF7818B6A06F00A7FC29 /* Sources */,
-				3AFCCF7918B6A06F00A7FC29 /* Frameworks */,
-				3AFCCF7A18B6A06F00A7FC29 /* CopyFiles */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = jumpLogger;
-			productName = jumpLogger;
-			productReference = 3AFCCF7C18B6A06F00A7FC29 /* libjumpLogger.a */;
-			productType = "com.apple.product-type.library.static";
-		};
-		3AFCCF8818B6A06F00A7FC29 /* jumpLoggerTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 3AFCCF9B18B6A07000A7FC29 /* Build configuration list for PBXNativeTarget "jumpLoggerTests" */;
-			buildPhases = (
-				3AFCCF8518B6A06F00A7FC29 /* Sources */,
-				3AFCCF8618B6A06F00A7FC29 /* Frameworks */,
-				3AFCCF8718B6A06F00A7FC29 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				3AFCCF8E18B6A07000A7FC29 /* PBXTargetDependency */,
-			);
-			name = jumpLoggerTests;
-			productName = jumpLoggerTests;
-			productReference = 3AFCCF8918B6A06F00A7FC29 /* jumpLoggerTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -513,8 +352,6 @@
 				3AFCCF0118B699F700A7FC29 /* jumpCoreTests */,
 				3AFCCF3618B69C6300A7FC29 /* jumpDatabase */,
 				3AFCCF4318B69C6300A7FC29 /* jumpDatabaseTests */,
-				3AFCCF7B18B6A06F00A7FC29 /* jumpLogger */,
-				3AFCCF8818B6A06F00A7FC29 /* jumpLoggerTests */,
 			);
 		};
 /* End PBXProject section */
@@ -533,13 +370,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3AFCCF5B18B69D7F00A7FC29 /* deps in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3AFCCF8718B6A06F00A7FC29 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -586,38 +416,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3AFCCF7818B6A06F00A7FC29 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3AFCCFC618B6A15B00A7FC29 /* JPLogNSLogLogger.m in Sources */,
-				3AFCCFCC18B6A15B00A7FC29 /* L4NSLoggerAppender.m in Sources */,
-				3AFCCFC218B6A15B00A7FC29 /* JPLoggerMetadata.m in Sources */,
-				3AFCCFC418B6A15B00A7FC29 /* JPLoggerShortcuts.m in Sources */,
-				3AFCCFBC18B6A15B00A7FC29 /* JPLog4CocoaFactory.m in Sources */,
-				3AFCCFC818B6A15B00A7FC29 /* JPNSLogFactory.m in Sources */,
-				3AFCCFBE18B6A15B00A7FC29 /* JPLog4CocoaLogger.m in Sources */,
-				3AFCCFC018B6A15B00A7FC29 /* JPLoggerAbstractFactory.m in Sources */,
-				3AFCCFCA18B6A15B00A7FC29 /* JUMPLoggerConfig.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3AFCCF8518B6A06F00A7FC29 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3AFCCFC718B6A15B00A7FC29 /* JPLogNSLogLogger.m in Sources */,
-				3AFCCFCD18B6A15B00A7FC29 /* L4NSLoggerAppender.m in Sources */,
-				3AFCCFC318B6A15B00A7FC29 /* JPLoggerMetadata.m in Sources */,
-				3AFCCFC518B6A15B00A7FC29 /* JPLoggerShortcuts.m in Sources */,
-				3AFCCFBD18B6A15B00A7FC29 /* JPLog4CocoaFactory.m in Sources */,
-				3AFCCFC918B6A15B00A7FC29 /* JPNSLogFactory.m in Sources */,
-				3AFCCFBF18B6A15B00A7FC29 /* JPLog4CocoaLogger.m in Sources */,
-				3AFCCFC118B6A15B00A7FC29 /* JPLoggerAbstractFactory.m in Sources */,
-				3AFCCFCB18B6A15B00A7FC29 /* JUMPLoggerConfig.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -630,11 +428,6 @@
 			isa = PBXTargetDependency;
 			target = 3AFCCF3618B69C6300A7FC29 /* jumpDatabase */;
 			targetProxy = 3AFCCF4818B69C6300A7FC29 /* PBXContainerItemProxy */;
-		};
-		3AFCCF8E18B6A07000A7FC29 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 3AFCCF7B18B6A06F00A7FC29 /* jumpLogger */;
-			targetProxy = 3AFCCF8D18B6A07000A7FC29 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -845,74 +638,6 @@
 			};
 			name = Release;
 		};
-		3AFCCF9918B6A07000A7FC29 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
-				DSTROOT = /tmp/jumpLogger.dst;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = jump2_Prefix.pch;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-			};
-			name = Debug;
-		};
-		3AFCCF9A18B6A07000A7FC29 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
-				DSTROOT = /tmp/jumpLogger.dst;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = jump2_Prefix.pch;
-				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-			};
-			name = Release;
-		};
-		3AFCCF9C18B6A07000A7FC29 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "jumpLogger/jumpLogger-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "jumpLoggerTests/jumpLoggerTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		3AFCCF9D18B6A07000A7FC29 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "jumpLogger/jumpLogger-Prefix.pch";
-				INFOPLIST_FILE = "jumpLoggerTests/jumpLoggerTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -957,24 +682,6 @@
 			buildConfigurations = (
 				3AFCCF5718B69C6300A7FC29 /* Debug */,
 				3AFCCF5818B69C6300A7FC29 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		3AFCCF9818B6A07000A7FC29 /* Build configuration list for PBXNativeTarget "jumpLogger" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				3AFCCF9918B6A07000A7FC29 /* Debug */,
-				3AFCCF9A18B6A07000A7FC29 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		3AFCCF9B18B6A07000A7FC29 /* Build configuration list for PBXNativeTarget "jumpLoggerTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				3AFCCF9C18B6A07000A7FC29 /* Debug */,
-				3AFCCF9D18B6A07000A7FC29 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

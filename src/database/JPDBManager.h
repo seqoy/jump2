@@ -18,9 +18,6 @@
 #import <UIKit/UIKit.h>
 #import "JPDBManagerDefinitions.h"
 
-// Logger.
-#import "JPLogger.h"
-
 // Thread Safe Extension
 #import "IAThreadSafeContext.h"
 #import "IAThreadSafeManagedObject.h"
