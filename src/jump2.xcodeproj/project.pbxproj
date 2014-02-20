@@ -15,6 +15,23 @@
 		3AFCCF2F18B69B9500A7FC29 /* deps in Resources */ = {isa = PBXBuildFile; fileRef = 3AFCCF2518B69B9500A7FC29 /* deps */; };
 		3AFCCF3018B69B9500A7FC29 /* JPPathFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFCCF2C18B69B9500A7FC29 /* JPPathFunctions.m */; };
 		3AFCCF3118B69B9500A7FC29 /* JPPathFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFCCF2C18B69B9500A7FC29 /* JPPathFunctions.m */; };
+		3AFCCF3818B69C6300A7FC29 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AFCCEF518B699F700A7FC29 /* Foundation.framework */; };
+		3AFCCF4518B69C6300A7FC29 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AFCCF0318B699F700A7FC29 /* XCTest.framework */; };
+		3AFCCF4618B69C6300A7FC29 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AFCCEF518B699F700A7FC29 /* Foundation.framework */; };
+		3AFCCF4718B69C6300A7FC29 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AFCCF0618B699F700A7FC29 /* UIKit.framework */; };
+		3AFCCF4A18B69C6300A7FC29 /* libjumpDatabase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AFCCF3718B69C6300A7FC29 /* libjumpDatabase.a */; };
+		3AFCCF5B18B69D7F00A7FC29 /* deps in Resources */ = {isa = PBXBuildFile; fileRef = 3AFCCF5A18B69D7F00A7FC29 /* deps */; };
+		3AFCCF5D18B69D9C00A7FC29 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AFCCF5C18B69D9C00A7FC29 /* CoreData.framework */; };
+		3AFCCF6518B69DD600A7FC29 /* JPDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFCCF5F18B69DD600A7FC29 /* JPDBManager.m */; };
+		3AFCCF6618B69DD600A7FC29 /* JPDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFCCF5F18B69DD600A7FC29 /* JPDBManager.m */; };
+		3AFCCF6718B69DD600A7FC29 /* JPDBManagerAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFCCF6118B69DD600A7FC29 /* JPDBManagerAction.m */; };
+		3AFCCF6818B69DD600A7FC29 /* JPDBManagerAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFCCF6118B69DD600A7FC29 /* JPDBManagerAction.m */; };
+		3AFCCF6918B69DD600A7FC29 /* JPDBManagerSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFCCF6418B69DD600A7FC29 /* JPDBManagerSingleton.m */; };
+		3AFCCF6A18B69DD600A7FC29 /* JPDBManagerSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFCCF6418B69DD600A7FC29 /* JPDBManagerSingleton.m */; };
+		3AFCCF7018B69F6B00A7FC29 /* IAThreadSafeContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFCCF6D18B69F6B00A7FC29 /* IAThreadSafeContext.m */; };
+		3AFCCF7118B69F6B00A7FC29 /* IAThreadSafeContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFCCF6D18B69F6B00A7FC29 /* IAThreadSafeContext.m */; };
+		3AFCCF7218B69F6B00A7FC29 /* IAThreadSafeManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFCCF6F18B69F6B00A7FC29 /* IAThreadSafeManagedObject.m */; };
+		3AFCCF7318B69F6B00A7FC29 /* IAThreadSafeManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFCCF6F18B69F6B00A7FC29 /* IAThreadSafeManagedObject.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -25,10 +42,26 @@
 			remoteGlobalIDString = 3AFCCEF318B699F700A7FC29;
 			remoteInfo = jumpCore;
 		};
+		3AFCCF4818B69C6300A7FC29 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3AFCCEB518B6970100A7FC29 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3AFCCF3618B69C6300A7FC29;
+			remoteInfo = jumpDatabase;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		3AFCCEF218B699F700A7FC29 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3AFCCF3518B69C6300A7FC29 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "include/$(PRODUCT_NAME)";
@@ -56,6 +89,21 @@
 		3AFCCF2D18B69B9500A7FC29 /* JPStringFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JPStringFunctions.h; path = core/JPStringFunctions.h; sourceTree = "<group>"; };
 		3AFCCF2E18B69B9500A7FC29 /* JPSynthetizeSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JPSynthetizeSingleton.h; path = core/JPSynthetizeSingleton.h; sourceTree = "<group>"; };
 		3AFCCF3218B69BAF00A7FC29 /* jump2_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jump2_Prefix.pch; sourceTree = "<group>"; };
+		3AFCCF3718B69C6300A7FC29 /* libjumpDatabase.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libjumpDatabase.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		3AFCCF4418B69C6300A7FC29 /* jumpDatabaseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = jumpDatabaseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3AFCCF5A18B69D7F00A7FC29 /* deps */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = deps; path = database/deps; sourceTree = "<group>"; };
+		3AFCCF5C18B69D9C00A7FC29 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		3AFCCF5E18B69DD600A7FC29 /* JPDBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JPDBManager.h; path = database/JPDBManager.h; sourceTree = "<group>"; };
+		3AFCCF5F18B69DD600A7FC29 /* JPDBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JPDBManager.m; path = database/JPDBManager.m; sourceTree = "<group>"; };
+		3AFCCF6018B69DD600A7FC29 /* JPDBManagerAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JPDBManagerAction.h; path = database/JPDBManagerAction.h; sourceTree = "<group>"; };
+		3AFCCF6118B69DD600A7FC29 /* JPDBManagerAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JPDBManagerAction.m; path = database/JPDBManagerAction.m; sourceTree = "<group>"; };
+		3AFCCF6218B69DD600A7FC29 /* JPDBManagerDefinitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JPDBManagerDefinitions.h; path = database/JPDBManagerDefinitions.h; sourceTree = "<group>"; };
+		3AFCCF6318B69DD600A7FC29 /* JPDBManagerSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JPDBManagerSingleton.h; path = database/JPDBManagerSingleton.h; sourceTree = "<group>"; };
+		3AFCCF6418B69DD600A7FC29 /* JPDBManagerSingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JPDBManagerSingleton.m; path = database/JPDBManagerSingleton.m; sourceTree = "<group>"; };
+		3AFCCF6C18B69F6B00A7FC29 /* IAThreadSafeContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IAThreadSafeContext.h; path = database/IAThreadSafeContext.h; sourceTree = "<group>"; };
+		3AFCCF6D18B69F6B00A7FC29 /* IAThreadSafeContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IAThreadSafeContext.m; path = database/IAThreadSafeContext.m; sourceTree = "<group>"; };
+		3AFCCF6E18B69F6B00A7FC29 /* IAThreadSafeManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IAThreadSafeManagedObject.h; path = database/IAThreadSafeManagedObject.h; sourceTree = "<group>"; };
+		3AFCCF6F18B69F6B00A7FC29 /* IAThreadSafeManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IAThreadSafeManagedObject.m; path = database/IAThreadSafeManagedObject.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +123,26 @@
 				3AFCCF0418B699F700A7FC29 /* XCTest.framework in Frameworks */,
 				3AFCCF0718B699F700A7FC29 /* UIKit.framework in Frameworks */,
 				3AFCCF0518B699F700A7FC29 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3AFCCF3418B69C6300A7FC29 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3AFCCF5D18B69D9C00A7FC29 /* CoreData.framework in Frameworks */,
+				3AFCCF3818B69C6300A7FC29 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3AFCCF4118B69C6300A7FC29 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3AFCCF4A18B69C6300A7FC29 /* libjumpDatabase.a in Frameworks */,
+				3AFCCF4518B69C6300A7FC29 /* XCTest.framework in Frameworks */,
+				3AFCCF4718B69C6300A7FC29 /* UIKit.framework in Frameworks */,
+				3AFCCF4618B69C6300A7FC29 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,6 +171,15 @@
 		3AFCCEE918B6977000A7FC29 /* Database */ = {
 			isa = PBXGroup;
 			children = (
+				3AFCCF6B18B69F6000A7FC29 /* Thread Safe */,
+				3AFCCF5E18B69DD600A7FC29 /* JPDBManager.h */,
+				3AFCCF5F18B69DD600A7FC29 /* JPDBManager.m */,
+				3AFCCF6018B69DD600A7FC29 /* JPDBManagerAction.h */,
+				3AFCCF6118B69DD600A7FC29 /* JPDBManagerAction.m */,
+				3AFCCF6218B69DD600A7FC29 /* JPDBManagerDefinitions.h */,
+				3AFCCF6318B69DD600A7FC29 /* JPDBManagerSingleton.h */,
+				3AFCCF6418B69DD600A7FC29 /* JPDBManagerSingleton.m */,
+				3AFCCF5A18B69D7F00A7FC29 /* deps */,
 			);
 			name = Database;
 			sourceTree = "<group>";
@@ -110,6 +187,7 @@
 		3AFCCEEB18B697DE00A7FC29 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3AFCCF5C18B69D9C00A7FC29 /* CoreData.framework */,
 				3AFCCEF518B699F700A7FC29 /* Foundation.framework */,
 				3AFCCF0318B699F700A7FC29 /* XCTest.framework */,
 				3AFCCF0618B699F700A7FC29 /* UIKit.framework */,
@@ -145,10 +223,23 @@
 		3AFCCF1918B69A1E00A7FC29 /* Product */ = {
 			isa = PBXGroup;
 			children = (
+				3AFCCF3718B69C6300A7FC29 /* libjumpDatabase.a */,
+				3AFCCF4418B69C6300A7FC29 /* jumpDatabaseTests.xctest */,
 				3AFCCEF418B699F700A7FC29 /* libjumpCore.a */,
 				3AFCCF0218B699F700A7FC29 /* jumpCoreTests.xctest */,
 			);
 			name = Product;
+			sourceTree = "<group>";
+		};
+		3AFCCF6B18B69F6000A7FC29 /* Thread Safe */ = {
+			isa = PBXGroup;
+			children = (
+				3AFCCF6C18B69F6B00A7FC29 /* IAThreadSafeContext.h */,
+				3AFCCF6D18B69F6B00A7FC29 /* IAThreadSafeContext.m */,
+				3AFCCF6E18B69F6B00A7FC29 /* IAThreadSafeManagedObject.h */,
+				3AFCCF6F18B69F6B00A7FC29 /* IAThreadSafeManagedObject.m */,
+			);
+			name = "Thread Safe";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -189,6 +280,41 @@
 			productReference = 3AFCCF0218B699F700A7FC29 /* jumpCoreTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		3AFCCF3618B69C6300A7FC29 /* jumpDatabase */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3AFCCF5318B69C6300A7FC29 /* Build configuration list for PBXNativeTarget "jumpDatabase" */;
+			buildPhases = (
+				3AFCCF3318B69C6300A7FC29 /* Sources */,
+				3AFCCF3418B69C6300A7FC29 /* Frameworks */,
+				3AFCCF3518B69C6300A7FC29 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = jumpDatabase;
+			productName = jumpDatabase;
+			productReference = 3AFCCF3718B69C6300A7FC29 /* libjumpDatabase.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		3AFCCF4318B69C6300A7FC29 /* jumpDatabaseTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3AFCCF5618B69C6300A7FC29 /* Build configuration list for PBXNativeTarget "jumpDatabaseTests" */;
+			buildPhases = (
+				3AFCCF4018B69C6300A7FC29 /* Sources */,
+				3AFCCF4118B69C6300A7FC29 /* Frameworks */,
+				3AFCCF4218B69C6300A7FC29 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3AFCCF4918B69C6300A7FC29 /* PBXTargetDependency */,
+			);
+			name = jumpDatabaseTests;
+			productName = jumpDatabaseTests;
+			productReference = 3AFCCF4418B69C6300A7FC29 /* jumpDatabaseTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -212,6 +338,8 @@
 			targets = (
 				3AFCCEF318B699F700A7FC29 /* jumpCore */,
 				3AFCCF0118B699F700A7FC29 /* jumpCoreTests */,
+				3AFCCF3618B69C6300A7FC29 /* jumpDatabase */,
+				3AFCCF4318B69C6300A7FC29 /* jumpDatabaseTests */,
 			);
 		};
 /* End PBXProject section */
@@ -222,6 +350,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				3AFCCF2F18B69B9500A7FC29 /* deps in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3AFCCF4218B69C6300A7FC29 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3AFCCF5B18B69D7F00A7FC29 /* deps in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -244,6 +380,30 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3AFCCF3318B69C6300A7FC29 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3AFCCF6518B69DD600A7FC29 /* JPDBManager.m in Sources */,
+				3AFCCF6918B69DD600A7FC29 /* JPDBManagerSingleton.m in Sources */,
+				3AFCCF7018B69F6B00A7FC29 /* IAThreadSafeContext.m in Sources */,
+				3AFCCF6718B69DD600A7FC29 /* JPDBManagerAction.m in Sources */,
+				3AFCCF7218B69F6B00A7FC29 /* IAThreadSafeManagedObject.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3AFCCF4018B69C6300A7FC29 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3AFCCF6618B69DD600A7FC29 /* JPDBManager.m in Sources */,
+				3AFCCF6A18B69DD600A7FC29 /* JPDBManagerSingleton.m in Sources */,
+				3AFCCF7118B69F6B00A7FC29 /* IAThreadSafeContext.m in Sources */,
+				3AFCCF6818B69DD600A7FC29 /* JPDBManagerAction.m in Sources */,
+				3AFCCF7318B69F6B00A7FC29 /* IAThreadSafeManagedObject.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -251,6 +411,11 @@
 			isa = PBXTargetDependency;
 			target = 3AFCCEF318B699F700A7FC29 /* jumpCore */;
 			targetProxy = 3AFCCF0818B699F700A7FC29 /* PBXContainerItemProxy */;
+		};
+		3AFCCF4918B69C6300A7FC29 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3AFCCF3618B69C6300A7FC29 /* jumpDatabase */;
+			targetProxy = 3AFCCF4818B69C6300A7FC29 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -393,6 +558,74 @@
 			};
 			name = Release;
 		};
+		3AFCCF5418B69C6300A7FC29 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				DSTROOT = /tmp/jumpDatabase.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = jump2_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		3AFCCF5518B69C6300A7FC29 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				DSTROOT = /tmp/jumpDatabase.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = jump2_Prefix.pch;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		3AFCCF5718B69C6300A7FC29 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "jumpDatabase/jumpDatabase-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "jumpDatabaseTests/jumpDatabaseTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		3AFCCF5818B69C6300A7FC29 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "jumpDatabase/jumpDatabase-Prefix.pch";
+				INFOPLIST_FILE = "jumpDatabaseTests/jumpDatabaseTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -422,6 +655,22 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		3AFCCF5318B69C6300A7FC29 /* Build configuration list for PBXNativeTarget "jumpDatabase" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3AFCCF5418B69C6300A7FC29 /* Debug */,
+				3AFCCF5518B69C6300A7FC29 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		3AFCCF5618B69C6300A7FC29 /* Build configuration list for PBXNativeTarget "jumpDatabaseTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3AFCCF5718B69C6300A7FC29 /* Debug */,
+				3AFCCF5818B69C6300A7FC29 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

@@ -14,6 +14,11 @@
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
+		<key>jumpDatabase.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
@@ -33,6 +38,16 @@
 			<true/>
 		</dict>
 		<key>3AFCCF0118B699F700A7FC29</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3AFCCF3618B69C6300A7FC29</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3AFCCF4318B69C6300A7FC29</key>
 		<dict>
 			<key>primary</key>
 			<true/>
