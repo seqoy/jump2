@@ -410,7 +410,7 @@ replaceFetchWithDictionary:(NSDictionary*)anDictionary  arrayOfSortDescriptors:(
 
 	// Alloc if needed it.
 	if ( _NOT_ sortDescriptors ) 
-		sortDescriptors = [NSMutableDictionary dictionary];
+		sortDescriptors = (NSMutableArray*)[NSMutableDictionary dictionary];
 	
 	// Add it.
 	[sortDescriptors addObject:[NSSortDescriptor sortDescriptorWithKey:anKey ascending:ascendingOrder]];
