@@ -170,6 +170,7 @@
 		3AFCCFB918B6A15B00A7FC29 /* JUMPLoggerConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JUMPLoggerConfig.m; path = logger/JUMPLoggerConfig.m; sourceTree = "<group>"; };
 		3AFCCFBA18B6A15B00A7FC29 /* L4NSLoggerAppender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = L4NSLoggerAppender.h; path = logger/L4NSLoggerAppender.h; sourceTree = "<group>"; };
 		3AFCCFBB18B6A15B00A7FC29 /* L4NSLoggerAppender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = L4NSLoggerAppender.m; path = logger/L4NSLoggerAppender.m; sourceTree = "<group>"; };
+		3AFCCFCF18B6A4B800A7FC29 /* Rakefile */ = {isa = PBXFileReference; lastKnownFileType = text; name = Rakefile; path = ../Rakefile; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -279,6 +280,7 @@
 		3AFCCEEC18B697FC00A7FC29 /* Configs */ = {
 			isa = PBXGroup;
 			children = (
+				3AFCCFCF18B6A4B800A7FC29 /* Rakefile */,
 				3AFCCF7518B69FD300A7FC29 /* jump2.podspec */,
 				3AFCCF3218B69BAF00A7FC29 /* jump2_Prefix.pch */,
 			);
@@ -948,6 +950,7 @@
 				3AFCCF5518B69C6300A7FC29 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3AFCCF5618B69C6300A7FC29 /* Build configuration list for PBXNativeTarget "jumpDatabaseTests" */ = {
 			isa = XCConfigurationList;
@@ -956,6 +959,7 @@
 				3AFCCF5818B69C6300A7FC29 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3AFCCF9818B6A07000A7FC29 /* Build configuration list for PBXNativeTarget "jumpLogger" */ = {
 			isa = XCConfigurationList;
@@ -964,6 +968,7 @@
 				3AFCCF9A18B6A07000A7FC29 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3AFCCF9B18B6A07000A7FC29 /* Build configuration list for PBXNativeTarget "jumpLoggerTests" */ = {
 			isa = XCConfigurationList;
@@ -972,6 +977,7 @@
 				3AFCCF9D18B6A07000A7FC29 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
