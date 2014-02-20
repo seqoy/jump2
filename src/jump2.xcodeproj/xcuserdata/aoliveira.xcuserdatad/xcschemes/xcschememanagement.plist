@@ -19,6 +19,11 @@
 			<key>orderHint</key>
 			<integer>2</integer>
 		</dict>
+		<key>jumpLogger.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
@@ -48,6 +53,16 @@
 			<true/>
 		</dict>
 		<key>3AFCCF4318B69C6300A7FC29</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3AFCCF7B18B6A06F00A7FC29</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3AFCCF8818B6A06F00A7FC29</key>
 		<dict>
 			<key>primary</key>
 			<true/>

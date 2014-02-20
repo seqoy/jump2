@@ -1,0 +1,6 @@
+
+[Frameworks]
+UIKit.framework
+Foundation.framework
+CFNetwork.framework
+SystemConfiguration.framework

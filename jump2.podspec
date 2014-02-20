@@ -19,8 +19,17 @@ Pod::Spec.new do |jump|
 
   jump.source_files = 'src/core/src'
   
+  
+   jump.subspec 'Logging' do |log|
+	    log.source_files = 'src/database/src'
+	    log.ios.frameworks = 'CFNetwork', 'SystemConfiguration'
+        
+        log.dependency 'NSLogger'
+        log.dependency 'Log4Cocoa'
+   end
+
    jump.subspec 'Database' do |db|
 	    db.source_files = 'src/database/src'
-	    db.iojump.frameworks = 'CoreData'
-  end
+	    db.ios.frameworks = 'CoreData'
+   end
 end
