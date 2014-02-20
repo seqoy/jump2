@@ -43,12 +43,8 @@ static NSMutableArray* _JPDataConverterKnowedDateFormats;
 	if ( _JPDataConverterKnowedDateFormats == knowedDateFormats )
 		return;
 	
-	// Release if exists.
-	if ( _JPDataConverterKnowedDateFormats != nil ) 
-		[_JPDataConverterKnowedDateFormats release];
-	
 	// Retain it.
-	_JPDataConverterKnowedDateFormats = [knowedDateFormats retain];
+	_JPDataConverterKnowedDateFormats = knowedDateFormats;
 }
 
 //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// /
@@ -96,7 +92,7 @@ static NSMutableArray* _JPDataConverterKnowedDateFormats;
 //  Take an NSNumber or NSString Object and try to convert to NSDate.
 +(NSDate*)convertToNSDateThisObject:(id)anObject withDateFormat:(NSString*)anDateFormatter {	
 	// Create an Date Formatter.
-	NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
+	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
 	[dateFormatter setDateFormat:anDateFormatter];
 	
 	// Convert from NSString to NSDate.
@@ -124,7 +120,6 @@ static NSMutableArray* _JPDataConverterKnowedDateFormats;
 		formatter = [[NSDateFormatter alloc] init];
 		[formatter setLocale:en_US_POSIX];
 		[formatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
-		[en_US_POSIX release];
 	}
 	
 	/*
