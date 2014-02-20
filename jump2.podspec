@@ -28,4 +28,9 @@ Pod::Spec.new do |jump|
 	    db.source_files = 'src/database/*.{h,m}'
    end
 
+   jump.subspec 'Data' do |data|
+        data.dependency 'jump2/Core'
+	    data.source_files = 'src/data/*.{h,m}'
+   end
+
 end
