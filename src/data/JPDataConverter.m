@@ -72,7 +72,8 @@ static NSMutableArray* _JPDataConverterKnowedDateFormats;
 //  Take an NSNumber or NSString Object and try to convert to NSDate.
 +(NSDate*)convertToNSDateThisObject:(id)anObject withAdditionalDateFormat:(NSString*)anDateFormatter {
 	// Knowed date formats. This is used to test against this types to try to convert automagically.
-	NSArray *knowedDateFormats = [self knowedDateFormats];
+	NSMutableArray *knowedDateFormats = [[self knowedDateFormats] mutableCopy];
+    [knowedDateFormats addObject:anDateFormatter];
 	
 	// Loop on knowed types, trying to figure out one of then.
 	for ( NSString* dateFormat in knowedDateFormats ) {
