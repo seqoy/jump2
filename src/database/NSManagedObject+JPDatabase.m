@@ -15,13 +15,33 @@
  */
 #import "NSManagedObject+JPDatabase.h"
 #import "JPDBManagerDefinitions.h"
-#import "JPDBManagerAction.h"
 #import "JPDBManagerSingleton.h"
+#import "JPDBManagerAction.h"
+
+#define JPBuildPredicate( __anPredicate  ) \
+                                va_list va_arguments;\
+                                va_start(va_arguments, condition);\
+                                NSPredicate *__anPredicate = [self predicateFromObject:condition arguments:va_arguments];\
+                                va_end(va_arguments);
 
 @implementation NSManagedObject (JPDatabase)
 
 + (NSString *)entity {
-    return NSStringFromClass(self);
+    NSEntityDescription *entity = [[JPDBManagerSingleton sharedInstance] entity:NSStringFromClass(self)];
+    if ( entity == nil ) {
+        NSString *reason = [NSString stringWithFormat:@"Entity %@ wasn't found in the Context. Maybe you're using"
+                                                      @"an different class name.", entity];
+        [NSException exceptionWithName:JPDBManagerActionException
+                                reason:reason
+                              userInfo:nil
+        ];
+    }
+
+    return entity.name;
+}
+
++ (JPDBManagerAction *)getAction {
+    return [[[JPDBManagerSingleton sharedInstance] getDatabaseAction] applyEntity:self.entity];
 }
 
 - (void)save {
@@ -29,34 +49,109 @@
 }
 
 - (void)delete {
-    [JPDatabaseManager deleteRecord:self];
+    [[[self class] getAction] deleteRecord:self];
 }
 
 + (void)deleteAll {
-    [JPDatabaseManager deleteAllRecordsFromEntity:self.entity];
+    [[self getAction] deleteAllRecordsFromEntity:self.entity];
 }
 
 + (instancetype)create {
-    return [JPDatabaseManager createNewRecordForEntity:self.entity];
+    return [[self getAction] createNewRecordForEntity:self.entity];
 }
 
 + (NSArray *)all {
-    return [JPDatabaseManager queryAllDataFromEntity:self.entity];
+    return [[self getAction] run];
 }
 
 + (NSArray *)allOrderedBy:(NSString *)anKey {
-    return [JPDatabaseManager queryAllDataFromEntity:self.entity
-                                        orderWithKey:anKey];
+    return [[[self getAction] applyOrderKey:anKey] run];
 }
 
-+ (NSArray *)allOrderedByKeys:(id)listOfKeys, ... {
-    return [JPDatabaseManager queryAllDataFromEntity:self.entity
-                                       orderWithKeys:listOfKeys, nil];
++ (NSArray *)allOrderedByKeys:(id)anKey, ... {
+    va_list listOfKeys;
+    va_start(listOfKeys, anKey);
+
+    NSArray *result = [[self getAction] queryAllDataFromEntity:self.entity
+                                                   orderWithKey:anKey
+                                                     parameters:listOfKeys];
+
+    va_end(listOfKeys);
+    return result;
+}
+
++ (id)query:(void (^)(JPDBManagerAction *query))configBlock {
+    JPDBManagerAction *action = [self getAction];
+    
+    // Config the block.
+    configBlock( action );
+    
+    // Run.
+    return [action run];
+}
+
++ (id)where:(id)condition, ... {
+    JPBuildPredicate( anPredicate );
+
+    return [[[self getAction] applyPredicate:anPredicate] run];
+}
+
++ (id)usingOrder:(NSString*)order where:(id)condition,...  {
+    JPBuildPredicate( anPredicate );
+
+    return [[[[self getAction] applyOrderKey:order] applyPredicate:anPredicate] run];
+}
+
++ (instancetype)find:(id)condition, ... {
+    JPBuildPredicate( anPredicate );
+
+    id data =  [[[self getAction] applyPredicate:anPredicate] run];
+
+    // If found nothing, return nil.
+    if ( !data || [data count] == 0 )
+        return nil;
+
+    // Return the object.
+    return data[0];
 }
 
 + (NSUInteger)count {
     return [[self all] count];
 }
 
++ (NSUInteger)countWhere:(id)condition, ... {
+    JPBuildPredicate( anPredicate );
+
+    return [[[[self getAction] applyPredicate:anPredicate] run] count];
+}
+
+#pragma mark - Private
+
++ (NSPredicate *)predicateFromDictionary:(NSDictionary *)dict {
+    NSMutableArray *subpredicates = [NSMutableArray new];
+    for ( id key in [dict allKeys]) {
+        [subpredicates addObject:
+                [NSPredicate predicateWithFormat:@"%K == %@", key, dict[key]]
+        ];
+    }
+    return [NSCompoundPredicate andPredicateWithSubpredicates:subpredicates];
+}
+
++ (NSPredicate *)predicateFromObject:(id)condition {
+    return [self predicateFromObject:condition arguments:NULL];
+}
+
++ (NSPredicate *)predicateFromObject:(id)condition arguments:(va_list)arguments {
+    if ([condition isKindOfClass:[NSPredicate class]])
+        return condition;
+
+    if ([condition isKindOfClass:[NSString class]])
+        return [NSPredicate predicateWithFormat:condition arguments:arguments];
+
+    else if ([condition isKindOfClass:[NSDictionary class]])
+        return [self predicateFromDictionary:condition];
+
+    return nil;
+}
 
 @end

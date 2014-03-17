@@ -16,6 +16,48 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+//// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// ////
+#pragma mark -
+
+#define JPDatabaseCreateArrayOfKeys( ____listName, ____arrayName, ____entityName  ) \
+												NSMutableArray *____arrayName = [[NSMutableArray alloc] init];\
+												va_list args;\
+												va_start(args, ____listName);\
+												for (id arg = ____listName; arg != nil; arg = va_arg(args, id))\
+												{\
+												if ( _NOT_ [self existAttribute:arg inEntity:____entityName] ) \
+												{	\
+													[self throwExceptionWithCause:NSFormatString( @"The attribute '%@' doesn't exist on '%@' Entity.", arg, ____entityName)];\
+												}\
+												[____arrayName addObject:[[NSSortDescriptor alloc] initWithKey:arg ascending:ascendingOrder]];\
+												}\
+												va_end(args);\
+
+
+//// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// ////
+
+#define JPDatabaseCreateDictionaryOfVariables( ____listName, ____dictionaryName  ) \
+												NSMutableDictionary *____dictionaryName = [[NSMutableDictionary alloc] init];\
+												id value = nil;\
+												va_list args;\
+												va_start(args, ____listName);\
+												for (id arg = ____listName; arg != nil; arg = va_arg(args, id))\
+												{\
+												if	( _NOT_ value ) { value = arg; }\
+												else { [____dictionaryName setObject:value forKey:arg]; value = nil; }\
+												}\
+												va_end(args);
+
+//// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// ////
+
+#define JPDatabaseCreatePredicate(___predicateName, ___condition ) \
+                                                    va_list va_arguments;\
+                                                    va_start(va_arguments, ___condition);\
+                                                    NSPredicate *___predicateName = [NSPredicate predicateWithFormat:___condition arguments:va_arguments];\
+                                                    va_end(va_arguments);
+
+
+
 @class JPDBManager;
 
 /**
@@ -152,7 +194,8 @@
 //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// 
 /** @name Set Query Limits
  */
-///@{ 
+///@{
+
 
 /**
  * Set the initial row result to return from Query Methods results.
@@ -182,6 +225,11 @@
  * Reset this Action Settings to default values.
  */
 -(void)resetDefaultValues;
+
+/**
+ * Set this query to fetch all data.
+ */
+-(instancetype)all;
 
 ///@}
 //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// 
@@ -222,13 +270,19 @@
  */
 -(id)applyFetchReplaceWithVariables:(id)variableList, ... NS_REQUIRES_NIL_TERMINATION;
 
--(id)applyPredicate:(NSPredicate*)anPredicate;
+-(instancetype)applyPredicate:(NSPredicate*)anPredicate;
 
 /**
  * Run this action on the associated 
  * \ref JPDBManager Database Manager\endlink.
  */
 -(id)runAction;
+
+/**
+ * Run this action on the associated
+ * \ref JPDBManager Database Manager\endlink.
+ */
+-(id)run;
 
 ///@}
 //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// 
@@ -238,6 +292,12 @@
 /** @name Order Keys Methods
  */
 ///@{ 
+
+/**
+ * Define if the order of the results of some query should be Ascending or Descending.
+ * Default value is <b>YES</b>.
+ */
+-(id)applyAsAscendingOrder:(BOOL)order;
 
 /**
  * Set the Key attributes to sort the result of this acion.
@@ -261,7 +321,7 @@
  * @return Return itself.
  * @throw An  \ref JPDBManagerActionException  exception if the #entity property isn't defined. See \ref errors for more informations.
  */
--(id)applyOrderKey:(id)anKey;
+-(instancetype)applyOrderKey:(id)anKey;
 
 /**
  * Add a new Key attribute to sort the result of this action.
@@ -301,6 +361,16 @@
  * @return One unordered collection with queried data Objects. The Class of this collection is setted by #returnQueryAsArray property.
  */
 -(id)queryAllDataFromEntity:(NSString*)anEntityName orderWithKey:(id)anKey;
+
+/**
+ * Query all data of the specified Entity.
+ * The #defaultOrderIsAscending property determines if is an Ascending or Descending order.
+ * @param anEntityName The Entity Name.
+ * @param anKey One NSString formatted to form an Key attribute to sort the result.
+ * @param arguments Parameters to the anKey.
+ * @return One unordered collection with queried data Objects. The Class of this collection is setted by #returnQueryAsArray property.
+ */
+-(id)queryAllDataFromEntity:(NSString*)anEntityName orderWithKey:(id)anKey parameters:(va_list)arguments;
 
 /**
  * Query all data of the specified Entity.
@@ -468,7 +538,8 @@
 -(id)queryEntity:(NSString*)anEntityName withPredicate:(NSPredicate*)anPredicate arrayOfSortDescriptors:(NSArray*)anArrayOfSortDescriptors;
 
 //@}
-//// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// 
+
+//// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// ////
 #pragma mark -
 #pragma mark Remove Data Methods. 
 //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// 

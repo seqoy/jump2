@@ -109,37 +109,7 @@
 #pragma mark Memory Management Methods. 
 //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// 
 
-//// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// 
-#pragma mark -
 
-#define JPDatabaseCreateArrayOfKeys( ____listName, ____arrayName, ____entityName  ) \
-												NSMutableArray *____arrayName = [[NSMutableArray alloc] init];\
-												va_list args;\
-												va_start(args, ____listName);\
-												for (id arg = ____listName; arg != nil; arg = va_arg(args, id))\
-												{\
-												if ( _NOT_ [self existAttribute:arg inEntity:____entityName] ) \
-												{	\
-													[self throwExceptionWithCause:NSFormatString( @"The attribute '%@' doesn't exist on '%@' Entity.", arg, ____entityName)];\
-												}\
-												[____arrayName addObject:[[NSSortDescriptor alloc] initWithKey:arg ascending:ascendingOrder]];\
-												}\
-												va_end(args);\
-
-
-//// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// 
-
-#define JPDatabaseCreateDictionaryOfVariables( ____listName, ____dictionaryName  ) \
-												NSMutableDictionary *____dictionaryName = [[NSMutableDictionary alloc] init];\
-												id value = nil;\
-												va_list args;\
-												va_start(args, ____listName);\
-												for (id arg = ____listName; arg != nil; arg = va_arg(args, id))\
-												{\
-												if	( _NOT_ value ) { value = arg; }\
-												else { [____dictionaryName setObject:value forKey:arg]; value = nil; }\
-												}\
-												va_end(args);
 
 //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// 
 #pragma mark -
@@ -190,19 +160,37 @@
 	return [self queryAllDataFromEntity:anEntityName orderWithKeys:anKey, nil];
 }
 
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
--(id)queryAllDataFromEntity:(NSString*)anEntityName orderWithKeys:(id)listOfKeys, ... {
-	
-	// Create one Array of Sort Descriptors.
-	JPDatabaseCreateArrayOfKeys( listOfKeys, arrayOfSorter, anEntityName );
-	
-	//// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// 
-	
-	// Call Next Processing.
-	return [self queryEntity:anEntityName 
-		   withFetchTemplate:nil
+-(id)queryAllDataFromEntity:(NSString*)anEntityName orderWithKeys:(id)anKey, ... {
+    va_list listOfKeys;
+    va_start(listOfKeys, anKey);
+
+    NSArray *result = [self queryAllDataFromEntity:self.entity
+            orderWithKey:anKey
+              parameters:listOfKeys];
+
+    va_end(listOfKeys);
+    return result;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)queryAllDataFromEntity:(NSString *)anEntityName orderWithKey:(id)anKey parameters:(va_list)arguments {
+    NSMutableArray *sorters = [[NSMutableArray alloc] init];
+    for (id arg = anKey; arg != nil; arg = va_arg(arguments, id))
+    {
+        if ( _NOT_ [self existAttribute:arg inEntity:anEntityName] )
+        {
+            [self throwExceptionWithCause:NSFormatString( @"The attribute '%@' doesn't exist on '%@' Entity.", arg, anEntityName)];
+        }
+        [sorters addObject:[[NSSortDescriptor alloc] initWithKey:arg ascending:ascendingOrder]];
+    }
+
+    // Call Next Processing.
+    return [self queryEntity:anEntityName
+           withFetchTemplate:nil
   replaceFetchWithDictionary:nil
- 	  arrayOfSortDescriptors:arrayOfSorter ];
+      arrayOfSortDescriptors:sorters ];
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -320,6 +308,10 @@ replaceFetchWithDictionary:(NSDictionary*)anDictionary  arrayOfSortDescriptors:(
 										withObject:self];
 }
 
+-(id)run {
+    return [self runAction];
+}
+
 //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// 
 #pragma mark -
 #pragma mark Set Action Data Methods.
@@ -353,7 +345,7 @@ replaceFetchWithDictionary:(NSDictionary*)anDictionary  arrayOfSortDescriptors:(
 }	
 
 //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// ////
--(id)applyPredicate:(NSPredicate*)anPredicate {
+-(instancetype)applyPredicate:(NSPredicate*)anPredicate {
     predicate = anPredicate;
 	return self;
 }
@@ -372,6 +364,11 @@ replaceFetchWithDictionary:(NSDictionary*)anDictionary  arrayOfSortDescriptors:(
 
 	// Store it.
 	return [self applyArrayOfSortDescriptors:createdArray];
+}
+
+- (id)applyAsAscendingOrder:(BOOL)order {
+    [self setAscendingOrder:order];
+    return self;
 }
 
 //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// ////
@@ -394,7 +391,7 @@ replaceFetchWithDictionary:(NSDictionary*)anDictionary  arrayOfSortDescriptors:(
 }
 
 //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// ////
--(id)applyOrderKey:(id)anKey {
+-(instancetype)applyOrderKey:(id)anKey {
 	return [self applyOrderKeys:anKey, nil];
 }
 
@@ -463,6 +460,14 @@ replaceFetchWithDictionary:(NSDictionary*)anDictionary  arrayOfSortDescriptors:(
 	returnActionAsArray = YES;
 }
 
+- (instancetype)all {
+    [self resetDefaultValues];
+    [self applyPredicate:nil];
+    [self applyFetchTemplate:nil];
+    return self;
+}
+
+
 //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// 
 #pragma mark -
 #pragma mark Write Data Methods. 
@@ -499,8 +504,8 @@ replaceFetchWithDictionary:(NSDictionary*)anDictionary  arrayOfSortDescriptors:(
 // Delete all records returnedan Fetch Template query for an specified entity.
 -(void)deleteRecordsFromEntity:(NSString*)anEntityName withFetchTemplate:(NSString*)anFetchName {
 	id entityData = [self queryEntity:anEntityName withFetchTemplate:anFetchName];
-	
-	/////// /////// /////// /////// /////// /////// /////// 
+
+	/////// /////// /////// /////// /////// /////// ///////
 	// Loop deleting records.
 	for ( id object in entityData ) 
 		[self deleteRecord:object andCommit:NO];

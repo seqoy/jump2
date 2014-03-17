@@ -37,8 +37,8 @@
 		3AFCCF7118B69F6B00A7FC29 /* IAThreadSafeContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFCCF6D18B69F6B00A7FC29 /* IAThreadSafeContext.m */; };
 		3AFCCF7218B69F6B00A7FC29 /* IAThreadSafeManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFCCF6F18B69F6B00A7FC29 /* IAThreadSafeManagedObject.m */; };
 		3AFCCF7318B69F6B00A7FC29 /* IAThreadSafeManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFCCF6F18B69F6B00A7FC29 /* IAThreadSafeManagedObject.m */; };
-		438CB20E947644F69F5D6DC5 /* NSManagedObject+JPDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 438CBBF7CF20D187309FD704 /* NSManagedObject+JPDatabase.m */; };
-		438CBE99E3C827B74DE90620 /* NSManagedObject+JPDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 438CBBF7CF20D187309FD704 /* NSManagedObject+JPDatabase.m */; };
+		438CB4C270CB94F6858493E5 /* NSManagedObject+JPDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 438CBBEDE38EDA50349A8EFE /* NSManagedObject+JPDatabase.m */; };
+		438CB95D27649917BDE73DFE /* NSManagedObject+JPDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 438CBBEDE38EDA50349A8EFE /* NSManagedObject+JPDatabase.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -135,8 +135,8 @@
 		3AFCCFA118B6A0FB00A7FC29 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3AFCCFA318B6A10400A7FC29 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		3AFCCFCF18B6A4B800A7FC29 /* Rakefile */ = {isa = PBXFileReference; lastKnownFileType = text; name = Rakefile; path = ../Rakefile; sourceTree = "<group>"; };
-		438CBA9B6806D21B19E625E4 /* NSManagedObject+JPDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+JPDatabase.h"; sourceTree = "<group>"; };
-		438CBBF7CF20D187309FD704 /* NSManagedObject+JPDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+JPDatabase.m"; sourceTree = "<group>"; };
+		438CB8DF69EE37C02343B0A4 /* NSManagedObject+JPDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSManagedObject+JPDatabase.h"; path = "database/NSManagedObject+JPDatabase.h"; sourceTree = "<group>"; };
+		438CBBEDE38EDA50349A8EFE /* NSManagedObject+JPDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSManagedObject+JPDatabase.m"; path = "database/NSManagedObject+JPDatabase.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -320,8 +320,8 @@
 				3AFCCF6218B69DD600A7FC29 /* JPDBManagerDefinitions.h */,
 				3AFCCF6318B69DD600A7FC29 /* JPDBManagerSingleton.h */,
 				3AFCCF6418B69DD600A7FC29 /* JPDBManagerSingleton.m */,
-				438CBBF7CF20D187309FD704 /* NSManagedObject+JPDatabase.m */,
-				438CBA9B6806D21B19E625E4 /* NSManagedObject+JPDatabase.h */,
+				438CB8DF69EE37C02343B0A4 /* NSManagedObject+JPDatabase.h */,
+				438CBBEDE38EDA50349A8EFE /* NSManagedObject+JPDatabase.m */,
 			);
 			name = src;
 			sourceTree = "<group>";
@@ -533,7 +533,7 @@
 				3AFCCF7018B69F6B00A7FC29 /* IAThreadSafeContext.m in Sources */,
 				3AFCCF6718B69DD600A7FC29 /* JPDBManagerAction.m in Sources */,
 				3AFCCF7218B69F6B00A7FC29 /* IAThreadSafeManagedObject.m in Sources */,
-				438CB20E947644F69F5D6DC5 /* NSManagedObject+JPDatabase.m in Sources */,
+				438CB4C270CB94F6858493E5 /* NSManagedObject+JPDatabase.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -546,7 +546,7 @@
 				3AFCCF7118B69F6B00A7FC29 /* IAThreadSafeContext.m in Sources */,
 				3AFCCF6818B69DD600A7FC29 /* JPDBManagerAction.m in Sources */,
 				3AFCCF7318B69F6B00A7FC29 /* IAThreadSafeManagedObject.m in Sources */,
-				438CBE99E3C827B74DE90620 /* NSManagedObject+JPDatabase.m in Sources */,
+				438CB95D27649917BDE73DFE /* NSManagedObject+JPDatabase.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

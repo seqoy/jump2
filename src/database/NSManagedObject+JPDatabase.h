@@ -16,6 +16,8 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+@class JPDBManagerAction;
+
 /**
  * This category extends NSManagedObject adding an set of convenient helper methods for basic operations.
  * They are wrappers to the JPDBManagerAction class. But doesn't implement all of then.
@@ -29,37 +31,78 @@
 +(NSString *)entity;
 
 /**
- * Count how many objcets this entity has.
+ * Helper method to retrieve an \link JPDBManagerAction Database Action\endlink object.
+ * The manager is automatically associated to the main Database Manager and this entity.
+ */
++(JPDBManagerAction*)getAction;
+
+/**
+ * Count how many object this entity has.
  */
 + (NSUInteger)count;
 
+/**
+ * Count how many object this entity has, based on some specific query.
+ */
++ (NSUInteger)countWhere:(id)condition, ...;
+
 //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// ////
 #pragma mark -
-#pragma mark Query All Data Methods.
+#pragma mark Query Data Methods.
 //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// ////
-/** @name Query All Data Methods
+/** @name Query Data Methods
  */
 ///@{
+
+/**
+ * This powerful method run an JPDBManagerAction in the Database Manager. The JPDBManagerAction is created and
+ * configured with this Entity and passed to some flexible block that have a chance to configure it before 
+ * runs.
+ */
++(id)query:(void (^)(JPDBManagerAction *query))configBlock;
 
 /**
  * Query all data of this Entity.
  * @return One unordered collection with queried data Objects.
  */
-+ (NSArray *)all;
++ (id)all;
 
 /**
  * Query all data of this Entity.
  * @param anKey One Key attribute to sort the result.
  * @return One unordered collection with queried data Objects.
  */
-+ (NSArray *)allOrderedBy:(NSString*)anKey;
++ (id)allOrderedBy:(NSString*)anKey;
 
 /**
  * Query all data of this Entity.
  * @param listOfKeys Accept one or more Key Attributes to sort the result. Doesn't forget to terminate the list with an 'nil' token.
  * @return One unordered collection with queried data Objects.
  */
-+ (NSArray *)allOrderedByKeys:(id)listOfKeys, ... NS_REQUIRES_NIL_TERMINATION;
++ (id)allOrderedByKeys:(id)listOfKeys, ... NS_REQUIRES_NIL_TERMINATION;
+
+/**
+ * Query this Entity using one specific query.
+ * @param condition An query condition that will create an NSPredicate to perform.
+ * @return One unordered collection with queried data Objects.
+ */
++ (id)where:(id)condition, ...;
+
+/**
+ * Query this Entity using one specific query.
+ * @param anKey One Key attribute to sort the result.
+ * @param condition An query condition that will create an NSPredicate to perform.
+ * @param order One Key attribute to sort the result.
+ * @return One unordered collection with queried data Objects.
+ */
++ (id)usingOrder:(NSString*)order where:(id)condition,... ;
+
+/**
+ * Query this Entity using one specific query.
+ * @param condition An query condition that will create an NSPredicate to perform.
+ * @return The first object that this query return.
+ */
++ (instancetype)find:(id)condition, ...;
 
 ///@}
 //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// ////

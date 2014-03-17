@@ -160,7 +160,12 @@
 //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// 
 /** @name Get Info Methods
  */
-///@{ 
+///@{
+
+/**
+ * Return the NSEntityDescription for the specified entity.
+ */
+-(NSEntityDescription *)entity:(NSString *)entityName;
 
 /**
  * Test if specified Entity exist on the model.

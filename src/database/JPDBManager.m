@@ -333,14 +333,18 @@
 #pragma mark Checking Methods. 
 //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// 
 
+- (NSEntityDescription *)entity:(NSString *)entityName {
+    return [NSEntityDescription entityForName:entityName inManagedObjectContext:managedObjectContext];;
+}
+
 ////// ////// ////// ////// ////// ////// ////// ////// 
 // Return YES if specified Entity exist on the model.
 -(BOOL)existEntity:(NSString*)anEntityName {
 	
 	// Try to retrieve the Entity.
-	NSEntityDescription *entity = [NSEntityDescription entityForName:anEntityName inManagedObjectContext:managedObjectContext];
-	
-	// Not Exist.
+	NSEntityDescription *entity = [self entity:anEntityName];
+
+    // Not Exist.
 	if ( _NOT_ entity ) {	
 		//Warn( @"JPDatabaseManager : The Entity '%@' doesn't exist on any Model.", anEntityName );
 		return NO;
