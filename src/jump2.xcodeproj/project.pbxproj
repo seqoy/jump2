@@ -7,6 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A3B71BF18D939DB005FA781 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AFCCEF518B699F700A7FC29 /* Foundation.framework */; };
+		3A3B71CC18D939DC005FA781 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AFCCF0318B699F700A7FC29 /* XCTest.framework */; };
+		3A3B71CD18D939DC005FA781 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AFCCEF518B699F700A7FC29 /* Foundation.framework */; };
+		3A3B71CE18D939DC005FA781 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AFCCFA118B6A0FB00A7FC29 /* UIKit.framework */; };
+		3A3B71D118D939DC005FA781 /* libjumpNavigator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A3B71BE18D939DB005FA781 /* libjumpNavigator.a */; };
+		3A3B71E418D93A1B005FA781 /* JPNavigator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3B71E118D93A1B005FA781 /* JPNavigator.m */; };
+		3A3B71E518D93A1B005FA781 /* JPNavigator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3B71E118D93A1B005FA781 /* JPNavigator.m */; };
+		3A3B71E618D93A1B005FA781 /* JPURLMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3B71E318D93A1B005FA781 /* JPURLMap.m */; };
+		3A3B71E718D93A1B005FA781 /* JPURLMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3B71E318D93A1B005FA781 /* JPURLMap.m */; };
+		3A3B71EC18D93EB5005FA781 /* UIViewController+Navigator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3B71EB18D93EB5005FA781 /* UIViewController+Navigator.m */; };
+		3A3B71ED18D93EB5005FA781 /* UIViewController+Navigator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3B71EB18D93EB5005FA781 /* UIViewController+Navigator.m */; };
 		3ACC0A4018B6C46C00DCE1FA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AFCCEF518B699F700A7FC29 /* Foundation.framework */; };
 		3ACC0A4D18B6C46C00DCE1FA /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AFCCF0318B699F700A7FC29 /* XCTest.framework */; };
 		3ACC0A4E18B6C46C00DCE1FA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AFCCEF518B699F700A7FC29 /* Foundation.framework */; };
@@ -42,6 +53,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		3A3B71CF18D939DC005FA781 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3AFCCEB518B6970100A7FC29 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3A3B71BD18D939DB005FA781;
+			remoteInfo = jumpNavigator;
+		};
 		3ACC0A5018B6C46C00DCE1FA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3AFCCEB518B6970100A7FC29 /* Project object */;
@@ -66,6 +84,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		3A3B71BC18D939DB005FA781 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3ACC0A3D18B6C46C00DCE1FA /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -96,6 +123,16 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3A3B71BE18D939DB005FA781 /* libjumpNavigator.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libjumpNavigator.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		3A3B71CB18D939DC005FA781 /* jumpNavigatorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = jumpNavigatorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3A3B71E018D93A1B005FA781 /* JPNavigator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JPNavigator.h; path = navigator/JPNavigator.h; sourceTree = "<group>"; };
+		3A3B71E118D93A1B005FA781 /* JPNavigator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JPNavigator.m; path = navigator/JPNavigator.m; sourceTree = "<group>"; };
+		3A3B71E218D93A1B005FA781 /* JPURLMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JPURLMap.h; path = navigator/JPURLMap.h; sourceTree = "<group>"; };
+		3A3B71E318D93A1B005FA781 /* JPURLMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JPURLMap.m; path = navigator/JPURLMap.m; sourceTree = "<group>"; };
+		3A3B71E918D93BF0005FA781 /* JPNavigatorFactoryInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JPNavigatorFactoryInterface.h; path = navigator/JPNavigatorFactoryInterface.h; sourceTree = "<group>"; };
+		3A3B71EA18D93EB5005FA781 /* UIViewController+Navigator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIViewController+Navigator.h"; path = "navigator/UIViewController+Navigator.h"; sourceTree = "<group>"; };
+		3A3B71EB18D93EB5005FA781 /* UIViewController+Navigator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+Navigator.m"; path = "navigator/UIViewController+Navigator.m"; sourceTree = "<group>"; };
+		3A3B71EF18D946D3005FA781 /* deps */ = {isa = PBXFileReference; lastKnownFileType = text; name = deps; path = navigator/deps; sourceTree = "<group>"; };
 		3ACC0A3F18B6C46C00DCE1FA /* libjumpData.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libjumpData.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		3ACC0A4C18B6C46C00DCE1FA /* jumpDataTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = jumpDataTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3ACC0A6218B6C4F800DCE1FA /* JPDataConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JPDataConverter.h; path = data/JPDataConverter.h; sourceTree = "<group>"; };
@@ -140,6 +177,25 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		3A3B71BB18D939DB005FA781 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3A3B71BF18D939DB005FA781 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3A3B71C818D939DC005FA781 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3A3B71CC18D939DC005FA781 /* XCTest.framework in Frameworks */,
+				3A3B71CE18D939DC005FA781 /* UIKit.framework in Frameworks */,
+				3A3B71CD18D939DC005FA781 /* Foundation.framework in Frameworks */,
+				3A3B71D118D939DC005FA781 /* libjumpNavigator.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3ACC0A3C18B6C46C00DCE1FA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -199,6 +255,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3A3B71B918D93941005FA781 /* Navigator */ = {
+			isa = PBXGroup;
+			children = (
+				3A3B71EF18D946D3005FA781 /* deps */,
+				3A3B71E818D93A70005FA781 /* src */,
+			);
+			name = Navigator;
+			sourceTree = "<group>";
+		};
+		3A3B71E818D93A70005FA781 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				3A3B71E018D93A1B005FA781 /* JPNavigator.h */,
+				3A3B71E118D93A1B005FA781 /* JPNavigator.m */,
+				3A3B71E218D93A1B005FA781 /* JPURLMap.h */,
+				3A3B71E318D93A1B005FA781 /* JPURLMap.m */,
+				3A3B71E918D93BF0005FA781 /* JPNavigatorFactoryInterface.h */,
+				3A3B71EA18D93EB5005FA781 /* UIViewController+Navigator.h */,
+				3A3B71EB18D93EB5005FA781 /* UIViewController+Navigator.m */,
+			);
+			name = src;
+			sourceTree = "<group>";
+		};
 		3ACC0A3A18B6C45100DCE1FA /* Data */ = {
 			isa = PBXGroup;
 			children = (
@@ -219,6 +298,7 @@
 		3AFCCEB418B6970100A7FC29 = {
 			isa = PBXGroup;
 			children = (
+				3A3B71B918D93941005FA781 /* Navigator */,
 				3AFCCEEC18B697FC00A7FC29 /* Configs */,
 				3AFCCEE818B6976B00A7FC29 /* Core */,
 				3AFCCEE918B6977000A7FC29 /* Database */,
@@ -288,6 +368,8 @@
 		3AFCCF1918B69A1E00A7FC29 /* Product */ = {
 			isa = PBXGroup;
 			children = (
+				3A3B71BE18D939DB005FA781 /* libjumpNavigator.a */,
+				3A3B71CB18D939DC005FA781 /* jumpNavigatorTests.xctest */,
 				3ACC0A3F18B6C46C00DCE1FA /* libjumpData.a */,
 				3ACC0A4C18B6C46C00DCE1FA /* jumpDataTests.xctest */,
 				3AFCCF3718B69C6300A7FC29 /* libjumpDatabase.a */,
@@ -329,6 +411,41 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		3A3B71BD18D939DB005FA781 /* jumpNavigator */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3A3B71DA18D939DC005FA781 /* Build configuration list for PBXNativeTarget "jumpNavigator" */;
+			buildPhases = (
+				3A3B71BA18D939DB005FA781 /* Sources */,
+				3A3B71BB18D939DB005FA781 /* Frameworks */,
+				3A3B71BC18D939DB005FA781 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = jumpNavigator;
+			productName = jumpNavigator;
+			productReference = 3A3B71BE18D939DB005FA781 /* libjumpNavigator.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		3A3B71CA18D939DC005FA781 /* jumpNavigatorTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3A3B71DD18D939DC005FA781 /* Build configuration list for PBXNativeTarget "jumpNavigatorTests" */;
+			buildPhases = (
+				3A3B71C718D939DC005FA781 /* Sources */,
+				3A3B71C818D939DC005FA781 /* Frameworks */,
+				3A3B71C918D939DC005FA781 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3A3B71D018D939DC005FA781 /* PBXTargetDependency */,
+			);
+			name = jumpNavigatorTests;
+			productName = jumpNavigatorTests;
+			productReference = 3A3B71CB18D939DC005FA781 /* jumpNavigatorTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		3ACC0A3E18B6C46C00DCE1FA /* jumpData */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3ACC0A5B18B6C46C00DCE1FA /* Build configuration list for PBXNativeTarget "jumpData" */;
@@ -461,11 +578,20 @@
 				3AFCCF4318B69C6300A7FC29 /* jumpDatabaseTests */,
 				3ACC0A3E18B6C46C00DCE1FA /* jumpData */,
 				3ACC0A4B18B6C46C00DCE1FA /* jumpDataTests */,
+				3A3B71BD18D939DB005FA781 /* jumpNavigator */,
+				3A3B71CA18D939DC005FA781 /* jumpNavigatorTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		3A3B71C918D939DC005FA781 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3ACC0A4A18B6C46C00DCE1FA /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -492,6 +618,26 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		3A3B71BA18D939DB005FA781 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3A3B71E618D93A1B005FA781 /* JPURLMap.m in Sources */,
+				3A3B71EC18D93EB5005FA781 /* UIViewController+Navigator.m in Sources */,
+				3A3B71E418D93A1B005FA781 /* JPNavigator.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3A3B71C718D939DC005FA781 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3A3B71E718D93A1B005FA781 /* JPURLMap.m in Sources */,
+				3A3B71ED18D93EB5005FA781 /* UIViewController+Navigator.m in Sources */,
+				3A3B71E518D93A1B005FA781 /* JPNavigator.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3ACC0A3B18B6C46C00DCE1FA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -553,6 +699,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		3A3B71D018D939DC005FA781 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3A3B71BD18D939DB005FA781 /* jumpNavigator */;
+			targetProxy = 3A3B71CF18D939DC005FA781 /* PBXContainerItemProxy */;
+		};
 		3ACC0A5118B6C46C00DCE1FA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 3ACC0A3E18B6C46C00DCE1FA /* jumpData */;
@@ -571,6 +722,82 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		3A3B71DB18D939DC005FA781 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				DSTROOT = /tmp/jumpNavigator.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = jump2_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		3A3B71DC18D939DC005FA781 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				DSTROOT = /tmp/jumpNavigator.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = jump2_Prefix.pch;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		3A3B71DE18D939DC005FA781 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "jumpNavigator/jumpNavigator-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = "jumpNavigatorTests/jumpNavigatorTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		3A3B71DF18D939DC005FA781 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "jumpNavigator/jumpNavigator-Prefix.pch";
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = "jumpNavigatorTests/jumpNavigatorTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
 		3ACC0A5C18B6C46C00DCE1FA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -848,6 +1075,22 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		3A3B71DA18D939DC005FA781 /* Build configuration list for PBXNativeTarget "jumpNavigator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3A3B71DB18D939DC005FA781 /* Debug */,
+				3A3B71DC18D939DC005FA781 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		3A3B71DD18D939DC005FA781 /* Build configuration list for PBXNativeTarget "jumpNavigatorTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3A3B71DE18D939DC005FA781 /* Debug */,
+				3A3B71DF18D939DC005FA781 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		3ACC0A5B18B6C46C00DCE1FA /* Build configuration list for PBXNativeTarget "jumpData" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -855,6 +1098,7 @@
 				3ACC0A5D18B6C46C00DCE1FA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3ACC0A5E18B6C46C00DCE1FA /* Build configuration list for PBXNativeTarget "jumpDataTests" */ = {
 			isa = XCConfigurationList;
@@ -863,6 +1107,7 @@
 				3ACC0A6018B6C46C00DCE1FA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3AFCCEB818B6970100A7FC29 /* Build configuration list for PBXProject "jump2" */ = {
 			isa = XCConfigurationList;

@@ -1,0 +1,1 @@
+../../../../src/core/JPNSObjectsShortcuts.h

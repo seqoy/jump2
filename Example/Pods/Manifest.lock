@@ -1,0 +1,29 @@
+PODS:
+  - jump2 (2.0.0):
+    - jump2/Core
+  - jump2/Core (2.0.0)
+  - jump2/Navigator (2.0.0):
+    - jump2/Core
+    - SOCKit
+  - Kiwi/ARC (2.2.4)
+  - Kiwi/NonARC (2.2.4)
+  - Kiwi/XCTest (2.2.4):
+    - Kiwi/ARC
+    - Kiwi/NonARC
+  - SOCKit (1.1)
+
+DEPENDENCIES:
+  - jump2 (from `../jump2.podspec`)
+  - jump2/Navigator (from `../jump2.podspec`)
+  - Kiwi/XCTest
+
+EXTERNAL SOURCES:
+  jump2:
+    :path: ../jump2.podspec
+
+SPEC CHECKSUMS:
+  jump2: 8ffea00c1635ad61bcb1320eaa11e39b8fe263b4
+  Kiwi: d60d7498b640a16f58b01925fc3c8d7c4d809f66
+  SOCKit: 2f3bc4d07910de12dcc202815e07db68a3802581
+
+COCOAPODS: 0.29.0
