@@ -70,7 +70,7 @@
 
 /////////// /////////// /////////// /////////// /////////// /////////// /////////// /////////// /////////// /////////// ///////////
 
-#pragma mark - RRURLMapDescriptor
+#pragma mark - JPURLMapDescriptor
 
 @class SOCPattern;
 @interface JPURLMapDescriptor : NSObject

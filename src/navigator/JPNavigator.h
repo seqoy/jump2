@@ -27,16 +27,18 @@
 +(instancetype)configureFromFactory:(id<JPNavigatorFactoryInterface>)factory;
 
 /**
- * Convenient method to configure the Navigator using an block. The block will
- * receive an intialized JPURLMap and ready to be mapped.
+ * Convenient method to configure the Navigator using an block. The block must
+ * return an configured JPURLMap.
  * Example:
  * <tt>
- * [[JPNavigator navigator] configureWithBlock:^(JPURLMap *map) {
+ * [JPNavigator configureWithBlock:^JPURLMap* () {
+ *      JPURLMap *map = [JPURLMap new];
  *      [map from:@"test://fromClass/:value" toViewController:[TestController class] selector:@selector(initWithValue:)];
+ *      return map;
  * }];
  * </tt>
  */
-+(instancetype)configureWithBlock:(void (^)(JPURLMap *map))configBlock;
++(instancetype)configureWithBlock:(JPURLMap* (^)())configBlock;
 
 /**
  * An associated UINavigationController. JPNavigator doesn't control the navigation stack, 
@@ -45,7 +47,7 @@
 @property (strong) UINavigationController *navigationController;
 
 /**
- * An array of objects that conforms with the <tt>RRNavigatorListener</tt> protocol and receive
+ * An array of objects that conforms with the <tt>JPNavigatorListener</tt> protocol and receive
  * information about the Navigator operation. You must add and remove your listeners directly
  * on the array. Example:
  *          <tt>[navigationController.listeners addObject:self];
@@ -89,7 +91,7 @@
 
 /////////// /////////// /////////// /////////// /////////// /////////// /////////// /////////// /////////// /////////// ///////////
 
-#pragma mark - RRNavigatorListener Protocol
+#pragma mark - JPNavigatorListener Protocol
 
 @protocol JPNavigatorListener <NSObject>
 

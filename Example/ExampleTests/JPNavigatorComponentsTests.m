@@ -79,7 +79,6 @@ describe(@"Navigator", ^{
             // Mock the factory interface.
             mapFactory = [KWMock mockForProtocol:@protocol(JPNavigatorFactoryInterface)];
             [mapFactory stub:@selector(buildMap) andReturn:map];
-
         });
         
         // Tests ///////////// ////////// ////////// ////////// ////////// ////////// //////////
@@ -90,7 +89,6 @@ describe(@"Navigator", ^{
         });
         
         it(@"Should return the map", ^{
-            [mapFactory stub:@selector(buildMap) andReturn:map];
             [[[mapFactory buildMap] should] equal:map];
          });
     });

@@ -27,16 +27,30 @@ describe(@"Navigator", ^{
         // Bootstrap ///////////// ////////// ////////// ////////// ////////// ////////// //////////
         
         beforeAll(^{
-            navigator = [JPNavigator navigator];
-            
-            // Configure the Navigator.
-            [JPNavigator configureWithBlock:^(JPURLMap *map) {
+            // Build and configure some map.
+            JPURLMap *map = ({
+                JPURLMap *map = [JPURLMap new];
                 [map from:@"test://fromStoryboard/:value"
-                                           toStoryboardIdentifier:@"testController"
-                                                  usingStoryboard:@"TestNavigator"
-                                                         selector:@selector(setValue:)];
-            }];
+                                               toStoryboardIdentifier:@"testController"
+                                                      usingStoryboard:@"TestNavigator"
+                                                             selector:@selector(setValue:)];
+                map;
+            });
             
+            // Mock an factory and stub an factory.
+            id factory = [KWMock mockForProtocol:@protocol(JPNavigatorFactoryInterface)];
+            [factory stub:@selector(buildMap) andReturn:map];
+            
+            //
+            // Configure the Navigator from Factory, this also will cover the
+            // 'configureWithBlock:' method, since one call the other internally.
+            //
+            navigator = [JPNavigator configureFromFactory:factory];
+            
+            // Some assertions before go...
+            [navigator shouldNotBeNil];
+            [[navigator maps] shouldNotBeNil];
+            [[[navigator maps] should] equal:map];
         });
         
         afterEach(^{

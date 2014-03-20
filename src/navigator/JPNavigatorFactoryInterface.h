@@ -21,6 +21,6 @@
 /**
  * Build and configure JPURLMap Object.
  */
-+ (JPURLMap *)buildMap;
+-(JPURLMap *)buildMap;
 
 @end

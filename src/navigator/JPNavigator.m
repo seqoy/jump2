@@ -30,14 +30,13 @@
 //////// //////// //////// //////// //////// //////// //////// //////// //////// //////// //////// //////// //////// //////// ////
 // Take an factory that conform with the JPNavigatorFactoryInterface interface and build it.
 +(instancetype)configureFromFactory:(id<JPNavigatorFactoryInterface>)factory {
-           [JPNavigator navigator].maps = [factory buildMap];
-    return [JPNavigator navigator];
+    return [self configureWithBlock:^JPURLMap* () {
+        return [factory buildMap];
+    }];
 }
 
-+(instancetype)configureWithBlock:(void (^)(JPURLMap *map))configBlock {
-    JPURLMap *anMap = [JPURLMap new];
-    configBlock( anMap );
-    [JPNavigator navigator].maps = anMap;
++(instancetype)configureWithBlock:(JPURLMap* (^)())configBlock {
+    [JPNavigator navigator].maps = configBlock();
     return [JPNavigator navigator];
 }
 
