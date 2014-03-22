@@ -9,14 +9,14 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../../src/database/JPDBManagerAction.m"
-            timestampString = "417211945.253723"
+            filePath = "ExampleTests/JPDBManagerActionTests.m"
+            timestampString = "417220942.727983"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "248"
-            endingLineNumber = "248"
-            landmarkName = "-queryEntity:withFetchTemplate:replaceFetchWithDictionary:arrayOfSortDescriptors:"
-            landmarkType = "5">
+            startingLineNumber = "498"
+            endingLineNumber = "498"
+            landmarkName = "SPEC_BEGIN()"
+            landmarkType = "6">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

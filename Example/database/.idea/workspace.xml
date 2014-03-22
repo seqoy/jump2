@@ -2,25 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f8a905c6-e5dc-4733-9f10-fb6213f689a0" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../src/jump2.xcodeproj/.idea/encodings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/find.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../src/jump2.xcodeproj/.idea/jump2.xcodeproj.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../src/jump2.xcodeproj/.idea/misc.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../src/jump2.xcodeproj/.idea/modules.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../src/jump2.xcodeproj/.idea/scopes/scope_settings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../src/jump2.xcodeproj/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../src/jump2.xcodeproj/.idea/workspace.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../src/jump2.xcodeproj/.idea/xcode.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Example.xcworkspace/xcuserdata/aoliveira.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/Example.xcworkspace/xcuserdata/aoliveira.xcuserdatad/UserInterfaceState.xcuserstate" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../navigator/Example.xcworkspace/xcuserdata/aoliveira.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/../navigator/Example.xcworkspace/xcuserdata/aoliveira.xcuserdatad/UserInterfaceState.xcuserstate" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../src/database/JPDBManagerAction.h" afterPath="$PROJECT_DIR$/../../src/database/JPDBManagerAction.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Example.xcworkspace/xcuserdata/aoliveira.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist" afterPath="$PROJECT_DIR$/Example.xcworkspace/xcuserdata/aoliveira.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../src/database/JPDBManagerAction.m" afterPath="$PROJECT_DIR$/../../src/database/JPDBManagerAction.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ExampleTests/JPDBManagerActionTests.m" afterPath="$PROJECT_DIR$/ExampleTests/JPDBManagerActionTests.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../src/database/JPDBManagerDefinitions.h" afterPath="$PROJECT_DIR$/../../src/database/JPDBManagerDefinitions.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Example.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/Example.xcodeproj/project.pbxproj" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/project.pbxproj" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../navigator/Pods/Pods.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/../navigator/Pods/Pods.xcodeproj/project.pbxproj" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../navigator/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../navigator/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="database.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -43,10 +29,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="JPDBManagerActionTests.m" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="JPDBManagerActionTests.m" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ExampleTests/JPDBManagerActionTests.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="268" column="60" selection-start="9098" selection-end="9098" vertical-scroll-proportion="0.0" vertical-offset="3543" max-vertical-offset="4335">
+            <state line="567" column="57" selection-start="20655" selection-end="20655" vertical-scroll-proportion="10.945946" vertical-offset="0" max-vertical-offset="8625">
               <folding>
                 <element signature="e#0#16#0" expanded="true" />
               </folding>
@@ -57,24 +43,24 @@
       <file leaf-file-name="JPDBManagerAction.m" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../../src/database/JPDBManagerAction.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="124" column="0" selection-start="3810" selection-end="3810" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="7110">
+            <state line="120" column="0" selection-start="3805" selection-end="3805" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="7050">
               <folding>
-                <marker date="1395521555000" expanded="true" signature="803:15521" placeholder="..." />
-                <marker date="1395521555000" expanded="true" signature="4206:4496" placeholder="{...}" />
-                <marker date="1395521555000" expanded="true" signature="5328:5433" placeholder="{...}" />
-                <marker date="1395521555000" expanded="true" signature="5540:5639" placeholder="{...}" />
-                <marker date="1395521555000" expanded="true" signature="5757:6148" placeholder="{...}" />
-                <marker date="1395521555000" expanded="true" signature="6291:6474" placeholder="{...}" />
-                <marker date="1395521555000" expanded="true" signature="6596:6766" placeholder="{...}" />
+                <marker date="1395522491000" expanded="true" signature="803:15392" placeholder="..." />
+                <marker date="1395522491000" expanded="true" signature="4206:4496" placeholder="{...}" />
+                <marker date="1395522491000" expanded="true" signature="5328:5433" placeholder="{...}" />
+                <marker date="1395522491000" expanded="true" signature="5540:5639" placeholder="{...}" />
+                <marker date="1395522491000" expanded="true" signature="5757:6148" placeholder="{...}" />
+                <marker date="1395522491000" expanded="true" signature="6291:6474" placeholder="{...}" />
+                <marker date="1395522491000" expanded="true" signature="6596:6766" placeholder="{...}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="JPDBManagerAction.h" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="JPDBManagerAction.h" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../../src/database/JPDBManagerAction.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="211" column="45" selection-start="8806" selection-end="8806" vertical-scroll-proportion="-1.6112566" vertical-offset="4381" max-vertical-offset="8190">
+            <state line="211" column="45" selection-start="8806" selection-end="8806" vertical-scroll-proportion="0.0" vertical-offset="4381" max-vertical-offset="8190">
               <folding />
             </state>
           </provider>
@@ -98,8 +84,8 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/ExampleTests/JPDBManagerActionTests.m" />
         <option value="$PROJECT_DIR$/../../src/database/JPDBManagerAction.h" />
+        <option value="$PROJECT_DIR$/ExampleTests/JPDBManagerActionTests.m" />
       </list>
     </option>
   </component>
@@ -349,13 +335,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="308" column="45" selection-start="10315" selection-end="10315" vertical-scroll-proportion="0.0" vertical-offset="4620" max-vertical-offset="7410">
           <folding>
-            <marker date="1395521555000" expanded="true" signature="803:15521" placeholder="..." />
-            <marker date="1395521555000" expanded="true" signature="4206:4496" placeholder="{...}" />
-            <marker date="1395521555000" expanded="true" signature="5328:5433" placeholder="{...}" />
-            <marker date="1395521555000" expanded="true" signature="5540:5639" placeholder="{...}" />
-            <marker date="1395521555000" expanded="true" signature="5757:6148" placeholder="{...}" />
-            <marker date="1395521555000" expanded="true" signature="6291:6474" placeholder="{...}" />
-            <marker date="1395521555000" expanded="true" signature="6596:6766" placeholder="{...}" />
+            <marker date="1395522491000" expanded="true" signature="803:15392" placeholder="..." />
+            <marker date="1395522491000" expanded="true" signature="4206:4496" placeholder="{...}" />
+            <marker date="1395522491000" expanded="true" signature="5328:5433" placeholder="{...}" />
+            <marker date="1395522491000" expanded="true" signature="5540:5639" placeholder="{...}" />
+            <marker date="1395522491000" expanded="true" signature="5757:6148" placeholder="{...}" />
+            <marker date="1395522491000" expanded="true" signature="6291:6474" placeholder="{...}" />
+            <marker date="1395522491000" expanded="true" signature="6596:6766" placeholder="{...}" />
           </folding>
         </state>
       </provider>
@@ -423,34 +409,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ExampleTests/JPDBManagerActionTests.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="268" column="60" selection-start="9098" selection-end="9098" vertical-scroll-proportion="0.0" vertical-offset="3543" max-vertical-offset="4335">
-          <folding>
-            <element signature="e#0#16#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../../src/database/JPDBManagerAction.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="124" column="0" selection-start="3810" selection-end="3810" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="7110">
+        <state line="120" column="0" selection-start="3805" selection-end="3805" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="7050">
           <folding>
-            <marker date="1395521555000" expanded="true" signature="803:15521" placeholder="..." />
-            <marker date="1395521555000" expanded="true" signature="4206:4496" placeholder="{...}" />
-            <marker date="1395521555000" expanded="true" signature="5328:5433" placeholder="{...}" />
-            <marker date="1395521555000" expanded="true" signature="5540:5639" placeholder="{...}" />
-            <marker date="1395521555000" expanded="true" signature="5757:6148" placeholder="{...}" />
-            <marker date="1395521555000" expanded="true" signature="6291:6474" placeholder="{...}" />
-            <marker date="1395521555000" expanded="true" signature="6596:6766" placeholder="{...}" />
+            <marker date="1395522491000" expanded="true" signature="803:15392" placeholder="..." />
+            <marker date="1395522491000" expanded="true" signature="4206:4496" placeholder="{...}" />
+            <marker date="1395522491000" expanded="true" signature="5328:5433" placeholder="{...}" />
+            <marker date="1395522491000" expanded="true" signature="5540:5639" placeholder="{...}" />
+            <marker date="1395522491000" expanded="true" signature="5757:6148" placeholder="{...}" />
+            <marker date="1395522491000" expanded="true" signature="6291:6474" placeholder="{...}" />
+            <marker date="1395522491000" expanded="true" signature="6596:6766" placeholder="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../../src/database/JPDBManagerAction.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="211" column="45" selection-start="8806" selection-end="8806" vertical-scroll-proportion="-1.6112566" vertical-offset="4381" max-vertical-offset="8190">
+        <state line="211" column="45" selection-start="8806" selection-end="8806" vertical-scroll-proportion="0.0" vertical-offset="4381" max-vertical-offset="8190">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ExampleTests/JPDBManagerActionTests.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="567" column="57" selection-start="20655" selection-end="20655" vertical-scroll-proportion="10.945946" vertical-offset="0" max-vertical-offset="8625">
+          <folding>
+            <element signature="e#0#16#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
