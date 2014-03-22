@@ -15,9 +15,12 @@
  */
 #import "JPNavigator.h"
 #import "JPSynthetizeSingleton.h"
+#import "NSArray+ObjectiveSugar.h"
 
 @implementation JPNavigator
 
+
+#pragma mark - Init Methods.
 - (id)init
 {
     self = [super init];
@@ -27,7 +30,6 @@
     return self;
 }
 
-//////// //////// //////// //////// //////// //////// //////// //////// //////// //////// //////// //////// //////// //////// ////
 // Take an factory that conform with the JPNavigatorFactoryInterface interface and build it.
 +(instancetype)configureFromFactory:(id<JPNavigatorFactoryInterface>)factory {
     return [self configureWithBlock:^JPURLMap* () {
@@ -40,12 +42,13 @@
     return [JPNavigator navigator];
 }
 
-//////// //////// //////// //////// //////// //////// //////// //////// //////// //////// //////// //////// //////// //////// ////
-
 JPSynthetizeSingleton(JPNavigator)
 +(JPNavigator*)navigator { return [self sharedInstance]; }
 
-//////// //////// //////// //////// //////// //////// //////// //////// //////// //////// //////// //////// //////// //////// ////
+
+
+
+#pragma mark - Controller Methods.
 - (id)viewControllerForURL:(NSString*)URL {
     return [_maps objectForURL:URL];
 }
@@ -55,7 +58,6 @@ JPSynthetizeSingleton(JPNavigator)
     return [self openNavigationURL:url withConfigureHandler:nil];
 }
 
-//////// //////// //////// //////// //////// //////// //////// //////// //////// //////// //////// //////// //////// //////// ////
 // Load and display the view controller with a pattern that matches the URL.
 -(id)openNavigationURL:(NSString*)url
                  withConfigureHandler:(void (^)(UIViewController* viewController))handler {
@@ -72,15 +74,15 @@ JPSynthetizeSingleton(JPNavigator)
     
  
     // Call listeners.
-    for ( id<JPNavigatorListener> listener in self.listeners) {
+    [self.listeners each:^(id<JPNavigatorListener> listener) {
         if ([listener conformsToProtocol:@protocol(JPNavigatorListener)]) {
             [listener navigator:self willOpenViewController:viewController];
         }
-    }
+    }];
     
     // Call Configure Handler, if defined.
-    
-    if ( handler ) handler( viewController );
+    if ( handler )
+         handler( viewController );
     
     // Push it to the Navigation.
     [self.navigationController pushViewController:viewController animated:YES];
