@@ -79,6 +79,7 @@ describe(@"ManagerAction", ^{
         
 
         it( @"Should run the action", ^{
+            #pragma clang diagnostic push
             #pragma clang diagnostic ignored "-Wundeclared-selector"
             
             // Stub the manager to receive internal call.
