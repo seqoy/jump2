@@ -15,6 +15,7 @@
  */
 #import "JPURLMap.h"
 #import "SOCKit.h"
+#import "NSMutableArray+ObjectiveSugar.h"
 
 
 
@@ -22,12 +23,12 @@
 @implementation JPURLMapDescriptor
 
 - (NSString *)description {
-    NSMutableString *description = [NSMutableString stringWithFormat:@"[%@: ", NSStringFromClass([self class])];
-    [description appendFormat:@"self.pattern=%@", self.pattern];
-    [description appendFormat:@", self.selector=%p", self.selector];
-    [description appendFormat:@", self.class=%@", self.class];
-    [description appendFormat:@", self.identifier=%@", self.identifier];
-    [description appendFormat:@", self.storyboard=%@", self.storyboard];
+    NSMutableString *description = [NSMutableString stringWithFormat:@"[%@: ", NSStringFromClass([JPURLMapDescriptor class])];
+    [description appendFormat:@"pattern: %@", self.pattern];
+    [description appendFormat:@", selector: %@", NSStringFromSelector(self.selector)];
+    [description appendFormat:@", class: %@", NSStringFromClass(self.class)];
+    [description appendFormat:@", identifier: %@", self.identifier];
+    [description appendFormat:@", storyboard: %@", self.storyboard];
     [description appendString:@"]"];
     return description;
 }
@@ -52,7 +53,7 @@
 
 - (NSString *)description {
     NSMutableString *description = [NSMutableString stringWithFormat:@"[%@: ", NSStringFromClass([self class])];
-    [description appendFormat:@"patterns=%@", _objectPatterns];
+    [description appendFormat:@"patterns: %@", _objectPatterns];
     [description appendString:@"]"];
     return description;
 }
@@ -89,8 +90,7 @@
     mapDescriptor.class      = target;
     
     // Store it.
-    [_objectPatterns addObject:mapDescriptor];
-
+    [_objectPatterns push:mapDescriptor];
 }
 
 
@@ -100,18 +100,14 @@
 
     // Look for matching pattern.
     for ( JPURLMapDescriptor *mapDescriptor in _objectPatterns) {
-        
+
         // Test if matches.
         if ( [mapDescriptor.pattern stringMatches:URL] ) {
-            
-            // If we're using an class.
-            if ( mapDescriptor.class ) {
-                return [self viewControllerFromClassUsingMap:mapDescriptor andURL:URL];
-            }
-            
-            else {
-                return [self viewControllerFromStoryboardUsingMap:mapDescriptor andURL:URL];
-            }
+
+            // Using...
+            return mapDescriptor.class
+                    ? [self viewControllerFromClassUsingMap:mapDescriptor andURL:URL]           // Class.
+                    : [self viewControllerFromStoryboardUsingMap:mapDescriptor andURL:URL];     // Storyboard.
         }
     }
 
