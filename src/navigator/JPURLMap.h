@@ -66,12 +66,17 @@
  */
 -(id)objectForURL:(NSString*)URL;
 
+- (NSString *)description;
+
 @end
 
-/////////// /////////// /////////// /////////// /////////// /////////// /////////// /////////// /////////// /////////// ///////////
 
+
+
+/**
+ * Model object that store data for an mapped URL.
+ */
 #pragma mark - JPURLMapDescriptor
-
 @class SOCPattern;
 @interface JPURLMapDescriptor : NSObject
 
@@ -80,6 +85,8 @@
 @property (assign) Class class;
 @property (strong) NSString* identifier;
 @property (strong) NSString* storyboard;
+
+- (NSString *)description;
 
 @end
 

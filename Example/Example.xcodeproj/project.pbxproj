@@ -25,6 +25,8 @@
 		3A4299BD18D96AC5000FD7E5 /* TestNavigator.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A4299BB18D96AC5000FD7E5 /* TestNavigator.storyboard */; };
 		3ACEA0DE18DA20A30091D8BF /* JPNavigatorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACEA0DD18DA20A30091D8BF /* JPNavigatorTest.m */; };
 		3ACEA0E118DA29430091D8BF /* JPTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACEA0E018DA29430091D8BF /* JPTestViewController.m */; };
+		3AF87EF818DAA15A00F33B03 /* GTMCodeCoverageApp.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF87EF718DAA15A00F33B03 /* GTMCodeCoverageApp.m */; };
+		3AF87EFC18DAA5CC00F33B03 /* GTMCodeCoverageTestsXC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF87EFB18DAA5CC00F33B03 /* GTMCodeCoverageTestsXC.m */; };
 		C6C049D83C4341B9B7E78AF2 /* libPods-ExampleTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 49D042A6983244EAA4241D5D /* libPods-ExampleTests.a */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +64,9 @@
 		3ACEA0DD18DA20A30091D8BF /* JPNavigatorTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPNavigatorTest.m; sourceTree = "<group>"; };
 		3ACEA0DF18DA29430091D8BF /* JPTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPTestViewController.h; sourceTree = "<group>"; };
 		3ACEA0E018DA29430091D8BF /* JPTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPTestViewController.m; sourceTree = "<group>"; };
+		3AF87EF618DAA15A00F33B03 /* GTMCodeCoverageApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTMCodeCoverageApp.h; path = GTM/GTMCodeCoverageApp.h; sourceTree = "<group>"; };
+		3AF87EF718DAA15A00F33B03 /* GTMCodeCoverageApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTMCodeCoverageApp.m; path = GTM/GTMCodeCoverageApp.m; sourceTree = "<group>"; };
+		3AF87EFB18DAA5CC00F33B03 /* GTMCodeCoverageTestsXC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTMCodeCoverageTestsXC.m; path = GTM/GTMCodeCoverageTestsXC.m; sourceTree = "<group>"; };
 		3EDC24F6647E408194BF2E18 /* Pods-ExampleTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExampleTests.xcconfig"; path = "Pods/Pods-ExampleTests.xcconfig"; sourceTree = "<group>"; };
 		49D042A6983244EAA4241D5D /* libPods-ExampleTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ExampleTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -126,6 +131,7 @@
 		3A3B720218D94792005FA781 /* Example */ = {
 			isa = PBXGroup;
 			children = (
+				3AF87EF518DAA15000F33B03 /* GTM */,
 				3A3B720B18D94792005FA781 /* JPAppDelegate.h */,
 				3A3B720C18D94792005FA781 /* JPAppDelegate.m */,
 				3A3B720E18D94792005FA781 /* Main.storyboard */,
@@ -176,6 +182,16 @@
 				3ACEA0E018DA29430091D8BF /* JPTestViewController.m */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		3AF87EF518DAA15000F33B03 /* GTM */ = {
+			isa = PBXGroup;
+			children = (
+				3AF87EFB18DAA5CC00F33B03 /* GTMCodeCoverageTestsXC.m */,
+				3AF87EF618DAA15A00F33B03 /* GTMCodeCoverageApp.h */,
+				3AF87EF718DAA15A00F33B03 /* GTMCodeCoverageApp.m */,
+			);
+			name = GTM;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -316,6 +332,7 @@
 				3A3B720D18D94792005FA781 /* JPAppDelegate.m in Sources */,
 				3A3B721318D94792005FA781 /* JPViewController.m in Sources */,
 				3A3B720918D94792005FA781 /* main.m in Sources */,
+				3AF87EF818DAA15A00F33B03 /* GTMCodeCoverageApp.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -323,6 +340,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3AF87EFC18DAA5CC00F33B03 /* GTMCodeCoverageTestsXC.m in Sources */,
 				3ACEA0E118DA29430091D8BF /* JPTestViewController.m in Sources */,
 				3A0DCC7A18D94E4800B70BC2 /* JPNavigatorComponentsTests.m in Sources */,
 				3ACEA0DE18DA20A30091D8BF /* JPNavigatorTest.m in Sources */,
@@ -391,6 +409,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
+					"GTM_IS_COVERAGE_BUILD=1",
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
@@ -444,8 +463,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Example/Example-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"GTM_USING_XCTEST=1",
+				);
 				INFOPLIST_FILE = "Example/Example-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -459,6 +484,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Example/Example-Prefix.pch";
 				INFOPLIST_FILE = "Example/Example-Info.plist";
@@ -480,6 +507,8 @@
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
+				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Example/Example-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -504,6 +533,8 @@
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
+				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Example/Example-Prefix.pch";
 				INFOPLIST_FILE = "ExampleTests/ExampleTests-Info.plist";

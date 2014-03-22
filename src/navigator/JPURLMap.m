@@ -16,29 +16,33 @@
 #import "JPURLMap.h"
 #import "SOCKit.h"
 
-#define map_pattern @"map_pattern"
-#define map_selector @"map_selector"
-#define map_identifier @"map_identifier"
-#define map_class @"map_class"
-#define map_storyboard @"map_storyboard"
 
-////////// ////////// ////////// ////////// ////////// ////////// ////////// ////////// ////////// ////////// ////////// //////////
-////////// ////////// ////////// ////////// ////////// ////////// ////////// ////////// ////////// ////////// ////////// //////////
 
+#pragma mark - JPURLMapDescriptor
 @implementation JPURLMapDescriptor
+
+- (NSString *)description {
+    NSMutableString *description = [NSMutableString stringWithFormat:@"[%@: ", NSStringFromClass([self class])];
+    [description appendFormat:@"self.pattern=%@", self.pattern];
+    [description appendFormat:@", self.selector=%p", self.selector];
+    [description appendFormat:@", self.class=%@", self.class];
+    [description appendFormat:@", self.identifier=%@", self.identifier];
+    [description appendFormat:@", self.storyboard=%@", self.storyboard];
+    [description appendString:@"]"];
+    return description;
+}
+
 @end
 
-////////// ////////// ////////// ////////// ////////// ////////// ////////// ////////// ////////// ////////// ////////// //////////
-////////// ////////// ////////// ////////// ////////// ////////// ////////// ////////// ////////// ////////// ////////// //////////
+
+
 
 #pragma mark - JPURLMap Implementation.
-
 @interface JPURLMap() { NSMutableArray* _objectPatterns; } @end
 
 @implementation JPURLMap
 
-- (id)init
-{
+- (id)init {
     self = [super init];
     if (self) {
         _objectPatterns = [NSMutableArray new];
@@ -46,7 +50,17 @@
     return self;
 }
 
-////////// ////////// ////////// ////////// ////////// ////////// ////////// ////////// ////////// ////////// ////////// //////////
+- (NSString *)description {
+    NSMutableString *description = [NSMutableString stringWithFormat:@"[%@: ", NSStringFromClass([self class])];
+    [description appendFormat:@"patterns=%@", _objectPatterns];
+    [description appendString:@"]"];
+    return description;
+}
+
+
+
+
+#pragma mark - Map Methods.
 - (void)from:(NSString*)URL toViewController:(id)target selector:(SEL)selector {
     if ( selector == nil) [NSException raise:NSInvalidArgumentException format:@"You must pass an selector!"];
 
@@ -61,8 +75,6 @@
                                    usingStoryboard:(NSString*)storyboard selector:(SEL)selector {
     [self from:URL toViewController:nil toStoryboardIdentifier:identifier usingStoryboard:storyboard selector:selector];
 }
-
-////////// ////////// ////////// ////////// ////////// ////////// ////////// ////////// ////////// ////////// ////////// //////////
 
 -(void)from:(NSString*)URL toViewController:(id)target toStoryboardIdentifier:(NSString*)identifier
                             usingStoryboard:(NSString*)storyboard selector:(SEL)selector {
@@ -80,8 +92,10 @@
     [_objectPatterns addObject:mapDescriptor];
 
 }
-///////// ///////// ///////// ///////// ///////// ///////// ///////// ///////// ///////// /////////
-// Gets or creates the object with a pattern that matches the URL.
+
+
+
+#pragma mark - Build Methods.
 -(id)objectForURL:(NSString*)URL {
 
     // Look for matching pattern.
@@ -104,7 +118,6 @@
     return nil;
 }
 
-///////// ///////// ///////// ///////// ///////// ///////// ///////// ///////// ///////// /////////
 -(id)viewControllerFromClassUsingMap:(JPURLMapDescriptor*)map andURL:(NSString*)URL {
     
     // Perform it.
@@ -116,8 +129,6 @@
     return object;
 }
 
-
-///////// ///////// ///////// ///////// ///////// ///////// ///////// ///////// ///////// /////////
 -(id)viewControllerFromStoryboardUsingMap:(JPURLMapDescriptor*)map andURL:(NSString*)URL {
     
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:map.storyboard bundle:nil];
@@ -130,6 +141,5 @@
     // Returns an allocated, initialized and parameter setted object.
     return viewController;
 }
-
 
 @end

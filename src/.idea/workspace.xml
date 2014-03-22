@@ -23,42 +23,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="JPDBManagerAction.m" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/database/JPDBManagerAction.m">
+      <file leaf-file-name="JPURLMap.h" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/navigator/JPURLMap.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="465" column="34" selection-start="21919" selection-end="21919" vertical-scroll-proportion="0.0" vertical-offset="6975" max-vertical-offset="8160">
+            <state line="84" column="33" selection-start="3917" selection-end="3917" vertical-scroll-proportion="0.0" vertical-offset="573" max-vertical-offset="1350">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="JPDBManagerAction.h" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/database/JPDBManagerAction.h">
+      <file leaf-file-name="JPURLMap.m" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/navigator/JPURLMap.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="114" column="28" selection-start="5125" selection-end="5125" vertical-scroll-proportion="0.0" vertical-offset="1710" max-vertical-offset="9030">
+            <state line="99" column="26" selection-start="3292" selection-end="3292" vertical-scroll-proportion="0.23553719" vertical-offset="1314" max-vertical-offset="2040">
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="NSManagedObject+JPDatabase.m" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/database/NSManagedObject+JPDatabase.m">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="45" column="0" selection-start="1920" selection-end="1920" vertical-scroll-proportion="0.0" vertical-offset="440" max-vertical-offset="2430">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="NSManagedObject+JPDatabase.h" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/database/NSManagedObject+JPDatabase.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="19" selection-start="747" selection-end="747" vertical-scroll-proportion="0.0" vertical-offset="9" max-vertical-offset="2340">
-              <folding>
-                <marker date="1394913168000" expanded="true" signature="1547:1599" placeholder="/*...*/" />
-                <marker date="1394913168000" expanded="true" signature="1787:1998" placeholder="/*...*/" />
-                <marker date="1394913168000" expanded="true" signature="2258:2270" placeholder="/*...*/" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -81,14 +59,15 @@
         <option value="$PROJECT_DIR$/database/NSManagedObject+JPDatabase.m" />
         <option value="$PROJECT_DIR$/database/NSManagedObject+JPDatabase.h" />
         <option value="$PROJECT_DIR$/database/JPDBManagerAction.m" />
+        <option value="$PROJECT_DIR$/navigator/JPURLMap.h" />
+        <option value="$PROJECT_DIR$/navigator/JPURLMap.m" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="20" />
     <option name="y" value="22" />
-    <option name="width" value="1400" />
-    <option name="height" value="806" />
+    <option name="width" value="1440" />
+    <option name="height" value="874" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -116,7 +95,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Cidr.FilesView" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -139,7 +117,7 @@
               <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Frameworks" />
+              <option name="myItemId" value="Navigator" />
               <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -153,21 +131,7 @@
               <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Database" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jump2" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Database" />
+              <option name="myItemId" value="Navigator" />
               <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -177,13 +141,14 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Cidr.FilesView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="GoToFile.includeJavaFiles" value="false" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
-    <property name="recentsLimit" value="5" />
     <property name="MemberChooser.sorted" value="false" />
+    <property name="recentsLimit" value="5" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="OBJC.PRESERVED_TARGET_SELECTION" value="jumpDatabase,,,jumpDatabaseTests" />
     <property name="GoToClass.includeLibraries" value="false" />
@@ -222,12 +187,17 @@
       <envs />
       <method />
     </configuration>
-    <list size="5">
+    <configuration default="false" name="jumpNavigator" type="AppleRunConfiguration" factoryName="Application" SCHEME_NAME="jumpNavigator" PROJECT_NAME="jump2" TARGET_NAME="jumpNavigator" CONFIG_NAME="Debug" WORKING_DIR="" PASS_PARENT_ENVS="FALSE" MAKE_ACTIVE="TRUE" WAIT_FOR="FALSE">
+      <envs />
+      <method />
+    </configuration>
+    <list size="6">
       <item index="0" class="java.lang.String" itemvalue="Application.jump2" />
       <item index="1" class="java.lang.String" itemvalue="Application.jumpCore" />
       <item index="2" class="java.lang.String" itemvalue="Application.jumpData" />
       <item index="3" class="java.lang.String" itemvalue="Application.jumpDatabase" />
       <item index="4" class="java.lang.String" itemvalue="Application.jumpLogger" />
+      <item index="5" class="java.lang.String" itemvalue="Application.jumpNavigator" />
     </list>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
       <Host>localhost</Host>
@@ -244,13 +214,13 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="20" y="22" width="1400" height="806" extended-state="0" />
-    <editor active="false" />
+    <frame x="0" y="22" width="1440" height="874" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -275,20 +245,10 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="1" />
+      <option name="time" value="2" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/database/deps">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="47" selection-start="53" selection-end="53" vertical-scroll-proportion="0.0" vertical-offset="45" max-vertical-offset="135" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/JPDBManagerDefinitions.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="36" selection-start="1865" selection-end="1893" vertical-scroll-proportion="0.0" vertical-offset="339" max-vertical-offset="3330" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/JPDBManagerAction.h">
       <provider selected="true" editor-type-id="text-editor">
         <state line="45" column="28" selection-start="2299" selection-end="2316" vertical-scroll-proportion="0.0" vertical-offset="675" max-vertical-offset="7965">
@@ -353,11 +313,7 @@
     <entry file="file://$PROJECT_DIR$/database/NSManagedObject+JPDatabase.h">
       <provider selected="true" editor-type-id="text-editor">
         <state line="16" column="19" selection-start="747" selection-end="747" vertical-scroll-proportion="0.0" vertical-offset="9" max-vertical-offset="2340">
-          <folding>
-            <marker date="1394913168000" expanded="true" signature="1547:1599" placeholder="/*...*/" />
-            <marker date="1394913168000" expanded="true" signature="1787:1998" placeholder="/*...*/" />
-            <marker date="1394913168000" expanded="true" signature="2258:2270" placeholder="/*...*/" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -371,6 +327,20 @@
     <entry file="file://$PROJECT_DIR$/database/JPDBManagerAction.m">
       <provider selected="true" editor-type-id="text-editor">
         <state line="465" column="34" selection-start="21919" selection-end="21919" vertical-scroll-proportion="0.0" vertical-offset="6975" max-vertical-offset="8160">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/navigator/JPURLMap.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="84" column="33" selection-start="3917" selection-end="3917" vertical-scroll-proportion="0.0" vertical-offset="573" max-vertical-offset="1350">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/navigator/JPURLMap.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="99" column="26" selection-start="3292" selection-end="3292" vertical-scroll-proportion="0.23553719" vertical-offset="1314" max-vertical-offset="2040">
           <folding />
         </state>
       </provider>
