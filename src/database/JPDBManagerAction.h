@@ -29,7 +29,7 @@
 												{	\
 													[self throwExceptionWithCause:NSFormatString( @"The attribute '%@' doesn't exist on '%@' Entity.", arg, ____entityName)];\
 												}\
-												[____arrayName addObject:[[NSSortDescriptor alloc] initWithKey:arg ascending:ascendingOrder]];\
+												[____arrayName addObject:[[NSSortDescriptor alloc] initWithKey:arg ascending:self.ascendingOrder]];\
 												}\
 												va_end(args);\
 
@@ -85,35 +85,7 @@
  if you want to automatically commit the operation or create some more dinamically code on your database operations.
  <br>
  */
-@interface JPDBManagerAction : NSObject {
-	
-	// Manager Instance.
-	JPDBManager *__weak manager;
-	
-	// Fetch Limits.
-	int fetchOffset;
-	int fetchLimit;
-	
-	// Order Sequence.
-	BOOL ascendingOrder;
-	
-	// Faults.
-	BOOL returnObjectsAsFault;
-	
-	// Return Result.
-	BOOL returnActionAsArray;
-	
-	// Should commit this transaction.
-	BOOL commitTransaction;
-
-	//// //// //// //// //// //// //// //// //// /
-	// Action Data.
-	NSString *entity;
-	NSString *fetchTemplate;
-	NSMutableDictionary *variablesListAndValues;
-	NSMutableArray *sortDescriptors;
-	NSPredicate  *predicate;
-}
+@interface JPDBManagerAction : NSObject
 
 ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// 
 #pragma mark -
@@ -163,7 +135,7 @@
 @property(weak) JPDBManager *manager;
 
 /**
- * Set if the Manager should commit this transaction immediatelly or not.<br>
+ * Set if the Manager should commit this transaction immediately or not.<br>
  * Default value is <b>NO</b>.
  */
 @property(assign) BOOL commitTransaction;
