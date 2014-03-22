@@ -1,7 +1,8 @@
 PODS:
   - jump2 (2.0.0):
     - jump2/Core
-  - jump2/Core (2.0.0)
+  - jump2/Core (2.0.0):
+    - ObjectiveSugar
   - jump2/Navigator (2.0.0):
     - jump2/Core
     - SOCKit
@@ -10,6 +11,7 @@ PODS:
   - Kiwi/XCTest (2.2.4):
     - Kiwi/ARC
     - Kiwi/NonARC
+  - ObjectiveSugar (1.1.0)
   - SOCKit (1.1)
 
 DEPENDENCIES:
@@ -22,8 +24,9 @@ EXTERNAL SOURCES:
     :path: ../jump2.podspec
 
 SPEC CHECKSUMS:
-  jump2: 8ffea00c1635ad61bcb1320eaa11e39b8fe263b4
+  jump2: 5af0f6fe9ce44f93838e32065e0357b741c9a063
   Kiwi: d60d7498b640a16f58b01925fc3c8d7c4d809f66
+  ObjectiveSugar: fed588577bcf9733546aeaa089de444e4bab9a52
   SOCKit: 2f3bc4d07910de12dcc202815e07db68a3802581
 
 COCOAPODS: 0.29.0

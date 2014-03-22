@@ -20,6 +20,7 @@ Pod::Spec.new do |jump|
   jump.default_subspec = 'Core'
   
    jump.subspec 'Core' do |c|
+        c.dependency 'ObjectiveSugar'
 	    c.source_files = 'src/core/*.{h,m}'
    end
 
