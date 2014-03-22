@@ -274,12 +274,8 @@ replaceFetchWithDictionary:(NSDictionary*)anDictionary  arrayOfSortDescriptors:(
 }
 
 -(id)applyFetchReplaceWithVariables:(id)variableList, ... {
-
-	// Create one Dictionary with Variable Arguments.
-	JPDatabaseCreateDictionaryOfVariables( variableList, createdDictionary );
-	
-	//// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// ////
-	return [self applyFetchReplaceWithDictionary:createdDictionary];
+    [NSException raise:JPDBManagerDeprecatedException format:@"Deprecated you should use 'applyFetchReplaceWithDictionary:' instead."];
+    return nil;
 }	
 
 -(instancetype)applyPredicate:(NSPredicate*)anPredicate {
