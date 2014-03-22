@@ -26,8 +26,27 @@
       <file leaf-file-name="JPDBManager.m" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/database/JPDBManager.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="479" column="40" selection-start="21396" selection-end="21396" vertical-scroll-proportion="-22.44" vertical-offset="6564" max-vertical-offset="9525">
-              <folding />
+            <state line="479" column="20" selection-start="21396" selection-end="21396" vertical-scroll-proportion="-22.44" vertical-offset="6564" max-vertical-offset="9525">
+              <folding>
+                <marker date="1395499367000" expanded="true" signature="1024:26424" placeholder="..." />
+                <marker date="1395499367000" expanded="true" signature="7266:7416" placeholder="{...}" />
+                <marker date="1395499367000" expanded="true" signature="8085:8278" placeholder="{...}" />
+                <marker date="1395499367000" expanded="true" signature="8378:8511" placeholder="{...}" />
+                <marker date="1395499367000" expanded="true" signature="9019:10374" placeholder="{...}" />
+                <marker date="1395499367000" expanded="true" signature="10905:13211" placeholder="{...}" />
+                <marker date="1395499367000" expanded="true" signature="12283:12454" placeholder="@{...}" />
+                <marker date="1395499367000" expanded="true" signature="13732:14554" placeholder="{...}" />
+                <marker date="1395499367000" expanded="true" signature="15012:15119" placeholder="{...}" />
+                <marker date="1395499367000" expanded="true" signature="15275:15550" placeholder="{...}" />
+                <marker date="1395499367000" expanded="true" signature="15741:16240" placeholder="{...}" />
+                <marker date="1395499367000" expanded="true" signature="16787:22844" placeholder="{...}" />
+                <marker date="1395499367000" expanded="true" signature="23112:23172" placeholder="{...}" />
+                <marker date="1395499367000" expanded="true" signature="23448:23642" placeholder="{...}" />
+                <marker date="1395499367000" expanded="true" signature="24201:25131" placeholder="{...}" />
+                <marker date="1395499367000" expanded="true" signature="25332:25660" placeholder="{...}" />
+                <marker date="1395499367000" expanded="true" signature="26365:26422" placeholder="{...}" />
+                <marker date="1395499367000" expanded="true" signature="26630:27735" placeholder="/*...*/" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -35,9 +54,14 @@
       <file leaf-file-name="JPDBManagerAction.m" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/database/JPDBManagerAction.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="483" column="41" selection-start="15876" selection-end="15876" vertical-scroll-proportion="10.16129" vertical-offset="0" max-vertical-offset="7410">
+            <state line="483" column="40" selection-start="15876" selection-end="15876" vertical-scroll-proportion="10.16129" vertical-offset="0" max-vertical-offset="7410">
               <folding>
                 <element signature="e#695#713#0" expanded="true" />
+                <marker date="1395500023000" expanded="true" signature="4206:4443" placeholder="{...}" />
+                <marker date="1395500023000" expanded="true" signature="7266:7422" placeholder="{...}" />
+                <marker date="1395500023000" expanded="true" signature="10920:10976" placeholder="{...}" />
+                <marker date="1395500023000" expanded="true" signature="11796:11841" placeholder="{...}" />
+                <marker date="1395500023000" expanded="true" signature="12727:13279" placeholder="{...}" />
               </folding>
             </state>
           </provider>
@@ -234,13 +258,13 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1440" height="874" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32919255" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -282,6 +306,11 @@
         <state line="193" column="5" selection-start="10244" selection-end="10244" vertical-scroll-proportion="0.0" vertical-offset="2895" max-vertical-offset="8085">
           <folding>
             <element signature="e#695#713#0" expanded="true" />
+            <marker date="1395500023000" expanded="true" signature="4206:4443" placeholder="{...}" />
+            <marker date="1395500023000" expanded="true" signature="7266:7422" placeholder="{...}" />
+            <marker date="1395500023000" expanded="true" signature="10920:10976" placeholder="{...}" />
+            <marker date="1395500023000" expanded="true" signature="11796:11841" placeholder="{...}" />
+            <marker date="1395500023000" expanded="true" signature="12727:13279" placeholder="{...}" />
           </folding>
         </state>
       </provider>
@@ -351,8 +380,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/database/JPDBManager.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="479" column="40" selection-start="21396" selection-end="21396" vertical-scroll-proportion="-22.44" vertical-offset="6564" max-vertical-offset="9525">
-          <folding />
+        <state line="479" column="20" selection-start="21396" selection-end="21396" vertical-scroll-proportion="-22.44" vertical-offset="6564" max-vertical-offset="9525">
+          <folding>
+            <marker date="1395499367000" expanded="true" signature="1024:26424" placeholder="..." />
+            <marker date="1395499367000" expanded="true" signature="7266:7416" placeholder="{...}" />
+            <marker date="1395499367000" expanded="true" signature="8085:8278" placeholder="{...}" />
+            <marker date="1395499367000" expanded="true" signature="8378:8511" placeholder="{...}" />
+            <marker date="1395499367000" expanded="true" signature="9019:10374" placeholder="{...}" />
+            <marker date="1395499367000" expanded="true" signature="10905:13211" placeholder="{...}" />
+            <marker date="1395499367000" expanded="true" signature="12283:12454" placeholder="@{...}" />
+            <marker date="1395499367000" expanded="true" signature="13732:14554" placeholder="{...}" />
+            <marker date="1395499367000" expanded="true" signature="15012:15119" placeholder="{...}" />
+            <marker date="1395499367000" expanded="true" signature="15275:15550" placeholder="{...}" />
+            <marker date="1395499367000" expanded="true" signature="15741:16240" placeholder="{...}" />
+            <marker date="1395499367000" expanded="true" signature="16787:22844" placeholder="{...}" />
+            <marker date="1395499367000" expanded="true" signature="23112:23172" placeholder="{...}" />
+            <marker date="1395499367000" expanded="true" signature="23448:23642" placeholder="{...}" />
+            <marker date="1395499367000" expanded="true" signature="24201:25131" placeholder="{...}" />
+            <marker date="1395499367000" expanded="true" signature="25332:25660" placeholder="{...}" />
+            <marker date="1395499367000" expanded="true" signature="26365:26422" placeholder="{...}" />
+            <marker date="1395499367000" expanded="true" signature="26630:27735" placeholder="/*...*/" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -367,9 +415,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/database/JPDBManagerAction.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="483" column="41" selection-start="15876" selection-end="15876" vertical-scroll-proportion="10.16129" vertical-offset="0" max-vertical-offset="7410">
+        <state line="483" column="40" selection-start="15876" selection-end="15876" vertical-scroll-proportion="10.16129" vertical-offset="0" max-vertical-offset="7410">
           <folding>
             <element signature="e#695#713#0" expanded="true" />
+            <marker date="1395500023000" expanded="true" signature="4206:4443" placeholder="{...}" />
+            <marker date="1395500023000" expanded="true" signature="7266:7422" placeholder="{...}" />
+            <marker date="1395500023000" expanded="true" signature="10920:10976" placeholder="{...}" />
+            <marker date="1395500023000" expanded="true" signature="11796:11841" placeholder="{...}" />
+            <marker date="1395500023000" expanded="true" signature="12727:13279" placeholder="{...}" />
           </folding>
         </state>
       </provider>

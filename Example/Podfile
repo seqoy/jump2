@@ -1,7 +1,0 @@
-xcodeproj 'Example.xcodeproj'
-
-target "ExampleTests" , :exclusive => true do
-    pod 'Kiwi/XCTest'
-	  pod "jump2", 		   path: "../jump2.podspec"
-	  pod 'jump2/Navigator', path: '../jump2.podspec'
-end
