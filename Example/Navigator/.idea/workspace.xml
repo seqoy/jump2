@@ -23,13 +23,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="JPNavigator.m" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="JPNavigator.m" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../../src/navigator/JPNavigator.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="94" column="44" selection-start="3126" selection-end="3126" vertical-scroll-proportion="0.8841699" vertical-offset="723" max-vertical-offset="1500">
-              <folding>
-                <element signature="e#694#717#0" expanded="true" />
-              </folding>
+            <state line="94" column="0" selection-start="3126" selection-end="3126" vertical-scroll-proportion="0.0" vertical-offset="723" max-vertical-offset="1500">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="JPNavigatorComponentsTests.m" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/ExampleTests/JPNavigatorComponentsTests.m">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="3" column="43" selection-start="0" selection-end="3202" vertical-scroll-proportion="0.0" vertical-offset="45" max-vertical-offset="1530">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -79,6 +86,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Cidr.FilesView" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -87,47 +95,8 @@
               <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Example" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Example" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ExampleTests" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Example" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Example" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
-      <pane id="Cidr.FilesView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -192,12 +161,12 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1440" height="874" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -226,10 +195,36 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/../../src/navigator/JPNavigator.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="94" column="44" selection-start="3126" selection-end="3126" vertical-scroll-proportion="0.8841699" vertical-offset="723" max-vertical-offset="1500">
-          <folding>
-            <element signature="e#694#717#0" expanded="true" />
-          </folding>
+        <state line="94" column="0" selection-start="3126" selection-end="3126" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1500">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ExampleTests/JPNavigatorComponentsTests.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="43" selection-start="0" selection-end="3202" vertical-scroll-proportion="0.0" vertical-offset="45" max-vertical-offset="1530">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../src/navigator/JPNavigator.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="94" column="44" selection-start="3126" selection-end="3126" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1500">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../src/navigator/JPNavigator.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="94" column="0" selection-start="3126" selection-end="3126" vertical-scroll-proportion="0.0" vertical-offset="723" max-vertical-offset="1500">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ExampleTests/JPNavigatorComponentsTests.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="43" selection-start="0" selection-end="3202" vertical-scroll-proportion="0.0" vertical-offset="45" max-vertical-offset="1530">
+          <folding />
         </state>
       </provider>
     </entry>
