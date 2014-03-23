@@ -5,7 +5,7 @@
 #import "JPDBManager.h"
 #import "JPDBManagerAction.h"
 
-SPEC_BEGIN(ManagerAction)
+SPEC_BEGIN(DatabaseAction)
 
 describe(@"Database Action", ^{
     
@@ -201,12 +201,12 @@ describe(@"Database Action", ^{
         it(@"Should query all data of the specified Entity ordering by specified key", ^{
             [action stub:finalMethod
 
-               withBlock:^id(NSArray *params) {
-                   [params[2] each:^( NSSortDescriptor *item ) {
-                       [[item.key should] equal:@"_key_"];
-                   }];
-                   return nil;
-               }
+                withBlock:^id(NSArray *params) {
+                    [params[2] each:^(NSSortDescriptor *item) {
+                        [[item.key should] equal:@"_key_"];
+                    }];
+                    return nil;
+                }
             ];
             [action queryAllDataOrderedByKey:@"_key_"];
         });
@@ -217,14 +217,14 @@ describe(@"Database Action", ^{
         it(@"Should query all data of the specified Entity ordering by specified keys", ^{
             [action stub:finalMethod
 
-               withBlock:^id(NSArray *params) {
+                withBlock:^id(NSArray *params) {
 
-                   [params[2] eachWithIndex:^( NSSortDescriptor *item, NSUInteger index) {
-                       if ( index == 0 ) [[item.key should] equal:@"keyA"];
-                       if ( index == 1 ) [[item.key should] equal:@"keyB"];
-                   }];
-                   return nil;
-               }
+                    [params[2] eachWithIndex:^(NSSortDescriptor *item, NSUInteger index) {
+                        if (index == 0) [[item.key should] equal:@"keyA"];
+                        if (index == 1) [[item.key should] equal:@"keyB"];
+                    }];
+                    return nil;
+                }
             ];
             [action queryAllDataOrderedByKeys:@"keyA", @"keyB", nil];
         });
@@ -235,11 +235,11 @@ describe(@"Database Action", ^{
         it(@"Should query specified Entity using one specified Fetch Template name", ^{
             [action stub:finalMethod
 
-               withBlock:^id(NSArray *params) {
+                withBlock:^id(NSArray *params) {
 
-                   [[params[0] should] equal:__fetchTemplate];
-                   return nil;
-               }
+                    [[params[0] should] equal:__fetchTemplate];
+                    return nil;
+                }
             ];
             [action queryWithFetchTemplate:__fetchTemplate ];
 
@@ -251,14 +251,14 @@ describe(@"Database Action", ^{
         it(@"Should query specified Entity using one specified Fetch Template name ordering with specific key", ^{
             [action stub:finalMethod
 
-               withBlock:^id(NSArray *params) {
+                withBlock:^id(NSArray *params) {
 
-                   [[params[0] should] equal:__fetchTemplate];
-                   [params[2] each:^( NSSortDescriptor *item ) {
-                       [[item.key should] equal:@"_key_"];
-                   }];
-                   return nil;
-               }
+                    [[params[0] should] equal:__fetchTemplate];
+                    [params[2] each:^(NSSortDescriptor *item) {
+                        [[item.key should] equal:@"_key_"];
+                    }];
+                    return nil;
+                }
             ];
             [action queryWithFetchTemplate:__fetchTemplate ordereredByKey:@"_key_"];
 
@@ -270,15 +270,15 @@ describe(@"Database Action", ^{
         it(@"Should query specified Entity using one specified Fetch Template name ordering with specific keys", ^{
             [action stub:finalMethod
 
-               withBlock:^id(NSArray *params) {
+                withBlock:^id(NSArray *params) {
 
-                   [[params[0] should] equal:__fetchTemplate];
-                   [params[2] eachWithIndex:^( NSSortDescriptor *item, NSUInteger index) {
-                       if ( index == 0 ) [[item.key should] equal:@"keyA"];
-                       if ( index == 1 ) [[item.key should] equal:@"keyB"];
-                   }];
-                   return nil;
-               }
+                    [[params[0] should] equal:__fetchTemplate];
+                    [params[2] eachWithIndex:^(NSSortDescriptor *item, NSUInteger index) {
+                        if (index == 0) [[item.key should] equal:@"keyA"];
+                        if (index == 1) [[item.key should] equal:@"keyB"];
+                    }];
+                    return nil;
+                }
             ];
             [action queryWithFetchTemplate:__fetchTemplate orderedByKeys:@"keyA", @"keyB", nil];
 
@@ -291,12 +291,12 @@ describe(@"Database Action", ^{
             NSDictionary *replaceWith = @{@"anKey": @"anValue"};
             [action stub:finalMethod
 
-               withBlock:^id(NSArray *params) {
+                withBlock:^id(NSArray *params) {
 
-                   [[params[0] should] equal:__fetchTemplate];
-                   [[params[1] should] equal:replaceWith];
-                   return nil;
-               }
+                    [[params[0] should] equal:__fetchTemplate];
+                    [[params[1] should] equal:replaceWith];
+                    return nil;
+                }
             ];
             [action queryWithFetchTemplate:__fetchTemplate withParams:replaceWith];
         });
@@ -310,15 +310,15 @@ describe(@"Database Action", ^{
             NSDictionary *replaceWith = @{@"anKey": @"anValue"};
             [action stub:finalMethod
 
-               withBlock:^id(NSArray *params) {
+                withBlock:^id(NSArray *params) {
 
-                   [[params[0] should] equal:__fetchTemplate];
-                   [[params[1] should] equal:replaceWith];
-                   [params[2] each:^( NSSortDescriptor *item ) {
-                       [[item.key should] equal:@"_key_"];
-                   }];
-                   return nil;
-               }
+                    [[params[0] should] equal:__fetchTemplate];
+                    [[params[1] should] equal:replaceWith];
+                    [params[2] each:^(NSSortDescriptor *item) {
+                        [[item.key should] equal:@"_key_"];
+                    }];
+                    return nil;
+                }
             ];
             [action queryWithFetchTemplate:__fetchTemplate withParams:replaceWith orderByKey:@"_key_"];
         });
@@ -331,16 +331,16 @@ describe(@"Database Action", ^{
             NSDictionary *replaceWith = @{@"anKey": @"anValue"};
             [action stub:finalMethod
 
-               withBlock:^id(NSArray *params) {
+                withBlock:^id(NSArray *params) {
 
-                   [[params[0] should] equal:__fetchTemplate];
-                   [[params[1] should] equal:replaceWith];
-                   [params[2] eachWithIndex:^( NSSortDescriptor *item, NSUInteger index) {
-                       if ( index == 0 ) [[item.key should] equal:@"keyA"];
-                       if ( index == 1 ) [[item.key should] equal:@"keyB"];
-                   }];
-                   return nil;
-               }
+                    [[params[0] should] equal:__fetchTemplate];
+                    [[params[1] should] equal:replaceWith];
+                    [params[2] eachWithIndex:^(NSSortDescriptor *item, NSUInteger index) {
+                        if (index == 0) [[item.key should] equal:@"keyA"];
+                        if (index == 1) [[item.key should] equal:@"keyB"];
+                    }];
+                    return nil;
+                }
             ];
             [action queryWithFetchTemplate:__fetchTemplate withParams:replaceWith orderedByKeys:@"keyA", @"keyB", nil];
         });
@@ -353,16 +353,16 @@ describe(@"Database Action", ^{
             NSDictionary *replaceWith = @{@"anKey": @"anValue"};
             [action stub:finalMethod
 
-               withBlock:^id(NSArray *params) {
+                withBlock:^id(NSArray *params) {
 
-                   [[params[0] should] equal:__fetchTemplate];
-                   [[params[1] should] equal:replaceWith];
-                   [params[2] eachWithIndex:^( NSSortDescriptor *item, NSUInteger index) {
-                       if ( index == 0 ) [[item.key should] equal:@"keyA"];
-                       if ( index == 1 ) [[item.key should] equal:@"keyB"];
-                   }];
-                   return nil;
-               }
+                    [[params[0] should] equal:__fetchTemplate];
+                    [[params[1] should] equal:replaceWith];
+                    [params[2] eachWithIndex:^(NSSortDescriptor *item, NSUInteger index) {
+                        if (index == 0) [[item.key should] equal:@"keyA"];
+                        if (index == 1) [[item.key should] equal:@"keyB"];
+                    }];
+                    return nil;
+                }
             ];
             [action queryWithFetchTemplate:__fetchTemplate withParams:replaceWith sortDescriptors:@[
                     [NSSortDescriptor sortDescriptorWithKey:@"keyA" ascending:YES],
@@ -376,11 +376,11 @@ describe(@"Database Action", ^{
         it(@"Should query specified Entity using one custom NSPredicate", ^{
             [action stub:finalMethod
 
-               withBlock:^id(NSArray *params) {
+                withBlock:^id(NSArray *params) {
 
-                   [[params[3] should] beKindOfClass:[NSPredicate class]];
-                   return nil;
-               }
+                    [[params[3] should] beKindOfClass:[NSPredicate class]];
+                    return nil;
+                }
 
             ];
             [action queryWithPredicate:[NSPredicate new]];
@@ -392,14 +392,14 @@ describe(@"Database Action", ^{
         it(@"Should query specified Entity using one custom NSPredicate and specified key", ^{
             [action stub:finalMethod
 
-               withBlock:^id(NSArray *params) {
+                withBlock:^id(NSArray *params) {
 
-                   [[params[3] should] beKindOfClass:[NSPredicate class]];
-                   [params[2] each:^( NSSortDescriptor *item ) {
-                       [[item.key should] equal:@"_key_"];
-                   }];
-                   return nil;
-               }
+                    [[params[3] should] beKindOfClass:[NSPredicate class]];
+                    [params[2] each:^(NSSortDescriptor *item) {
+                        [[item.key should] equal:@"_key_"];
+                    }];
+                    return nil;
+                }
 
             ];
             [action queryWithPredicate:[NSPredicate new] orderByKey:@"_key_"];
@@ -411,15 +411,15 @@ describe(@"Database Action", ^{
         it(@"Should query specified Entity using one custom NSPredicate and specified keys", ^{
             [action stub:finalMethod
 
-               withBlock:^id(NSArray *params) {
+                withBlock:^id(NSArray *params) {
 
-                   [[params[3] should] beKindOfClass:[NSPredicate class]];
-                   [params[2] eachWithIndex:^( NSSortDescriptor *item, NSUInteger index) {
-                       if ( index == 0 ) [[item.key should] equal:@"keyA"];
-                       if ( index == 1 ) [[item.key should] equal:@"keyB"];
-                   }];
-                   return nil;
-               }
+                    [[params[3] should] beKindOfClass:[NSPredicate class]];
+                    [params[2] eachWithIndex:^(NSSortDescriptor *item, NSUInteger index) {
+                        if (index == 0) [[item.key should] equal:@"keyA"];
+                        if (index == 1) [[item.key should] equal:@"keyB"];
+                    }];
+                    return nil;
+                }
 
             ];
             [action queryWithPredicate:[NSPredicate new] orderedByKeys:@"keyA", @"keyB", nil];
@@ -431,15 +431,15 @@ describe(@"Database Action", ^{
         it(@"Should query specified Entity using one custom NSPredicate and sort descriptors", ^{
             [action stub:finalMethod
 
-               withBlock:^id(NSArray *params) {
+                withBlock:^id(NSArray *params) {
 
-                   [[params[3] should] beKindOfClass:[NSPredicate class]];
-                   [params[2] eachWithIndex:^( NSSortDescriptor *item, NSUInteger index) {
-                       if ( index == 0 ) [[item.key should] equal:@"keyA"];
-                       if ( index == 1 ) [[item.key should] equal:@"keyB"];
-                   }];
-                   return nil;
-               }
+                    [[params[3] should] beKindOfClass:[NSPredicate class]];
+                    [params[2] eachWithIndex:^(NSSortDescriptor *item, NSUInteger index) {
+                        if (index == 0) [[item.key should] equal:@"keyA"];
+                        if (index == 1) [[item.key should] equal:@"keyB"];
+                    }];
+                    return nil;
+                }
 
             ];
             [action queryWithPredicate:[NSPredicate new] sortDescriptors:@[
@@ -464,7 +464,7 @@ describe(@"Database Action", ^{
             [action queryWithFetchTemplate:__fetchTemplate withParams:[NSDictionary new] sortDescriptors:@[
                     [NSSortDescriptor sortDescriptorWithKey:@"keyA" ascending:YES],
                     [NSSortDescriptor sortDescriptorWithKey:@"keyB" ascending:YES]
-            ]                    predicate:[NSPredicate new]];
+            ]                     predicate:[NSPredicate new]];
 
             #pragma clang diagnostic pop
         });
@@ -503,7 +503,7 @@ describe(@"Database Action", ^{
         it(@"Shoul delete all records queried by the specified Fetch Template", ^{
             // Stub internal query to return our data object.
             [action stub:@selector(queryWithFetchTemplate:) andReturn:@[dataObject]
-                                                        withArguments:__fetchTemplate];
+            withArguments:__fetchTemplate];
 
             // Delete all.
             [[action should] receive:finalMethod withArguments:dataObject, [KWValue valueWithBool:NO]];
