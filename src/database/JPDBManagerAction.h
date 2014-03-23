@@ -122,7 +122,7 @@
 /**
  * Deprecated you must initialize this object passing an Manager.
  */
-@property(weak) JPDBManager *manager DEPRECATED_ATTRIBUTE;
+@property(readonly) JPDBManager *manager;
 
 
 //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// 
@@ -339,12 +339,12 @@
 
 /**
  * Query specified Entity using one specified Fetch Template name.
- * @param anEntityName The Entity Name.
+
  * @param anFetchName An Fetch Template to perform the query.
  * @param listOfKeys Accept one or more Key Attributes to sort the result. Doesn't forget to terminate the list with an 'nil' token.
  * @return One unordered collection with queried data Objects. The Class of this collection is setted by #returnQueryAsArray property.
  */
--(id)queryEntity:(NSString *)anEntityName withFetchTemplate:(NSString *)anFetchName orderedByKeys:(id)listOfKeys, ... NS_REQUIRES_NIL_TERMINATION;
+-(id)queryEntity:(NSString *)anEntityName withFetchTemplate:(NSString *)anFetchName orderedByKeys:(id)listOfKeys, ...;
 
 //@}
 //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// 
@@ -367,7 +367,7 @@
 
 /**
  * Query specified Entity using one specified Fetch Template name.
- * @param anEntityName The Entity Name.
+
  * @param anFetchName An Fetch Template to perform the query.
  * @param variablesListAndValues An Dictionary with Keys and Values to replace on the pre formatted Fetch Template.
  * @return One unordered collection with queried data Objects. The Class of this collection is setted by #returnQueryAsArray property.
@@ -376,7 +376,7 @@
 
 /**
  * Query specified Entity using one specified Fetch Template name.
- * @param anEntityName The Entity Name.
+
  * @param anFetchName An Fetch Template to perform the query.
  * @param variablesListAndValues An Dictionary with Keys and Values to replace on the pre formatted Fetch Template.
  * @param anKey One Key attribute to sort the result.
@@ -386,17 +386,17 @@
 
 /**
  * Query specified Entity using one specified Fetch Template name.
- * @param anEntityName The Entity Name.
+
  * @param anFetchName An Fetch Template to perform the query.
  * @param variablesListAndValues An Dictionary with Keys and Values to replace on the pre formatted Fetch Template.
  * @param listOfKeys Accept one or more Key Attributes to sort the result. Doesn't forget to terminate the list with an 'nil' token.
  * @return One unordered collection with queried data Objects. The Class of this collection is setted by #returnQueryAsArray property.
  */
--(id)queryEntity:(NSString *)anEntityName withFetchTemplate:(NSString *)anFetchName withParams:(NSDictionary *)variablesListAndValues orderByKeys:(id)listOfKeys, ... NS_REQUIRES_NIL_TERMINATION;
+- (id)queryWithFetchTemplate:(NSString *)anFetchName withParams:(NSDictionary *)anDictionary orderedByKeys:(id)listOfKeys, ...;
 
 /**
  * Query specified Entity using one specified Fetch Template name.
- * @param anEntityName The Entity Name.
+
  * @param anFetchName An Fetch Template to perform the query.
  * @param variablesListAndValues An Dictionary with Keys and Values to replace on the pre formatted Fetch Template.
  * @param anArrayOfSortDescriptors An Array of Key attributes to sort the result.
@@ -417,7 +417,7 @@
 
 /**
  * Query specified Entity using one custom NSPredicate Object.
- * @param anEntityName The Entity Name.
+
  @ @param anPredicate An <b>NSPredicate</b> object defining the query.
  * @return One unordered collection with queried data Objects. The Class of this collection is setted by #returnQueryAsArray property.
  */
@@ -425,7 +425,7 @@
 
 /**
  * Query specified Entity using one custom NSPredicate Object.
- * @param anEntityName The Entity Name.
+
  * @param anPredicate An <b>NSPredicate</b> object defining the query.
  * @param anKey One Key attribute to sort the result.
  * @return One unordered collection with queried data Objects. The Class of this collection is setted by #returnQueryAsArray property.
@@ -434,7 +434,7 @@
 
 /**
  * Query specified Entity using one custom NSPredicate Object.
- * @param anEntityName The Entity Name.
+
  * @param anPredicate An <b>NSPredicate</b> object defining the query.
  * @param listOfKeys Accept one or more Key Attributes to sort the result. Doesn't forget to terminate the list with an 'nil' token.
  * @return One unordered collection with queried data Objects. The Class of this collection is setted by #returnQueryAsArray property.
@@ -443,7 +443,7 @@
 
 /**
  * Query specified Entity using one custom NSPredicate Object.
- * @param anEntityName The Entity Name.
+
  * @param anPredicate An <b>NSPredicate</b> object defining the query.
  * @param anArrayOfSortDescriptors An Array of Key attributes to sort the result.
  * @return One unordered collection with queried data Objects. The Class of this collection is setted by #returnQueryAsArray property.
@@ -477,7 +477,7 @@
 /**
  * Delete all records queried by the specified Fetch Template.
  * This method will use the #commitTransaction property to decide if commit automatically this change.
- * @param anEntityName The Entity Name.
+
  * @param anFetchName An Fetch Template to perform the query.
  */
 -(void)deleteRecordsFromEntity:(NSString*)anEntityName withFetchTemplate:(NSString*)anFetchName; 
@@ -485,7 +485,7 @@
 /**
  * Delete all Records from specified Entity.
  * This could be a consuming operation on large databases.
- * @param anEntityName The Entity Name.
+
  */
 -(void)deleteAllRecordsFromEntity:(NSString*)anEntityName;
 

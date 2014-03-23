@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f8a905c6-e5dc-4733-9f10-fb6213f689a0" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../src/database/JPDBManager.h" afterPath="$PROJECT_DIR$/../../src/database/JPDBManager.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../src/database/JPDBManager.m" afterPath="$PROJECT_DIR$/../../src/database/JPDBManager.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../src/database/JPDBManagerAction.h" afterPath="$PROJECT_DIR$/../../src/database/JPDBManagerAction.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../src/database/JPDBManagerDefinitions.h" afterPath="$PROJECT_DIR$/../../src/database/JPDBManagerDefinitions.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../src/database/NSManagedObject+JPDatabase.m" afterPath="$PROJECT_DIR$/../../src/database/NSManagedObject+JPDatabase.m" />
-    </list>
+    <list default="true" id="f8a905c6-e5dc-4733-9f10-fb6213f689a0" name="Default" comment="" />
     <ignored path="database.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -43,7 +37,7 @@
       <file leaf-file-name="JPDBManagerAction.h" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../../src/database/JPDBManagerAction.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="60" column="44" selection-start="3117" selection-end="3117" vertical-scroll-proportion="-0.8443843" vertical-offset="1524" max-vertical-offset="8040">
+            <state line="136" column="66" selection-start="5648" selection-end="5648" vertical-scroll-proportion="0.45466846" vertical-offset="1704" max-vertical-offset="8040">
               <folding>
                 <element signature="e#695#728#0" expanded="true" />
               </folding>
@@ -417,7 +411,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../../src/database/JPDBManagerAction.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="60" column="44" selection-start="3117" selection-end="3117" vertical-scroll-proportion="-0.8443843" vertical-offset="1524" max-vertical-offset="8040">
+        <state line="136" column="66" selection-start="5648" selection-end="5648" vertical-scroll-proportion="0.45466846" vertical-offset="1704" max-vertical-offset="8040">
           <folding>
             <element signature="e#695#728#0" expanded="true" />
           </folding>

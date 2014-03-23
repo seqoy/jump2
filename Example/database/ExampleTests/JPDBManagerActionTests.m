@@ -8,6 +8,9 @@
 SPEC_BEGIN(ManagerAction)
 
 describe(@"ManagerAction", ^{
+    
+    #define __entityName @"_entity_"
+    #define __fetchTemplate @"_fetchTemplate"
 
     __block id manager;
     __block JPDBManagerAction *action;
@@ -20,7 +23,7 @@ describe(@"ManagerAction", ^{
         [manager stub:@selector(existAttribute:inEntity:) andReturn:[KWValue valueWithBool:YES]];
 
         // Build an action.
-        action = [JPDBManagerAction initWithEntityName:nil andManager:manager];
+        action = [JPDBManagerAction initWithEntityName:__entityName andManager:manager];
     });
 
     ////////// ///////// ///////// ///////// ///////// ///////// ///////// ///////// ///////// /////////
@@ -55,13 +58,9 @@ describe(@"ManagerAction", ^{
         it(@"Should apply Action data", ^{
             JPDBManagerAction *result;
 
-            result = [action applyEntity:@"_ent_"];
+            result = [action applyFetchTemplate:__fetchTemplate];
             [[result should] equal:action];
-            [[action.entityName should] equal:@"_ent_"];
-
-            result = [action applyFetchTemplate:@"_fetch_"];
-            [[result should] equal:action];
-            [[action.fetchTemplate should] equal:@"_fetch_"];
+            [[action.fetchTemplate should] equal:__fetchTemplate];
 
             NSDictionary *emptyDictionary = [NSDictionary new];
             result = [action applyFetchReplaceWithDictionary:emptyDictionary];
@@ -99,9 +98,6 @@ describe(@"ManagerAction", ^{
         
         it( @"Should apply key orders", ^{
             JPDBManagerAction *result;
-            
-            // Order require an entityName to be defined.
-            [action applyEntity:@"_ent_"];
             
             NSArray *emptyArray = [NSArray new];
             result = [action applyArrayOfSortDescriptors:emptyArray];
@@ -153,9 +149,6 @@ describe(@"ManagerAction", ^{
     });
     
     ////////// ///////// ///////// ///////// ///////// ///////// ///////// ///////// ///////// /////////
-
-    #define __entityName @"_entity_"
-    #define __fetchTemplate @"_fetchTemplate"
     
     context(@"Query", ^{
 
@@ -328,8 +321,7 @@ describe(@"ManagerAction", ^{
                    return nil;
                }
             ];
-            [action queryWithFetchTemplate:__fetchTemplate withParams:replaceWith
-                    orderByKeys:@"keyA", @"keyB"];
+            [action queryWithFetchTemplate:__fetchTemplate withParams:replaceWith orderedByKeys:@"keyA", @"keyB"];
         });
 
 
@@ -541,7 +533,7 @@ describe(@"ManagerAction", ^{
             [[manager should] receive:@selector(createNewRecordForEntity:) withArguments:@"_entity_"];
 
 
-            id result = [action createNewRecordForEntity:@"_entity_"];
+            id result = [action createNewRecord];
             [[action.entityName should] equal:@"_entity_"];
 
             [result shouldNotBeNil];

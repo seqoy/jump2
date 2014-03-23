@@ -60,12 +60,6 @@
                 format:@"You can't change Entity after the action is initiated."];
 }
 
--(void)setManager:(JPDBManager *)manager {
-    [NSException raise:NSInternalInconsistencyException
-                format:@"You can't change the Manager after the action is initiated."];
-}
-
-
 -(void)setAscendingOrder:(BOOL)newValue {
 	// If no changes, do nothing..
 	if ( self.ascendingOrder == newValue )
