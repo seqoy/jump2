@@ -26,10 +26,14 @@
 
 @implementation NSManagedObject (JPDatabase)
 
++(JPDBManagerSingleton *)manager {
+    return [JPDBManagerSingleton sharedInstance];
+}
+
 + (NSString *)entity {
-    NSEntityDescription *entity = [[JPDBManagerSingleton sharedInstance] entity:NSStringFromClass(self)];
+    NSEntityDescription *entity = [[self manager] entity:NSStringFromClass(self)];
     if ( entity == nil ) {
-        NSString *reason = [NSString stringWithFormat:@"Entity %@ wasn't found in the Context. Maybe you're using"
+        NSString *reason = [NSString stringWithFormat:@"Entity '%@' wasn't found in the Context. Maybe you're using"
                                                       @"an different class name.", entity];
         [NSException exceptionWithName:JPDBManagerActionException
                                 reason:reason
@@ -41,11 +45,11 @@
 }
 
 + (JPDBManagerAction *)getAction {
-    return [[JPDBManagerSingleton sharedInstance] getDatabaseActionForEntity:self.entity];
+    return [[self manager] getDatabaseActionForEntity:self.entity];
 }
 
-- (void)save {
-    [[JPDBManagerSingleton sharedInstance] commit];
++(void)save {
+    [[self manager] commit];
 }
 
 - (void)delete {
