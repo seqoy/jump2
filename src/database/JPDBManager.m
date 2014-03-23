@@ -122,7 +122,7 @@
 }
  
 -(JPDBManagerAction*)getDatabaseAction {
-	JPDBManagerAction *instance = [JPDBManagerAction initWithManager:self];
+	JPDBManagerAction *instance = [JPDBManagerAction initWithEntityName:nil andManager:self];
 	instance.commitTransaction = self.automaticallyCommit;
 	return instance;
 }
@@ -318,11 +318,11 @@
     [self throwIfNilObject:anAction
                  withCause:@"Can't perform an Database Action because an Action wasn't passed."];
 
-    [self throwIfNilObject:anAction.entity
-                 withCause:@"Can't perform an Database Action because the 'entity' property isn't setted."];
+    [self throwIfNilObject:anAction.entityName
+                 withCause:@"Can't perform an Database Action because the 'entityName' property isn't setted."];
 
-    [self throwIfNilObject:[self entity:anAction.entity]
-                 withCause:NSFormatString( @"The Entity '%@' doesn't exist on any Model.", anAction.entity )];
+    [self throwIfNilObject:[self entity:anAction.entityName]
+                 withCause:NSFormatString( @"The Entity '%@' doesn't exist on any Model.", anAction.entityName )];
 }
 
 // Build fetch template using...
@@ -338,7 +338,7 @@
     // Check if exist.
     [self throwIfNilObject:request
                  withCause:NSFormatString( @"The Fetch Template '%@' for Entity '%@' doesn't "
-                                           @"exist on the Model.", anAction.fetchTemplate, anAction.entity )];
+                                           @"exist on the Model.", anAction.fetchTemplate, anAction.entityName )];
     return request;
 }
 

@@ -179,7 +179,7 @@
  more information. Here are some examples of some query operations:
  \code
  // Query all data from 'MyEntity'.
- NSArray *allData = [JPDatabaseManager queryAllDataFromEntity:@"MyEntity"];
+ NSArray *allData = [JPDatabaseManager queryAllData@"MyEntity"];
  
  // Query data using the 'MyFilter" Fetch Template and ordering by 'id'.
  NSArray *allData = [JPDatabaseManager queryEntity:@"MyEntity" withFetchTemplate:@"MyFilter" orderWithKey:@"id"];

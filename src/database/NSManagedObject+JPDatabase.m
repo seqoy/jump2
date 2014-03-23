@@ -72,9 +72,7 @@
     va_list listOfKeys;
     va_start(listOfKeys, anKey);
 
-    NSArray *result = [[self getAction] queryAllDataFromEntity:self.entity
-                                                   orderWithKey:anKey
-                                                     parameters:listOfKeys];
+    NSArray *result = [[self getAction] queryAllDataOrderedByKey:anKey parameters:listOfKeys];
 
     va_end(listOfKeys);
     return result;

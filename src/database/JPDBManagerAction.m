@@ -16,30 +16,56 @@
 #import "JPCore.h"
 #import "JPDBManagerAction.h"
 #import "JPDBManager.h"
- 
+#import "NSMutableArray+ObjectiveSugar.h"
+
+@interface JPDBManagerAction() {
+    NSEntityDescription *_entity;
+}
+@end
+
 @implementation JPDBManagerAction
 
 
 #pragma mark - Init Methods.
-+(id)initWithManager:(JPDBManager*)anManager {
-	return [[self alloc] initWithManager:anManager];
++ (id)initWithEntityName:(NSString *)anEntityName andManager:(JPDBManager *)anManager {
+	return [[self alloc] initWithEntityName:anEntityName andManager:anManager];
 }
-  
--(id)initWithManager:(JPDBManager*)anManager {
-	self = [super init];
+
+- (id)initWithEntityName:(NSString *)anEntityName andManager:(JPDBManager *)anManager {
+	self = [super initWithEntityName:anEntityName];
 	if (self != nil) {
-		
+
 		// Initializations.
-		self.manager = anManager;
-		[self resetDefaultValues];
+		_manager = anManager;
+
+        // Thrown exception if Entity doesn't exist.
+        if ( ![self existEntity:anEntityName] )
+              [self throwExceptionWithCause:NSFormatString( @"The Entity '%@' doesn't exist on any Model.", anEntityName )];
+
+        // Set the entity descriptor from manager.
+        _entity = [[self getManagerOrDie] entity:anEntityName];
+
+        // Reset default values.
+        [self resetDefaultValues];
 	}
 	return self;
 }
 
 
-
-
 #pragma mark - Getters and Setters.
+
+// Can't set an Entity after the action is initiated..
+-(void)setEntity:(NSEntityDescription *)anEntity {
+    [NSException raise:NSInternalInconsistencyException
+                format:@"You can't change Entity after the action is initiated."];
+}
+
+-(void)setManager:(JPDBManager *)manager {
+    [NSException raise:NSInternalInconsistencyException
+                format:@"You can't change the Manager after the action is initiated."];
+}
+
+
 -(void)setAscendingOrder:(BOOL)newValue {
 	// If no changes, do nothing..
 	if ( self.ascendingOrder == newValue )
@@ -58,7 +84,7 @@
 	}
 	
 	// Store new sorters.
-	_sortDescriptors = newSorters;
+	self.sortDescriptors = newSorters;
 	
 	// New General value.
 	_ascendingOrder = newValue;
@@ -69,14 +95,14 @@
 
 #pragma mark - Private Methods.
 -(JPDBManager*)getManagerOrDie {
-	if ( ! self.manager) {
+	if ( ! _manager) {
 		[NSException raise:JPDBManagerActionException
 					format:@"You must define an Database Manager before perform any action."];
 		return nil;
 	}
 	
 	// Return instance.
-	return self.manager;
+	return _manager;
 }
  
 -(BOOL)existEntity:(NSString*)anEntityName {
@@ -93,30 +119,28 @@
 
 
 #pragma mark - Fetch Data Methods With Custom Predicates.
--(id)queryEntity:(NSString*)anEntityName withPredicate:(NSPredicate*)anPredicate {
-	return [self queryEntity:anEntityName withPredicate:anPredicate orderWithKey:nil];
+- (id)queryWithPredicate:(NSPredicate *)anPredicate {
+	return [self queryWithPredicate:anPredicate orderByKey:nil ];
 }
- 
--(id)queryEntity:(NSString*)anEntityName withPredicate:(NSPredicate*)anPredicate orderWithKey:(id)anKey {
-	return [self queryEntity:anEntityName withPredicate:anPredicate orderWithKeys:anKey, nil];	
+
+- (id)queryWithPredicate:(NSPredicate *)anPredicate orderByKey:(id)anKey {
+	return [self queryWithPredicate:anPredicate orderedByKeys:anKey];
 }
- 
--(id)queryEntity:(NSString*)anEntityName withPredicate:(NSPredicate*)anPredicate orderWithKeys:(id)listOfKeys, ... {
+
+- (id)queryWithPredicate:(NSPredicate *)anPredicate orderedByKeys:(id)listOfKeys, ... {
 	
 	// Create one Array of Sort Descriptors.
-	JPDatabaseCreateArrayOfKeys( listOfKeys, arrayOfSorter, anEntityName );
+	JPDatabaseCreateArrayOfKeys( listOfKeys, arrayOfSorter, self.entityName );
 	
 	//// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// 
 	
 	// Call Next Processing.
-	return [self queryEntity:anEntityName withPredicate:anPredicate arrayOfSortDescriptors:arrayOfSorter ];
+	return [self queryWithPredicate:anPredicate sortDescriptors:arrayOfSorter];
 	
 }
- 
--(id)queryEntity:(NSString*)anEntityName withPredicate:(NSPredicate*)anPredicate arrayOfSortDescriptors:(NSArray*)anArrayOfSortDescriptors {
-	
-	return [self queryEntity:anEntityName withFetchTemplate:nil replaceFetchWithDictionary:nil 
-	  arrayOfSortDescriptors:anArrayOfSortDescriptors customPredicate:anPredicate];
+
+- (id)queryWithPredicate:(NSPredicate *)anPredicate sortDescriptors:(NSArray *)sortDescriptors {
+	return [self queryWithFetchTemplate:nil withParams:nil sortDescriptors:sortDescriptors predicate:anPredicate];
 	
 }
 
@@ -124,121 +148,95 @@
 
 
 #pragma mark - Fetch Data Methods.
--(id)queryAllDataFromEntity:(NSString*)anEntityName {
-	return [self queryEntity:anEntityName withFetchTemplate:nil];
+- (id)queryAllData {
+	return [self queryWithFetchTemplate:nil ];
 }
- 
--(id)queryAllDataFromEntity:(NSString*)anEntityName orderWithKey:(id)anKey {
-	return [self queryAllDataFromEntity:anEntityName orderWithKeys:anKey, nil];
+
+- (id)queryAllDataOrderedByKey:(id)anKey {
+	return [self queryAllDataOrderedByKeys:anKey];
 }
- 
--(id)queryAllDataFromEntity:(NSString*)anEntityName orderWithKeys:(id)anKey, ... {
+
+- (id)queryAllDataOrderedByKeys:(id)anKey, ... {
     va_list listOfKeys;
     va_start(listOfKeys, anKey);
 
-    NSArray *result = [self queryAllDataFromEntity:anEntityName
-                                      orderWithKey:anKey
-                                        parameters:listOfKeys];
+    id result = [self queryAllDataOrderedByKey:anKey parameters:listOfKeys];
 
     va_end(listOfKeys);
     return result;
 }
 
-- (id)queryAllDataFromEntity:(NSString *)anEntityName orderWithKey:(id)anKey parameters:(va_list)arguments {
+- (id)queryAllDataOrderedByKey:(id)anKey parameters:(va_list)arguments {
     NSMutableArray *sorters = [[NSMutableArray alloc] init];
     for (id arg = anKey; arg != nil; arg = va_arg(arguments, id))
     {
-        if ( ![self existAttribute:arg inEntity:anEntityName] )
+        if ( ![self existAttribute:arg inEntity:self.entityName] )
         {
-            [self throwExceptionWithCause:NSFormatString( @"The attribute '%@' doesn't exist on '%@' Entity.", arg, anEntityName)];
+            [self throwExceptionWithCause:NSFormatString( @"The attribute '%@' doesn't exist on '%@' Entity.", arg, self.entityName)];
         }
         [sorters addObject:[[NSSortDescriptor alloc] initWithKey:arg ascending:self.ascendingOrder]];
     }
 
     // Call Next Processing.
-    return [self queryEntity:anEntityName
-           withFetchTemplate:nil
-  replaceFetchWithDictionary:nil
-      arrayOfSortDescriptors:sorters ];
+    return [self queryWithFetchTemplate:nil withParams:nil sortDescriptors:sorters];
 }
 
--(id)queryEntity:(NSString*)anEntityName withFetchTemplate:(NSString*)anFetchName  {
-	return [self queryEntity:anEntityName withFetchTemplate:anFetchName replaceFetchWithDictionary:nil];
+
+- (id)queryWithFetchTemplate:(NSString *)anFetchName {
+	return [self queryWithFetchTemplate:anFetchName ordereredByKey:nil];
 }
 
--(id)queryEntity:(NSString*)anEntityName withFetchTemplate:(NSString*)anFetchName orderWithKey:(id)anKey {
-	return [self queryEntity:anEntityName withFetchTemplate:anFetchName orderWithKeys:anKey, nil];
+- (id)queryWithFetchTemplate:(NSString *)anFetchName ordereredByKey:(id)anKey {
+	return [self queryWithFetchTemplate:anFetchName orderedByKeys:anKey];
 }
 
--(id)queryEntity:(NSString*)anEntityName withFetchTemplate:(NSString*)anFetchName orderWithKeys:(id)listOfKeys, ... {
-	
+- (id)queryWithFetchTemplate:(NSString *)anFetchName orderedByKeys:(id)listOfKeys, ... {
+
 	// Create one Array of Sort Descriptors.
-	JPDatabaseCreateArrayOfKeys( listOfKeys, arrayOfSorter, anEntityName );
+	JPDatabaseCreateArrayOfKeys( listOfKeys, arrayOfSorter, self.entityName );
 	
 	//// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// 
 	
 	// Call Next Processing.
-	return [self queryEntity:anEntityName  
-		   withFetchTemplate:anFetchName 
-  replaceFetchWithDictionary:nil
- 	  arrayOfSortDescriptors:arrayOfSorter ];
+	return [self queryWithFetchTemplate:anFetchName withParams:nil sortDescriptors:arrayOfSorter];
 }
 
--(id)queryEntity:(NSString*)anEntityName withFetchTemplate:(NSString*)anFetchName orderWithKey:(id)anKey withVariables:(id)variableList, ... {
-    [NSException raise:JPDBManagerDeprecatedException format:@"Deprecated. Use 'queryEntity:withFetchTemplate:replaceFetchWithDictionary:orderWithKey:' instead."];
-    return nil;
-}
- 
--(id)queryEntity:(NSString*)anEntityName withFetchTemplate:(NSString*)anFetchName withVariables:(id)variableList, ...  {
-    [NSException raise:JPDBManagerDeprecatedException format:@"Deprecated. Use 'queryEntity:withFetchTemplate:replaceFetchWithDictionary:' instead."];
-    return nil;
-}
- 
--(id)queryEntity:(NSString*)anEntityName withFetchTemplate:(NSString*)anFetchName replaceFetchWithDictionary:(NSDictionary*)anDictionary {
-	return [self queryEntity:anEntityName 
-		   withFetchTemplate:anFetchName 
-  replaceFetchWithDictionary:anDictionary 
-	  arrayOfSortDescriptors:nil];
-	
-}
- 
--(id)queryEntity:(NSString*)anEntityName withFetchTemplate:(NSString*)anFetchName replaceFetchWithDictionary:(NSDictionary*)anDictionary orderWithKey:(id)anKey {
-	return [self queryEntity:anEntityName 
-		   withFetchTemplate:anFetchName
-  replaceFetchWithDictionary:anDictionary 
-			   orderWithKeys:anKey, nil];
+- (id)queryWithFetchTemplate:(NSString *)anFetchName withParams:(NSDictionary *)anDictionary {
+	return [self queryWithFetchTemplate:anFetchName withParams:anDictionary sortDescriptors:nil ];
 }
 
--(id)queryEntity:(NSString*)anEntityName withFetchTemplate:(NSString*)anFetchName 
-replaceFetchWithDictionary:(NSDictionary*)anDictionary orderWithKeys:(id)listOfKeys, ... {
-	
+- (id)queryWithFetchTemplate:(NSString *)anFetchName withParams:(NSDictionary *)anDictionary orderByKey:(id)anKey {
+    return [self queryWithFetchTemplate:anFetchName
+                             withParams:anDictionary
+                          orderedByKeys:anKey];
+}
+
+- (id)queryWithFetchTemplate:(NSString *)anFetchName withParams:(NSDictionary *)anDictionary
+               orderedByKeys:(id)listOfKeys, ... {
+
 	// Create one Array of Sort Descriptors.
-	JPDatabaseCreateArrayOfKeys( listOfKeys, arrayOfSorter, anEntityName );
+	JPDatabaseCreateArrayOfKeys( listOfKeys, arrayOfSorter, self.entityName );
 	
 	//// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// 
 	// Call Next Processing.
-	return [self queryEntity:anEntityName 
-		   withFetchTemplate:anFetchName 
-  replaceFetchWithDictionary:anDictionary 	
-	  arrayOfSortDescriptors:arrayOfSorter ];
+	return [self queryWithFetchTemplate:anFetchName withParams:anDictionary sortDescriptors:arrayOfSorter];
 	
 }
- 
--(id)queryEntity:(NSString*)anEntityName withFetchTemplate:(NSString*)anFetchName 
-replaceFetchWithDictionary:(NSDictionary*)anDictionary  arrayOfSortDescriptors:(NSArray*)anArrayOfSortDescriptors {
+
+- (id)queryWithFetchTemplate:(NSString *)anFetchName withParams:(NSDictionary *)anDictionary
+             sortDescriptors:(NSArray *)sortDescriptors {
 	
-	return [self queryEntity:anEntityName withFetchTemplate:anFetchName replaceFetchWithDictionary:anDictionary 
-	  arrayOfSortDescriptors:anArrayOfSortDescriptors customPredicate:nil];
+	return [self queryWithFetchTemplate:anFetchName withParams:anDictionary
+                        sortDescriptors:sortDescriptors predicate:nil ];
 	
 }
- 
--(id)queryEntity:(NSString*)anEntityName withFetchTemplate:(NSString*)anFetchName 
-replaceFetchWithDictionary:(NSDictionary*)anDictionary  arrayOfSortDescriptors:(NSArray*)anArrayOfSortDescriptors
- customPredicate:(NSPredicate*)anPredicate {
+
+- (id)queryWithFetchTemplate:(NSString *)anFetchName withParams:(NSDictionary *)anDictionary
+           sortDescriptors:(NSArray *)sortDescriptors predicate:(NSPredicate *)anPredicate {
 	
 	// Apply All Data.
-	[[[self applyEntity:anEntityName] applyFetchTemplate:anFetchName] applyFetchReplaceWithDictionary:anDictionary];
-	[[self applyArrayOfSortDescriptors:anArrayOfSortDescriptors] applyPredicate:anPredicate];
+	[[self applyFetchTemplate:anFetchName] applyFetchReplaceWithDictionary:anDictionary];
+	[[self applyArrayOfSortDescriptors:sortDescriptors] applyPredicate:anPredicate];
 	
 	// Perform this action on the manager.
 	return [self runAction];
@@ -259,8 +257,8 @@ replaceFetchWithDictionary:(NSDictionary*)anDictionary  arrayOfSortDescriptors:(
 
 #pragma mark - Set Action Data Methods.
 -(id)applyEntity:(NSString*)anEntity {
-    _entity = [anEntity copy];
-	return self;
+    [NSException raise:JPDBManagerDeprecatedException format:@"Deprecated you must initialize this object passing an Entity name."];
+    return nil;
 }
 
 -(id)applyFetchTemplate:(NSString*)anFetchRequest {
@@ -273,28 +271,20 @@ replaceFetchWithDictionary:(NSDictionary*)anDictionary  arrayOfSortDescriptors:(
 	return self;
 }
 
--(id)applyFetchReplaceWithVariables:(id)variableList, ... {
-    [NSException raise:JPDBManagerDeprecatedException format:@"Deprecated you should use 'applyFetchReplaceWithDictionary:' instead."];
-    return nil;
-}	
-
 -(instancetype)applyPredicate:(NSPredicate*)anPredicate {
-    _predicate = anPredicate;
+    self.predicate = anPredicate;
 	return self;
 }
 
 
 
 
+
 #pragma mark - Order Keys Methods
 -(id)applyOrderKeys:(id)listOfKeys, ... {
-	// Must have an entity defined at this point.
-	if ( !self.entity)
-		[self throwExceptionWithCause:NSFormatString( @"You must define one Entity first. Use [%@ applyEntity:].",
-                                                                                      NSStringFromClass([self class]))];
-	
+
 	// Create one Array of Sort Descriptors.
-	JPDatabaseCreateArrayOfKeys( listOfKeys, createdArray, self.entity );
+	JPDatabaseCreateArrayOfKeys( listOfKeys, createdArray, self.entityName );
 
 	// Store it.
 	return [self applyArrayOfSortDescriptors:createdArray];
@@ -320,7 +310,7 @@ replaceFetchWithDictionary:(NSDictionary*)anDictionary  arrayOfSortDescriptors:(
 	}
 	
 	//// //// ////// //// //// //// //// ////// //// //// //// //// //
-    _sortDescriptors = [anArray mutableCopy];
+    self.sortDescriptors = anArray;
 	return self;
 }
 
@@ -329,23 +319,25 @@ replaceFetchWithDictionary:(NSDictionary*)anDictionary  arrayOfSortDescriptors:(
 }
 
 -(id)addOrderKey:(id)anKey {
-	// Must have an entity defined at this point.
-	if ( !self.entity)
-		[self throwExceptionWithCause:NSFormatString( @"You must define one Entity first. Use [%@ applyEntity:].",
-                                                                                      NSStringFromClass([self class]))];
-	
+
 	// Check attribute.
-	if ( ![self existAttribute:anKey inEntity:self.entity] )
-		[self throwExceptionWithCause:NSFormatString( @"The attribute '%@' doesn't exist "
-                                                      @"on '%@' Entity.", anKey, self.entity)];
+	if ( ![self existAttribute:anKey inEntity:self.entityName] )
+		  [self throwExceptionWithCause:NSFormatString( @"The attribute '%@' doesn't exist "
+                                                        @"on '%@' Entity.", anKey, self.entityName)];
+
+    // Mutable Sort descriptors.
+    NSMutableArray *sortDescriptors = [self.sortDescriptors mutableCopy];
 
 	// Alloc if needed it.
-	if ( !self.sortDescriptors) 
-		_sortDescriptors = [NSMutableArray new];
+	if ( !sortDescriptors)
+ 	  	  sortDescriptors = [NSMutableArray new];
 	
 	// Add it.
-	[self.sortDescriptors addObject:[NSSortDescriptor sortDescriptorWithKey:anKey ascending:self.ascendingOrder]];
-		
+    [sortDescriptors push:[NSSortDescriptor sortDescriptorWithKey:anKey ascending:self.ascendingOrder]];
+
+	// Save it.
+    self.sortDescriptors = sortDescriptors;
+
 	// Return it self.
 	return self;
 }
@@ -355,10 +347,8 @@ replaceFetchWithDictionary:(NSDictionary*)anDictionary  arrayOfSortDescriptors:(
 	if ( !self.sortDescriptors || [self.sortDescriptors count] == 0 )
 		return;
 
-	/////////////////
 	NSSortDescriptor *found = nil;
 	
-	//// //// //// //// //// //// //// //// //// //// //// //// //// //// 
 	// Search him.
 	for ( NSSortDescriptor *sorter in self.sortDescriptors) {
 		if ( sorter.key == anKey ) {
@@ -367,28 +357,34 @@ replaceFetchWithDictionary:(NSDictionary*)anDictionary  arrayOfSortDescriptors:(
 		}
 	}
 	
-	// //// //// //// //// //// //// //// //// // //// //// //// //// //// //// //// //// 
 	// Remove it if found.
-	if ( found ) 
-		[self.sortDescriptors removeObject:found];
+	if ( found ) {
+        NSMutableArray *sortDescriptors = [self.sortDescriptors mutableCopy];
+        [sortDescriptors removeObject:found];
+        self.sortDescriptors = sortDescriptors;
+    }
 }
 
 
 
 
 #pragma mark - Query Limits.
+
 -(void)setStartFetchInLine:(int)anValue setLimitFetchResults:(int)anValue2 {
-	self.limitFetchResults = anValue2; self.startFetchInLine = anValue;
+    self.fetchOffset = (NSUInteger) anValue;
+    self.fetchLimit = (NSUInteger) anValue2;
 }
 
--(void)resetFetchLimits { 	 self.limitFetchResults = self.startFetchInLine = 0; }
+-(void)resetFetchLimits {
+    [self setStartFetchInLine:0 setLimitFetchResults:0];
+}
 
 -(void)resetDefaultValues {
 	//LogWhereCommentTo(SEQOYDBManager, @"Resetting Default Values")
 	
 	[self resetFetchLimits];
 	////
-	self.returnObjectsAsFault = NO;
+	self.returnsObjectsAsFaults = NO;
 	self.ascendingOrder = YES;
 	self.returnActionAsArray = YES;
 }
@@ -400,40 +396,46 @@ replaceFetchWithDictionary:(NSDictionary*)anDictionary  arrayOfSortDescriptors:(
     return self;
 }
 
+-(void)setStartFetchInLine:(int)startFetchInLine {
+    [self setStartFetchInLine:startFetchInLine
+         setLimitFetchResults:self.fetchLimit];
+}
 
+- (void)setLimitFetchResults:(int)limitFetchResults {
+    [self setStartFetchInLine:self.fetchOffset
+         setLimitFetchResults:limitFetchResults];
+}
 
 
 #pragma mark - Write Data Methods.
-// Create and return a new empty Record for specified Entity.
--(id)createNewRecordForEntity:(NSString*)anEntityName {
-	// Store the Entity.
-	[self applyEntity:anEntityName];
-	
-	// Perform creation. This is a private call.
-	id result = [[self getManagerOrDie] performSelector:@selector(createNewRecordForEntity:)
-										withObject:anEntityName];
-	
-	// Commit after creation if needed.
-	if (_commitTransaction)
-		[[self getManagerOrDie] commit];
-	
-	// Return result.
-	return result;	
+- (id)createNewRecord {
+
+    // Perform creation. This is a private call.
+    id result = [[self getManagerOrDie] performSelector:@selector(createNewRecordForEntity:)
+                                             withObject:self.entityName];
+
+    // Commit after creation if needed.
+    if (_commitTransaction)
+        [[self getManagerOrDie] commit];
+
+    // Return result.
+    return result;
 }
+
 
 
 
 
 #pragma mark - Remove Data Methods.
 
-// Delete all Records from specified entity.
+// Delete all Records from specified entityName.
 -(void)deleteAllRecordsFromEntity:(NSString*)anEntityName {
 	[self deleteRecordsFromEntity:anEntityName withFetchTemplate:nil];
 }
 
-// Delete all records, use an Fetch Template to query for an specified entity.
+// Delete all records, use an Fetch Template to query for an specified entityName.
 -(void)deleteRecordsFromEntity:(NSString*)anEntityName withFetchTemplate:(NSString*)anFetchName {
-	id entityData = [self queryEntity:anEntityName withFetchTemplate:anFetchName];
+	id entityData = [self queryWithFetchTemplate:anFetchName];
 
 	/////// /////// /////// /////// /////// /////// ///////
 	// Loop deleting records.
@@ -461,6 +463,31 @@ replaceFetchWithDictionary:(NSDictionary*)anDictionary  arrayOfSortDescriptors:(
 	if( shouldCommit )
 		[[self getManagerOrDie] commit];
 }
+
+
+
+#pragma mark - Deprecated Methods.
+-(id)applyFetchReplaceWithVariables:(id)variableList, ... {
+    [NSException raise:JPDBManagerDeprecatedException format:@"Deprecated you should use 'applyFetchReplaceWithDictionary:' instead."];
+    return nil;
+}
+
+// Create and return a new empty Record for specified Entity.
+-(id)createNewRecordForEntity:(NSString*)anEntityName {
+    [NSException raise:JPDBManagerDeprecatedException format:@"Deprecated. Use 'createNewRecord' instead."];
+    return nil;
+}
+
+-(id)queryEntity:(NSString*)anEntityName withFetchTemplate:(NSString*)anFetchName orderWithKey:(id)anKey withVariables:(id)variableList, ... {
+    [NSException raise:JPDBManagerDeprecatedException format:@"Deprecated. Use 'queryWithFetchTemplate:withParams:orderByKey:' instead."];
+    return nil;
+}
+
+-(id)queryEntity:(NSString*)anEntityName withFetchTemplate:(NSString*)anFetchName withVariables:(id)variableList, ...  {
+    [NSException raise:JPDBManagerDeprecatedException format:@"Deprecated. Use 'queryWithFetchTemplate:withParams:' instead."];
+    return nil;
+}
+
 
 
 @end

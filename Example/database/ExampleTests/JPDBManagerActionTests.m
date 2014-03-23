@@ -20,7 +20,7 @@ describe(@"ManagerAction", ^{
         [manager stub:@selector(existAttribute:inEntity:) andReturn:[KWValue valueWithBool:YES]];
 
         // Build an action.
-        action = [JPDBManagerAction initWithManager:manager];
+        action = [JPDBManagerAction initWithEntityName:nil andManager:manager];
     });
 
     ////////// ///////// ///////// ///////// ///////// ///////// ///////// ///////// ///////// /////////
@@ -57,7 +57,7 @@ describe(@"ManagerAction", ^{
 
             result = [action applyEntity:@"_ent_"];
             [[result should] equal:action];
-            [[action.entity should] equal:@"_ent_"];
+            [[action.entityName should] equal:@"_ent_"];
 
             result = [action applyFetchTemplate:@"_fetch_"];
             [[result should] equal:action];
@@ -100,7 +100,7 @@ describe(@"ManagerAction", ^{
         it( @"Should apply key orders", ^{
             JPDBManagerAction *result;
             
-            // Order require an entity to be defined.
+            // Order require an entityName to be defined.
             [action applyEntity:@"_ent_"];
             
             NSArray *emptyArray = [NSArray new];
@@ -161,8 +161,7 @@ describe(@"ManagerAction", ^{
 
         // All query methods concatenate to call one final method, we'll stub and expect data from him
         // in all query tests.
-        __block SEL finalMethod = @selector(queryEntity:withFetchTemplate:replaceFetchWithDictionary:
-                arrayOfSortDescriptors:customPredicate:);
+        __block SEL finalMethod = @selector(queryWithFetchTemplate:withParams:sortDescriptors:predicate:);
 
         beforeEach(^{
             // Stub the final method.
@@ -178,7 +177,7 @@ describe(@"ManagerAction", ^{
                }
 
             ];
-            [action queryAllDataFromEntity:__entityName];
+            [action queryAllData];
         });
 
         
@@ -195,7 +194,7 @@ describe(@"ManagerAction", ^{
                    return nil;
                }
             ];
-            [action queryAllDataFromEntity:__entityName orderWithKey:@"_key_"];
+            [action queryAllDataOrderedByKey:@"_key_"];
         });
 
 
@@ -213,7 +212,7 @@ describe(@"ManagerAction", ^{
                    return nil;
                }
             ];
-            [action queryAllDataFromEntity:__entityName orderWithKeys:@"keyA", @"keyB", nil];
+            [action queryAllDataOrderedByKeys:@"keyA", @"keyB"];
         });
         
         
@@ -228,7 +227,7 @@ describe(@"ManagerAction", ^{
                    return nil;
                }
             ];
-            [action queryEntity:__entityName withFetchTemplate:__fetchTemplate];
+            [action queryWithFetchTemplate:__fetchTemplate ];
 
         });
 
@@ -247,7 +246,7 @@ describe(@"ManagerAction", ^{
                    return nil;
                }
             ];
-            [action queryEntity:__entityName withFetchTemplate:__fetchTemplate orderWithKey:@"_key_"];
+            [action queryWithFetchTemplate:__fetchTemplate ordereredByKey:@"_key_"];
 
         });
 
@@ -267,7 +266,7 @@ describe(@"ManagerAction", ^{
                    return nil;
                }
             ];
-            [action queryEntity:__entityName withFetchTemplate:__fetchTemplate orderWithKeys:@"keyA", @"keyB", nil];
+            [action queryEntity:__entityName withFetchTemplate:__fetchTemplate orderedByKeys:@"keyA", @"keyB"];
 
         });
 
@@ -285,7 +284,7 @@ describe(@"ManagerAction", ^{
                    return nil;
                }
             ];
-            [action queryEntity:__entityName withFetchTemplate:__fetchTemplate replaceFetchWithDictionary:replaceWith];
+            [action queryWithFetchTemplate:__fetchTemplate withParams:replaceWith];
         });
 
 
@@ -307,9 +306,7 @@ describe(@"ManagerAction", ^{
                    return nil;
                }
             ];
-            [action queryEntity:__entityName withFetchTemplate:__fetchTemplate
-                                    replaceFetchWithDictionary:replaceWith
-                                                  orderWithKey:@"_key_"];
+            [action queryWithFetchTemplate:__fetchTemplate withParams:replaceWith orderByKey:@"_key_"];
         });
 
 
@@ -331,9 +328,8 @@ describe(@"ManagerAction", ^{
                    return nil;
                }
             ];
-            [action queryEntity:__entityName withFetchTemplate:__fetchTemplate
-                                    replaceFetchWithDictionary:replaceWith
-                                                 orderWithKeys:@"keyA", @"keyB", nil];
+            [action queryWithFetchTemplate:__fetchTemplate withParams:replaceWith
+                    orderByKeys:@"keyA", @"keyB"];
         });
 
 
@@ -355,14 +351,10 @@ describe(@"ManagerAction", ^{
                    return nil;
                }
             ];
-            [action queryEntity:__entityName withFetchTemplate:__fetchTemplate
-                         replaceFetchWithDictionary:replaceWith
-                             arrayOfSortDescriptors:
-                                     @[
-                                             [NSSortDescriptor sortDescriptorWithKey:@"keyA" ascending:YES],
-                                             [NSSortDescriptor sortDescriptorWithKey:@"keyB" ascending:YES]
-                                     ]
-            ];
+            [action queryWithFetchTemplate:__fetchTemplate withParams:replaceWith sortDescriptors:@[
+                    [NSSortDescriptor sortDescriptorWithKey:@"keyA" ascending:YES],
+                    [NSSortDescriptor sortDescriptorWithKey:@"keyB" ascending:YES]
+            ]];
         });
 
 
@@ -378,7 +370,7 @@ describe(@"ManagerAction", ^{
                }
 
             ];
-            [action queryEntity:__entityName withPredicate:[NSPredicate  new]];
+            [action queryWithPredicate:[NSPredicate new]];
         });
 
 
@@ -397,7 +389,7 @@ describe(@"ManagerAction", ^{
                }
 
             ];
-            [action queryEntity:__entityName withPredicate:[NSPredicate  new] orderWithKey:@"_key_"];
+            [action queryWithPredicate:[NSPredicate new] orderByKey:@"_key_"];
         });
 
 
@@ -417,7 +409,7 @@ describe(@"ManagerAction", ^{
                }
 
             ];
-            [action queryEntity:__entityName withPredicate:[NSPredicate  new] orderWithKeys:@"keyA", @"keyB", nil];
+            [action queryEntity:__entityName withPredicate:[NSPredicate new] orderedByKeys:@"keyA", @"keyB"];
         });
 
 
@@ -437,13 +429,10 @@ describe(@"ManagerAction", ^{
                }
 
             ];
-            [action queryEntity:__entityName withPredicate:[NSPredicate  new]
-                         arrayOfSortDescriptors:
-                                    @[
-                                            [NSSortDescriptor sortDescriptorWithKey:@"keyA" ascending:YES],
-                                            [NSSortDescriptor sortDescriptorWithKey:@"keyB" ascending:YES]
-                                    ]
-            ];
+            [action queryWithPredicate:[NSPredicate new] sortDescriptors:@[
+                    [NSSortDescriptor sortDescriptorWithKey:@"keyA" ascending:YES],
+                    [NSSortDescriptor sortDescriptorWithKey:@"keyB" ascending:YES]
+            ]];
         });
     });
 
@@ -459,15 +448,10 @@ describe(@"ManagerAction", ^{
             [manager stub:@selector(performDatabaseAction:) withArguments:action];
             [[manager should] receive:@selector(performDatabaseAction:) withArguments:action];
 
-            [action queryEntity:__entityName withFetchTemplate:__fetchTemplate
-                         replaceFetchWithDictionary:[NSDictionary new]
-                             arrayOfSortDescriptors:
-                                     @[
-                                             [NSSortDescriptor sortDescriptorWithKey:@"keyA" ascending:YES],
-                                             [NSSortDescriptor sortDescriptorWithKey:@"keyB" ascending:YES]
-                                     ]
-                                    customPredicate:[NSPredicate new]
-            ];
+            [action queryWithFetchTemplate:__fetchTemplate withParams:[NSDictionary new] sortDescriptors:@[
+                    [NSSortDescriptor sortDescriptorWithKey:@"keyA" ascending:YES],
+                    [NSSortDescriptor sortDescriptorWithKey:@"keyB" ascending:YES]
+            ]                    predicate:[NSPredicate new]];
 
             #pragma clang diagnostic pop
         });
@@ -490,9 +474,9 @@ describe(@"ManagerAction", ^{
             [action stub:finalMethod];
         });
 
-        it(@"Should delete all Records from specified entity", ^{
+        it(@"Should delete all Records from specified entityName", ^{
             // Stub internal query to return our data object.
-            [action stub:@selector(queryEntity:withFetchTemplate:) andReturn:@[dataObject]];
+            [action stub:@selector(queryWithFetchTemplate:) andReturn:@[dataObject]];
 
             // Delete all.
             [[action should] receive:finalMethod withArguments:dataObject, [KWValue valueWithBool:NO]];
@@ -505,8 +489,8 @@ describe(@"ManagerAction", ^{
 
         it(@"Shoul delete all records queried by the specified Fetch Template", ^{
             // Stub internal query to return our data object.
-            [action stub:@selector(queryEntity:withFetchTemplate:) andReturn:@[dataObject]
-                                                               withArguments:@"_entity_", @"_template"];
+            [action stub:@selector(queryWithFetchTemplate:) andReturn:@[dataObject]
+           withArguments:@"_entity_", @"_template"];
 
             // Delete all.
             [[action should] receive:finalMethod withArguments:dataObject, [KWValue valueWithBool:NO]];
@@ -558,7 +542,7 @@ describe(@"ManagerAction", ^{
 
 
             id result = [action createNewRecordForEntity:@"_entity_"];
-            [[action.entity should] equal:@"_entity_"];
+            [[action.entityName should] equal:@"_entity_"];
 
             [result shouldNotBeNil];
             [[result should] equal:dataObject];
