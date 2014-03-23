@@ -48,15 +48,6 @@
 												}\
 												va_end(args);
 
-//// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// ////
-
-#define JPDatabaseCreatePredicate(___predicateName, ___condition ) \
-                                                    va_list va_arguments;\
-                                                    va_start(va_arguments, ___condition);\
-                                                    NSPredicate *___predicateName = [NSPredicate predicateWithFormat:___condition arguments:va_arguments];\
-                                                    va_end(va_arguments);
-
-
 
 @class JPDBManager;
 
@@ -199,7 +190,7 @@
 -(void)resetDefaultValues;
 
 /**
- * Set this query to fetch all data.
+ * Set this, to fetch all data.
  */
 -(instancetype)all;
 
@@ -234,18 +225,18 @@
 -(id)applyFetchReplaceWithDictionary:(NSDictionary*)anDictionary;
 
 /**
- * Set the Values to replace on the pre formatted Fetch Template.
- * @param variableList Keys and Values to replace on the pre formatted Fetch Template.<br>
- * <b>Example:</b><br>
- * \code[anAction applyFetchReplaceWithVariables:@"value1", @"key1", @"value2", @"key2", nil];\endcode
- * @return Return itself.
+ * Deprecated you should use 'applyFetchReplaceWithDictionary:' instead.
  */
--(id)applyFetchReplaceWithVariables:(id)variableList, ... NS_REQUIRES_NIL_TERMINATION;
+-(id)applyFetchReplaceWithVariables:(id)variableList, ... NS_REQUIRES_NIL_TERMINATION DEPRECATED_ATTRIBUTE;
 
+/**
+ * Apply an NSPredicate.
+ */
 -(instancetype)applyPredicate:(NSPredicate*)anPredicate;
 
 /**
- * Run this action on the associated 
+ * Run this action on the associated
+ * \
  * \ref JPDBManager Database Manager\endlink.
  */
 -(id)runAction;
@@ -285,7 +276,7 @@
  * @return Return itself.
  * @throw An  \ref JPDBManagerActionException  exception if the #entity property isn't defined. See \ref errors for more informations.
  */
--(id)applyOrderKeys:(id)listOfKeys, ... NS_REQUIRES_NIL_TERMINATION;
+-(id)applyOrderKeys:(id)listOfKeys, ... ;
 
 /**
  * Set the Key attribute to sort the result of this acion.
@@ -326,7 +317,7 @@
 -(id)queryAllDataFromEntity:(NSString*)anEntityName;
 
 /**
- * Query all data of the specified Entity.
+ * Query all data of the specified Entity ordering by specified key.
  * The #defaultOrderIsAscending property determines if is an Ascending or Descending order.
  * @param anEntityName The Entity Name.
  * @param anKey One Key attribute to sort the result.
@@ -335,7 +326,7 @@
 -(id)queryAllDataFromEntity:(NSString*)anEntityName orderWithKey:(id)anKey;
 
 /**
- * Query all data of the specified Entity.
+ * Query all data of the specified Entity ordering by specified keys.
  * The #defaultOrderIsAscending property determines if is an Ascending or Descending order.
  * @param anEntityName The Entity Name.
  * @param anKey One NSString formatted to form an Key attribute to sort the result.
@@ -370,7 +361,7 @@
 -(id)queryEntity:(NSString*)anEntityName withFetchTemplate:(NSString*)anFetchName;
 
 /**
- * Query specified Entity using one specified Fetch Template name.
+ * Query specified Entity using one specified Fetch Template ordering with specific key.
  * @param anEntityName The Entity Name.
  * @param anFetchName An Fetch Template to perform the query.
  * @param anKey One Key attribute to sort the result.
@@ -397,32 +388,14 @@
 ///@{ 
 
 /**
- * Query specified Entity using one specified Fetch Template name.
- * @param anEntityName The Entity Name.
- * @param anFetchName An Fetch Template to perform the query.
- * @param variableList Keys and Values to replace on the pre formatted Fetch Template.<br>
- * <b>Example:</b><br>
- * \code[manager queryEntity:@"Entity" 
- *   withFetchTemplate:@"FetchAll"
- *       withVariables:@"value1", @"key1", @"value2", @"key2", nil];\endcode
- * @return One unordered collection with queried data Objects. The Class of this collection is setted by #returnQueryAsArray property.
+ * Deprecated. Use 'queryEntity:withFetchTemplate:replaceFetchWithDictionary:' instead.
  */
--(id)queryEntity:(NSString*)anEntityName withFetchTemplate:(NSString*)anFetchName withVariables:(id)variableList, ... NS_REQUIRES_NIL_TERMINATION;
+-(id)queryEntity:(NSString*)anEntityName withFetchTemplate:(NSString*)anFetchName withVariables:(id)variableList, ... NS_REQUIRES_NIL_TERMINATION DEPRECATED_ATTRIBUTE;
 
 /**
- * Query specified Entity using one specified Fetch Template name.
- * @param anEntityName The Entity Name.
- * @param anFetchName An Fetch Template to perform the query.
- * @param anKey One Key attribute to sort the result.
- * @param variableList Keys and Values to replace on the pre formatted Fetch Template.<br>
- * <b>Example:</b><br>
- * \code[manager queryEntity:@"Entity" 
- *   withFetchTemplate:@"FetchAll"
- *        orderWithKey:@"id" 
- *       withVariables:@"value1", @"key1", @"value2", @"key2", nil];\endcode
- * @return One unordered collection with queried data Objects. The Class of this collection is setted by #returnQueryAsArray property.
+ * Deprecated. Use 'queryEntity:withFetchTemplate:replaceFetchWithDictionary:orderWithKey:' instead.
  */
--(id)queryEntity:(NSString*)anEntityName withFetchTemplate:(NSString*)anFetchName orderWithKey:(id)anKey withVariables:(id)variableList, ... NS_REQUIRES_NIL_TERMINATION;
+-(id)queryEntity:(NSString*)anEntityName withFetchTemplate:(NSString*)anFetchName orderWithKey:(id)anKey withVariables:(id)variableList, ... NS_REQUIRES_NIL_TERMINATION DEPRECATED_ATTRIBUTE;
 
 /**
  * Query specified Entity using one specified Fetch Template name.

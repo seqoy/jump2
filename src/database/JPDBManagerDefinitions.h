@@ -22,8 +22,12 @@
 #pragma mark -
 #pragma mark Exceptions
 ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// 
+
 // This kind of exception is thrown when is impossible to perform an Database Action.
 #define JPDBManagerActionException @"JPDBManagerActionException"
+
+// This kind of exception is thrown when some deprecated method is called.
+#define JPDBManagerDeprecatedException @"JPDBManagerDeprecatedException"
 
 // This kind of exception is thrown when is impossible to start the Core Data environment.
 #define JPDBManagerStartException @"JPDBManagerStartException"

@@ -1,0 +1,1 @@
+../../../../../src/database/NSManagedObject+JPDatabase.h

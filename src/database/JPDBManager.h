@@ -32,20 +32,7 @@
  * Also consult \ref errors and \ref queries.
  */
 @class JPDBManagerAction;
-@interface JPDBManager : NSObject {
-	
-	// Core Data Objects.
-	NSManagedObjectModel *managedObjectModel;
-	NSManagedObjectContext *managedObjectContext;		
-	NSPersistentStoreCoordinator *persistentStoreCoordinator;
-
-	// Automatically Commit.
-	BOOL automaticallyCommit;
-	
-	NSString *loadedModelName;
-}
-//// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// 
-#pragma mark Properties.
+@interface JPDBManager : NSObject
 
 /**
  * Core Data Managed Object Model

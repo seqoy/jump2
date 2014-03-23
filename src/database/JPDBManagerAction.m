@@ -136,9 +136,9 @@
     va_list listOfKeys;
     va_start(listOfKeys, anKey);
 
-    NSArray *result = [self queryAllDataFromEntity:self.entity
-            orderWithKey:anKey
-              parameters:listOfKeys];
+    NSArray *result = [self queryAllDataFromEntity:anEntityName
+                                      orderWithKey:anKey
+                                        parameters:listOfKeys];
 
     va_end(listOfKeys);
     return result;
@@ -163,7 +163,7 @@
 }
 
 -(id)queryEntity:(NSString*)anEntityName withFetchTemplate:(NSString*)anFetchName  {
-	return [self queryEntity:anEntityName withFetchTemplate:anFetchName withVariables:nil];
+	return [self queryEntity:anEntityName withFetchTemplate:anFetchName replaceFetchWithDictionary:nil];
 }
 
 -(id)queryEntity:(NSString*)anEntityName withFetchTemplate:(NSString*)anFetchName orderWithKey:(id)anKey {
@@ -185,31 +185,13 @@
 }
 
 -(id)queryEntity:(NSString*)anEntityName withFetchTemplate:(NSString*)anFetchName orderWithKey:(id)anKey withVariables:(id)variableList, ... {
-	
-	// Create one Dictionary with Variable Arguments.
-	JPDatabaseCreateDictionaryOfVariables( variableList, createdDictionary );
-	
-	//// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// 
-	
-	// Call Next Processing.
-	return [self queryEntity:anEntityName 
-		   withFetchTemplate:anFetchName 
-  replaceFetchWithDictionary:createdDictionary 
-			   orderWithKeys:anKey, nil];
+    [NSException raise:JPDBManagerDeprecatedException format:@"Deprecated. Use 'queryEntity:withFetchTemplate:replaceFetchWithDictionary:orderWithKey:' instead."];
+    return nil;
 }
  
 -(id)queryEntity:(NSString*)anEntityName withFetchTemplate:(NSString*)anFetchName withVariables:(id)variableList, ...  {
-	
-	// Create one Dictionary with Variable Arguments.
-	JPDatabaseCreateDictionaryOfVariables( variableList, createdDictionary );
-	
-	//// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// 
-	
-	// Call Next Processing.
-	return [self queryEntity:anEntityName 
-		   withFetchTemplate:anFetchName
-  replaceFetchWithDictionary:createdDictionary];
-	
+    [NSException raise:JPDBManagerDeprecatedException format:@"Deprecated. Use 'queryEntity:withFetchTemplate:replaceFetchWithDictionary:' instead."];
+    return nil;
 }
  
 -(id)queryEntity:(NSString*)anEntityName withFetchTemplate:(NSString*)anFetchName replaceFetchWithDictionary:(NSDictionary*)anDictionary {
@@ -292,12 +274,8 @@ replaceFetchWithDictionary:(NSDictionary*)anDictionary  arrayOfSortDescriptors:(
 }
 
 -(id)applyFetchReplaceWithVariables:(id)variableList, ... {
-
-	// Create one Dictionary with Variable Arguments.
-	JPDatabaseCreateDictionaryOfVariables( variableList, createdDictionary );
-	
-	//// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// ////
-	return [self applyFetchReplaceWithDictionary:createdDictionary];
+    [NSException raise:JPDBManagerDeprecatedException format:@"Deprecated you should use 'applyFetchReplaceWithDictionary:' instead."];
+    return nil;
 }	
 
 -(instancetype)applyPredicate:(NSPredicate*)anPredicate {
