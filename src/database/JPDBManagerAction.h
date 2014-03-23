@@ -36,18 +36,6 @@
 
 //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// ////
 
-#define JPDatabaseCreateDictionaryOfVariables( ____listName, ____dictionaryName  ) \
-												NSMutableDictionary *____dictionaryName = [[NSMutableDictionary alloc] init];\
-												id value = nil;\
-												va_list args;\
-												va_start(args, ____listName);\
-												for (id arg = ____listName; arg != nil; arg = va_arg(args, id))\
-												{\
-												if	( _NOT_ value ) { value = arg; }\
-												else { [____dictionaryName setObject:value forKey:arg]; value = nil; }\
-												}\
-												va_end(args);
-
 
 @class JPDBManager;
 
@@ -59,11 +47,11 @@
  configure the data and settings to perform some <a href="http://en.wikipedia.org/wiki/Create,_read,_update_and_delete">CRUD</a> operation and finally run this action.
  Yes, looks like a lot of work, but actually is not. Let's see some examples:
  \code
- id newRecord = [JPDatabaseManager createNewRecordForEntity:@"MyEntity"];
+ id newRecord = [JPDatabaseManager createNewRecordFromAction:@"MyEntity"];
  \endcode
  This is was really simple, isn't? Let's see this same operation on a more custom fashion:
  \code
- JPDBManagerAction *anAction = [[JPDBManagerSingleton sharedInstance] getDatabaseAction];
+ JPDBManagerAction *anAction = [[JPDBManagerSingleton sharedInstance] getDatabaseActionForEntity:];
  [anAction setCommitTransaction:YES];
  id newRecord = [anAction createNewRecordForEntity:@"MyEntity"];
  \endcode
@@ -76,38 +64,33 @@
  if you want to automatically commit the operation or create some more dinamically code on your database operations.
  <br>
  */
-@interface JPDBManagerAction : NSObject
+@interface JPDBManagerAction : NSFetchRequest
 
-////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// 
-#pragma mark -
-#pragma mark Init Methods.
-////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// 
+ 
+#pragma mark - Init Methods.
+ 
 /** @name Init Methods
  */
 ///@{ 
 
 /**
- * Init with an \link JPDBManager Database Manager\endlink to process this Database Action.
- * @param anManager An \link JPDBManager Database Manager\endlin
- * @return An autoreleseable instance.
+ *  Init with an \link JPDBManager Database Manager\endlink to process this Database Action.
+ *
+ *  @param anEntityName The name of the entity to fetch.
+ *  @param anManager    An \link JPDBManager Database Manager\endlin
  */
-+(id)initWithManager:(JPDBManager*)anManager;
++ (id)initWithEntityName:(NSString *)anEntityName andManager:(JPDBManager *)anManager;
 
 /**
- * Init with an \link JPDBManager Database Manager\endlink to process this Database Action.
- * @param anManager An \link JPDBManager Database Manager\endlin
- * @return An retained instance.
+ *  Init with an \link JPDBManager Database Manager\endlink to process this Database Action.
+ *
+ *  @param anEntityName The name of the entity to fetch.
+ *  @param anManager    An \link JPDBManager Database Manager\endlin
  */
--(id)initWithManager:(JPDBManager*)anManager;
+- (id)initWithEntityName:(NSString *)anEntityName andManager:(JPDBManager *)anManager;
 
 ///@}
-//// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// 
-#pragma mark -
-#pragma mark Properties.
-//// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// 
 
-/// The entity to perform this action.
-@property(readonly) NSString *entity;
 
 /// The Fetch Template to perform this action.
 @property(readonly) NSString *fetchTemplate;
@@ -115,27 +98,12 @@
 /// Values to replace on the pre formatted Fetch Template.
 @property(readonly) NSMutableDictionary* variablesListAndValues;
 
-/// Array of Sort Descriptors (<b>NSSortDescriptor</b>) to sort the result of this acion.
-@property(readonly) NSMutableArray* sortDescriptors;
-
-@property(readonly) NSPredicate *predicate;
-
-/**
- * Instance of the Manager to perform this Database Action.
- */
-@property(weak) JPDBManager *manager;
 
 /**
  * Set if the Manager should commit this transaction immediately or not.<br>
  * Default value is <b>NO</b>.
  */
 @property(assign) BOOL commitTransaction;
-
-/**
- * Define if the Result objects of some query should be as Core Data Fault.
- * Default value is <b>NO</b>.
- */
-@property(assign) BOOL returnObjectsAsFault;
 
 /**
  * Define if the order of the results of some query should be Ascending or Descending.
@@ -151,6 +119,12 @@
  */
 @property(assign) BOOL returnActionAsArray;
 
+/**
+ * Instance of the Manager to perform this Database Action.
+ */
+@property(weak) JPDBManager *manager;
+
+
 //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// 
 #pragma mark -
 #pragma mark Set Query Limits.
@@ -161,23 +135,9 @@
 
 
 /**
- * Set the initial row result to return from Query Methods results.
- * Combine this set with the #limitFetchResults property.<br>
- * Default value is <b>0</b>.
+ * Convenient method to set the fetchOffset and fetchLimit properties at the same time.
  */
-@property(assign) int startFetchInLine;
-
-/**
- * Set the maximum rows to return from Query Methods results.
- * Combine this set with the #startFetchInLine property.<br>
- * Default value is <b>0</b>, it means that all rows in the Entity will be retrieved.
- */
-@property(assign) int limitFetchResults;
-
-/**
- * Convenient method to set the #startFetchInLine and #limitFetchResults properties at the same time.
- */
--(void)setStartFetchInLine:(int)anValue setLimitFetchResults:(int)anValue2; 
+-(void)setFetchOffset:(int)offset setFetchLimit:(int)limit;
 
 /**
  * Reset the default Fetch Limits values.
@@ -274,7 +234,7 @@
  * Set the Key attributes to sort the result of this acion.
  * @param listOfKeys Accept one or more Key Attributes to sort the result. Doesn't forget to terminate the list with an 'nil' token.
  * @return Return itself.
- * @throw An  \ref JPDBManagerActionException  exception if the #entity property isn't defined. See \ref errors for more informations.
+ * @throw An  \ref JPDBManagerActionException  exception if the #entityName property isn't defined. See \ref errors for more informations.
  */
 -(id)applyOrderKeys:(id)listOfKeys, ... ;
 
@@ -282,7 +242,7 @@
  * Set the Key attribute to sort the result of this acion.
  * @param anKey An Key Attribute to sort the result.
  * @return Return itself.
- * @throw An  \ref JPDBManagerActionException  exception if the #entity property isn't defined. See \ref errors for more informations.
+ * @throw An  \ref JPDBManagerActionException  exception if the #entityName property isn't defined. See \ref errors for more informations.
  */
 -(instancetype)applyOrderKey:(id)anKey;
 
@@ -290,7 +250,7 @@
  * Add a new Key attribute to sort the result of this action.
  * @param anKey An Key Attribute to sort the result.
  * @return Return itself.
- * @throw An  \ref JPDBManagerActionException  exception if the #entity property isn't defined. See \ref errors for more informations.
+ * @throw An  \ref JPDBManagerActionException  exception if the #entityName property isn't defined. See \ref errors for more informations.
  */
 -(id)addOrderKey:(id)anKey;
 
@@ -310,38 +270,36 @@
 ///@{ 
 
 /**
- * Query all data of the specified Entity.
- * @param anEntityName The Entity Name.
- * @return One unordered collection with queried data Objects. The Class of this collection is setted by #returnQueryAsArray property.
+ *  Query all data of the specified Entity.
+ *
+ *  @return An unordered collection with queried data Objects. The Class of this collection is setted by #returnQueryAsArray property.
  */
--(id)queryAllDataFromEntity:(NSString*)anEntityName;
+- (id)queryAllData;
 
 /**
- * Query all data of the specified Entity ordering by specified key.
- * The #defaultOrderIsAscending property determines if is an Ascending or Descending order.
- * @param anEntityName The Entity Name.
- * @param anKey One Key attribute to sort the result.
- * @return One unordered collection with queried data Objects. The Class of this collection is setted by #returnQueryAsArray property.
+ *  Query all data of the specified Entity ordering by specified key.
+ *
+ *  @param anKey One Key attribute to sort the result.
+ *
+ *  @return An unordered collection with queried data Objects. The Class of this collection is setted by #returnQueryAsArray property.
  */
--(id)queryAllDataFromEntity:(NSString*)anEntityName orderWithKey:(id)anKey;
+- (id)queryAllDataOrderedByKey:(NSString *)anKey;
 
 /**
  * Query all data of the specified Entity ordering by specified keys.
  * The #defaultOrderIsAscending property determines if is an Ascending or Descending order.
- * @param anEntityName The Entity Name.
  * @param anKey One NSString formatted to form an Key attribute to sort the result.
  * @param arguments Parameters to the anKey.
  * @return One unordered collection with queried data Objects. The Class of this collection is setted by #returnQueryAsArray property.
  */
--(id)queryAllDataFromEntity:(NSString*)anEntityName orderWithKey:(id)anKey parameters:(va_list)arguments;
+- (id)queryAllDataOrderedByKey:(NSString *)anKey parameters:(va_list)arguments;
 
 /**
- * Query all data of the specified Entity.
- * @param anEntityName The Entity Name.
- * @param listOfKeys Accept one or more Key Attributes to sort the result. Doesn't forget to terminate the list with an 'nil' token.
+ * Query all data of the specified Entity ordered with keys.
+ * @param listOfKeys Accept one or more Key Attributes to sort the result.
  * @return One unordered collection with queried data Objects. The Class of this collection is setted by #returnQueryAsArray property.
  */
--(id)queryAllDataFromEntity:(NSString*)anEntityName orderWithKeys:(id)listOfKeys, ... NS_REQUIRES_NIL_TERMINATION;
+-(id)queryAllDataOrderedByKeys:(NSString*)anKey, ... NS_REQUIRES_NIL_TERMINATION;
 
 //@}
 //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// 
@@ -354,29 +312,27 @@
 
 /**
  * Query specified Entity using one specified Fetch Template name.
- * @param anEntityName The Entity Name.
  * @param anFetchName An Fetch Template to perform the query.
  * @return One unordered collection with queried data Objects. The Class of this collection is setted by #returnQueryAsArray property.
  */
--(id)queryEntity:(NSString*)anEntityName withFetchTemplate:(NSString*)anFetchName;
+- (id)queryWithFetchTemplate:(NSString *)anFetchName;
 
 /**
  * Query specified Entity using one specified Fetch Template ordering with specific key.
- * @param anEntityName The Entity Name.
  * @param anFetchName An Fetch Template to perform the query.
  * @param anKey One Key attribute to sort the result.
  * @return One unordered collection with queried data Objects. The Class of this collection is setted by #returnQueryAsArray property.
  */
--(id)queryEntity:(NSString*)anEntityName withFetchTemplate:(NSString*)anFetchName orderWithKey:(id)anKey;
+- (id)queryWithFetchTemplate:(NSString *)anFetchName ordereredByKey:(id)anKey;
 
 /**
  * Query specified Entity using one specified Fetch Template name.
- * @param anEntityName The Entity Name.
+
  * @param anFetchName An Fetch Template to perform the query.
  * @param listOfKeys Accept one or more Key Attributes to sort the result. Doesn't forget to terminate the list with an 'nil' token.
  * @return One unordered collection with queried data Objects. The Class of this collection is setted by #returnQueryAsArray property.
  */
--(id)queryEntity:(NSString*)anEntityName withFetchTemplate:(NSString*)anFetchName orderWithKeys:(id)listOfKeys, ... NS_REQUIRES_NIL_TERMINATION;
+-(id)queryWithFetchTemplate:(NSString *)anFetchName orderedByKeys:(id)listOfKeys, ... NS_REQUIRES_NIL_TERMINATION;
 
 //@}
 //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// 
@@ -399,44 +355,44 @@
 
 /**
  * Query specified Entity using one specified Fetch Template name.
- * @param anEntityName The Entity Name.
+
  * @param anFetchName An Fetch Template to perform the query.
  * @param variablesListAndValues An Dictionary with Keys and Values to replace on the pre formatted Fetch Template.
  * @return One unordered collection with queried data Objects. The Class of this collection is setted by #returnQueryAsArray property.
  */
--(id)queryEntity:(NSString*)anEntityName withFetchTemplate:(NSString*)anFetchName replaceFetchWithDictionary:(NSDictionary*)variablesListAndValues;
+- (id)queryWithFetchTemplate:(NSString *)anFetchName withParams:(NSDictionary *)params;
 
 /**
  * Query specified Entity using one specified Fetch Template name.
- * @param anEntityName The Entity Name.
+
  * @param anFetchName An Fetch Template to perform the query.
  * @param variablesListAndValues An Dictionary with Keys and Values to replace on the pre formatted Fetch Template.
  * @param anKey One Key attribute to sort the result.
  * @return One unordered collection with queried data Objects. The Class of this collection is setted by #returnQueryAsArray property.
  */
--(id)queryEntity:(NSString*)anEntityName withFetchTemplate:(NSString*)anFetchName replaceFetchWithDictionary:(NSDictionary*)variablesListAndValues orderWithKey:(id)anKey;
+- (id)queryWithFetchTemplate:(NSString *)anFetchName withParams:(NSDictionary *)params orderByKey:(id)anKey;
 
 /**
  * Query specified Entity using one specified Fetch Template name.
- * @param anEntityName The Entity Name.
+
  * @param anFetchName An Fetch Template to perform the query.
  * @param variablesListAndValues An Dictionary with Keys and Values to replace on the pre formatted Fetch Template.
  * @param listOfKeys Accept one or more Key Attributes to sort the result. Doesn't forget to terminate the list with an 'nil' token.
  * @return One unordered collection with queried data Objects. The Class of this collection is setted by #returnQueryAsArray property.
  */
--(id)queryEntity:(NSString*)anEntityName withFetchTemplate:(NSString*)anFetchName replaceFetchWithDictionary:(NSDictionary*)variablesListAndValues orderWithKeys:(id)listOfKeys, ... NS_REQUIRES_NIL_TERMINATION;
+- (id)queryWithFetchTemplate:(NSString *)anFetchName withParams:(NSDictionary *)anDictionary orderedByKeys:(id)listOfKeys, ... NS_REQUIRES_NIL_TERMINATION;
 
 /**
  * Query specified Entity using one specified Fetch Template name.
- * @param anEntityName The Entity Name.
+
  * @param anFetchName An Fetch Template to perform the query.
  * @param variablesListAndValues An Dictionary with Keys and Values to replace on the pre formatted Fetch Template.
  * @param anArrayOfSortDescriptors An Array of Key attributes to sort the result.
  * @return One unordered collection with queried data Objects. The Class of this collection is setted by #returnQueryAsArray property.
  */
--(id)queryEntity:(NSString*)anEntityName withFetchTemplate:(NSString*)anFetchName replaceFetchWithDictionary:(NSDictionary*)variablesListAndValues  arrayOfSortDescriptors:(NSArray*)anArrayOfSortDescriptors;
+- (id)queryWithFetchTemplate:(NSString *)anFetchName withParams:(NSDictionary *)params sortDescriptors:(NSArray *)sortDescriptors;
 
--(id)queryEntity:(NSString*)anEntityName withFetchTemplate:(NSString*)anFetchName replaceFetchWithDictionary:(NSDictionary*)variablesListAndValues  arrayOfSortDescriptors:(NSArray*)anArrayOfSortDescriptors customPredicate:(NSPredicate*)anPredicate;
+- (id)queryWithFetchTemplate:(NSString *)anFetchName withParams:(NSDictionary *)params sortDescriptors:(NSArray *)sortDescriptors predicate:(NSPredicate *)anPredicate;
 
 //@}
 //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// 
@@ -449,38 +405,38 @@
 
 /**
  * Query specified Entity using one custom NSPredicate Object.
- * @param anEntityName The Entity Name.
+
  @ @param anPredicate An <b>NSPredicate</b> object defining the query.
  * @return One unordered collection with queried data Objects. The Class of this collection is setted by #returnQueryAsArray property.
  */
--(id)queryEntity:(NSString*)anEntityName withPredicate:(NSPredicate*)anPredicate;
+- (id)queryWithPredicate:(NSPredicate *)anPredicate;
 
 /**
  * Query specified Entity using one custom NSPredicate Object.
- * @param anEntityName The Entity Name.
+
  * @param anPredicate An <b>NSPredicate</b> object defining the query.
  * @param anKey One Key attribute to sort the result.
  * @return One unordered collection with queried data Objects. The Class of this collection is setted by #returnQueryAsArray property.
  */
--(id)queryEntity:(NSString*)anEntityName withPredicate:(NSPredicate*)anPredicate orderWithKey:(id)anKey;
+- (id)queryWithPredicate:(NSPredicate *)anPredicate orderByKey:(id)anKey;
 
 /**
  * Query specified Entity using one custom NSPredicate Object.
- * @param anEntityName The Entity Name.
+
  * @param anPredicate An <b>NSPredicate</b> object defining the query.
  * @param listOfKeys Accept one or more Key Attributes to sort the result. Doesn't forget to terminate the list with an 'nil' token.
  * @return One unordered collection with queried data Objects. The Class of this collection is setted by #returnQueryAsArray property.
  */
--(id)queryEntity:(NSString*)anEntityName withPredicate:(NSPredicate*)anPredicate orderWithKeys:(id)listOfKeys, ... NS_REQUIRES_NIL_TERMINATION;
+-(id)queryWithPredicate:(NSPredicate *)anPredicate orderedByKeys:(id)listOfKeys, ... NS_REQUIRES_NIL_TERMINATION;
 
 /**
  * Query specified Entity using one custom NSPredicate Object.
- * @param anEntityName The Entity Name.
+
  * @param anPredicate An <b>NSPredicate</b> object defining the query.
  * @param anArrayOfSortDescriptors An Array of Key attributes to sort the result.
  * @return One unordered collection with queried data Objects. The Class of this collection is setted by #returnQueryAsArray property.
  */
--(id)queryEntity:(NSString*)anEntityName withPredicate:(NSPredicate*)anPredicate arrayOfSortDescriptors:(NSArray*)anArrayOfSortDescriptors;
+- (id)queryWithPredicate:(NSPredicate *)anPredicate sortDescriptors:(NSArray *)sortDescriptors;
 
 //@}
 
@@ -509,17 +465,17 @@
 /**
  * Delete all records queried by the specified Fetch Template.
  * This method will use the #commitTransaction property to decide if commit automatically this change.
- * @param anEntityName The Entity Name.
+
  * @param anFetchName An Fetch Template to perform the query.
  */
--(void)deleteRecordsFromEntity:(NSString*)anEntityName withFetchTemplate:(NSString*)anFetchName; 
+- (void)deleteRecordsWithFetchTemplate:(NSString *)anFetchName;
 
 /**
  * Delete all Records from specified Entity.
  * This could be a consuming operation on large databases.
- * @param anEntityName The Entity Name.
+
  */
--(void)deleteAllRecordsFromEntity:(NSString*)anEntityName;
+- (void)deleteAllRecords;
 
 //@}
 //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// 
@@ -531,11 +487,32 @@
 ///@{ 
 
 /**
- * Create and return a new record for specified Entity.
- * @param anEntityName The Entity Name.
- * @return New empty Record.
+ * Deprecated. Use 'createNewRecord' instead.
  */
--(id)createNewRecordForEntity:(NSString*)anEntityName;
+-(id)createNewRecordForEntity:(NSString*)anEntityName DEPRECATED_ATTRIBUTE;
+
+/**
+ *  Create and return a new record for loaded Entity.
+ *
+ *  @return New empty Record.
+ */
+-(id)createNewRecord;
 
 //@}
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -171,9 +171,9 @@
 
 /**
  * Helper method to retrieve an \link JPDBManagerAction Database Action\endlink object.
- * The manager is automatically associcated to this object.
+ * The manager is automatically associated to this object.
  */
--(JPDBManagerAction*)getDatabaseAction;
+- (JPDBManagerAction *)getDatabaseActionForEntity:(NSString *)anEntityName;
 
 /**
  * Return an NSURL object that contains where the SQLite file is located.

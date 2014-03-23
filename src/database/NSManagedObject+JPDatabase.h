@@ -68,14 +68,14 @@
 + (id)all;
 
 /**
- * Query all data of this Entity.
+ * Query all data of this Entity ordered by specified key.
  * @param anKey One Key attribute to sort the result.
  * @return One unordered collection with queried data Objects.
  */
 + (id)allOrderedBy:(NSString*)anKey;
 
 /**
- * Query all data of this Entity.
+ * Query all data of this Entity ordered by keys.
  * @param listOfKeys Accept one or more Key Attributes to sort the result. Doesn't forget to terminate the list with an 'nil' token.
  * @return One unordered collection with queried data Objects.
  */
@@ -89,7 +89,7 @@
 + (id)where:(id)condition, ...;
 
 /**
- * Query this Entity using one specific query.
+ * Query this Entity using one specific query and ordering by some key.
  * @param anKey One Key attribute to sort the result.
  * @param condition An query condition that will create an NSPredicate to perform.
  * @param order One Key attribute to sort the result.
@@ -98,7 +98,7 @@
 + (id)usingOrder:(NSString*)order where:(id)condition,... ;
 
 /**
- * Query this Entity using one specific query.
+ * Find this Entity using one specific query.
  * @param condition An query condition that will create an NSPredicate to perform.
  * @return The first object that this query return.
  */
@@ -143,7 +143,7 @@
  * Commit unsaved changes on pending objects of this instance.
  * An JPDBManagerErrorNotification notification will be posted in any error.
  */
-- (void)save;
++(void)save;
 
 //@}
 

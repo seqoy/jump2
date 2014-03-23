@@ -26,10 +26,14 @@
 
 @implementation NSManagedObject (JPDatabase)
 
++(JPDBManagerSingleton *)manager {
+    return [JPDBManagerSingleton sharedInstance];
+}
+
 + (NSString *)entity {
-    NSEntityDescription *entity = [[JPDBManagerSingleton sharedInstance] entity:NSStringFromClass(self)];
+    NSEntityDescription *entity = [[self manager] entity:NSStringFromClass(self)];
     if ( entity == nil ) {
-        NSString *reason = [NSString stringWithFormat:@"Entity %@ wasn't found in the Context. Maybe you're using"
+        NSString *reason = [NSString stringWithFormat:@"Entity '%@' wasn't found in the Context. Maybe you're using"
                                                       @"an different class name.", entity];
         [NSException exceptionWithName:JPDBManagerActionException
                                 reason:reason
@@ -41,11 +45,11 @@
 }
 
 + (JPDBManagerAction *)getAction {
-    return [[[JPDBManagerSingleton sharedInstance] getDatabaseAction] applyEntity:self.entity];
+    return [[self manager] getDatabaseActionForEntity:self.entity];
 }
 
-- (void)save {
-    [[JPDBManagerSingleton sharedInstance] commit];
++(void)save {
+    [[self manager] commit];
 }
 
 - (void)delete {
@@ -53,15 +57,15 @@
 }
 
 + (void)deleteAll {
-    [[self getAction] deleteAllRecordsFromEntity:self.entity];
+    [[self getAction] deleteAllRecords];
 }
 
 + (instancetype)create {
-    return [[self getAction] createNewRecordForEntity:self.entity];
+    return [[self getAction] createNewRecord];
 }
 
 + (NSArray *)all {
-    return [[self getAction] run];
+    return [[[self getAction] all] run];
 }
 
 + (NSArray *)allOrderedBy:(NSString *)anKey {
@@ -72,9 +76,7 @@
     va_list listOfKeys;
     va_start(listOfKeys, anKey);
 
-    NSArray *result = [[self getAction] queryAllDataFromEntity:self.entity
-                                                   orderWithKey:anKey
-                                                     parameters:listOfKeys];
+    NSArray *result = [[self getAction] queryAllDataOrderedByKey:anKey parameters:listOfKeys];
 
     va_end(listOfKeys);
     return result;
@@ -105,7 +107,7 @@
 + (instancetype)find:(id)condition, ... {
     JPBuildPredicate( anPredicate );
 
-    id data =  [[[self getAction] applyPredicate:anPredicate] run];
+    id data = [[[self getAction] applyPredicate:anPredicate] run];
 
     // If found nothing, return nil.
     if ( !data || [data count] == 0 )
