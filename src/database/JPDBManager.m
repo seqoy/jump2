@@ -120,9 +120,9 @@
 	_managedObjectContext = nil;
 	_persistentStoreCoordinator = nil;
 }
- 
--(JPDBManagerAction*)getDatabaseAction {
-	JPDBManagerAction *instance = [JPDBManagerAction initWithEntityName:nil andManager:self];
+
+- (JPDBManagerAction *)getDatabaseActionForEntity:(NSString *)anEntityName {
+	JPDBManagerAction *instance = [JPDBManagerAction initWithEntityName:anEntityName andManager:self];
 	instance.commitTransaction = self.automaticallyCommit;
 	return instance;
 }

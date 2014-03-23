@@ -161,7 +161,7 @@
  [[JPDBManagerSingleton sharedInstance] setAutomaticallyCommit:YES];
  \endcode
  Now all <b>Database Action</b> will be committed immediattelly. This is means that every <b>Database Action</b> instance returned 
- by the <b>getDatabaseAction:</b> method will be configured with this setting. Now you can use the approach showed in the \ref db_action
+ by the <b>getDatabaseActionForEntity::</b> method will be configured with this setting. Now you can use the approach showed in the \ref db_action
  section to configure some specific action with different setting.<br>
  <br>
  To manually commit all pending operations to the <b>Persistent Store</b> is very simple:

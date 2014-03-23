@@ -41,7 +41,7 @@
 }
 
 + (JPDBManagerAction *)getAction {
-    return [[[JPDBManagerSingleton sharedInstance] getDatabaseAction] applyEntity:self.entity];
+    return [[JPDBManagerSingleton sharedInstance] getDatabaseActionForEntity:self.entity];
 }
 
 - (void)save {
@@ -57,11 +57,11 @@
 }
 
 + (instancetype)create {
-    return [[self getAction] createNewRecordForEntity:self.entity];
+    return [[self getAction] createNewRecord];
 }
 
 + (NSArray *)all {
-    return [[self getAction] run];
+    return [[[self getAction] all] run];
 }
 
 + (NSArray *)allOrderedBy:(NSString *)anKey {
@@ -103,7 +103,7 @@
 + (instancetype)find:(id)condition, ... {
     JPBuildPredicate( anPredicate );
 
-    id data =  [[[self getAction] applyPredicate:anPredicate] run];
+    id data = [[[self getAction] applyPredicate:anPredicate] run];
 
     // If found nothing, return nil.
     if ( !data || [data count] == 0 )

@@ -51,7 +51,7 @@
  \endcode
  This is was really simple, isn't? Let's see this same operation on a more custom fashion:
  \code
- JPDBManagerAction *anAction = [[JPDBManagerSingleton sharedInstance] getDatabaseAction];
+ JPDBManagerAction *anAction = [[JPDBManagerSingleton sharedInstance] getDatabaseActionForEntity:];
  [anAction setCommitTransaction:YES];
  id newRecord = [anAction createNewRecordForEntity:@"MyEntity"];
  \endcode
