@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f8a905c6-e5dc-4733-9f10-fb6213f689a0" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../src/database/JPDBManager.h" afterPath="$PROJECT_DIR$/../../src/database/JPDBManager.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Example.xcworkspace/xcuserdata/aoliveira.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/Example.xcworkspace/xcuserdata/aoliveira.xcuserdatad/UserInterfaceState.xcuserstate" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../navigator/Example.xcworkspace/xcuserdata/aoliveira.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/../navigator/Example.xcworkspace/xcuserdata/aoliveira.xcuserdatad/UserInterfaceState.xcuserstate" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../src/database/JPDBManager.m" afterPath="$PROJECT_DIR$/../../src/database/JPDBManager.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ExampleTests/JPDBManagerActionTests.m" afterPath="$PROJECT_DIR$/ExampleTests/JPDBManagerActionTests.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="database.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -48,7 +49,7 @@
       <file leaf-file-name="JPDBManager.m" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../../src/database/JPDBManager.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="545" column="20" selection-start="17629" selection-end="17629" vertical-scroll-proportion="11.465638" vertical-offset="0" max-vertical-offset="8265">
+            <state line="431" column="35" selection-start="13274" selection-end="13274" vertical-scroll-proportion="0.6492147" vertical-offset="5969" max-vertical-offset="7350">
               <folding>
                 <element signature="e#695#713#0" expanded="true" />
               </folding>
@@ -286,7 +287,7 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32919255" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.6708075" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.6708075" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -424,7 +425,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../../src/database/JPDBManager.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="545" column="20" selection-start="17629" selection-end="17629" vertical-scroll-proportion="11.465638" vertical-offset="0" max-vertical-offset="8265">
+        <state line="431" column="35" selection-start="13274" selection-end="13274" vertical-scroll-proportion="0.6492147" vertical-offset="5969" max-vertical-offset="7350">
           <folding>
             <element signature="e#695#713#0" expanded="true" />
           </folding>

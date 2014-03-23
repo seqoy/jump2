@@ -60,9 +60,9 @@
 -(void)throwExceptionWithCause:(NSString*)anCause {
 	[NSException raise:JPDBManagerActionException format:@"%@", anCause];
 }
-//// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// /
+
 -(void)throwIfNilObject:(id)anObject withCause:(NSString*)anCause {
-	if ( anObject == nil ) 
+	if ( anObject == nil )
 		[self throwExceptionWithCause:anCause];
 }
 
@@ -167,7 +167,7 @@
         
 		 ////// //////
 		// If file no exist, throw error.
-		if ( _NOT_ [[NSFileManager defaultManager] fileExistsAtPath:modelPath] ) {
+		if ( ![[NSFileManager defaultManager] fileExistsAtPath:modelPath] ) {
 
 			// Error Message and Crash the System. 
             [NSException raise:JPDBManagerStartException
@@ -291,43 +291,28 @@
  
 // Return YES if specified Entity exist on the model.
 -(BOOL)existEntity:(NSString*)anEntityName {
-	
-	// Try to retrieve the Entity.
-	NSEntityDescription *entity = [self entity:anEntityName];
-
-    // Not Exist.
-	if ( _NOT_ entity ) {	
-		//Warn( @"JPDatabaseManager : The Entity '%@' doesn't exist on any Model.", anEntityName );
-		return NO;
-	}
-	
-	// Exist.
-	return YES;
+    return [self entity:anEntityName] != nil;
 }
 
  
 // Return YES if specified Attribute exist on specified Entity.
 -(BOOL)existAttribute:(NSString*)anAttributeName inEntity:(NSString*)anEntityName {
 	
-	// If NOT Exist Entity retun NO;
-	if ( _NOT_ [self existEntity:anEntityName] )
+	if ( ![self existEntity:anEntityName] )
 		return NO;
 	
 	// Retrieve the Entity.
-	NSEntityDescription *entity = [NSEntityDescription entityForName:anEntityName inManagedObjectContext:_managedObjectContext];
+	NSEntityDescription *entity = [NSEntityDescription entityForName:anEntityName
+                                              inManagedObjectContext:self.managedObjectContext];
 	
 	// Test if exist this attribute.
-	if ( _NOT_ [entity attributesByName][anAttributeName] ) {	
-		//Warn( @"JPDatabaseManager : The Attribute/Key '%@' doesn't exist in Entity '%@'.", anAttributeName, anEntityName );
-		return NO;
-	}
-	
-	return YES;
-	
+    return entity.attributesByName[anAttributeName] != nil;
 }
 
- 
-#pragma mark - Database Action Methods. 
+
+
+
+#pragma mark - Database Action Methods.
  
 // This method is called from the JPDBManagerAction as an private call. 
 -(id)performDatabaseActionInternally:(JPDBManagerAction*)anAction {
@@ -335,112 +320,71 @@
 	// Can't be nil.
 	[self throwIfNilObject:anAction withCause:@"Can't perform an Database Action because an Action wasn't passed."];
 
-	// //// //// //// //// //// 
-	// Put on Variables.
-	NSString* anEntityName				 = [anAction entity];
-	NSString* anFetchName				 = [anAction fetchTemplate];
-	NSDictionary* variablesListAndValues = [anAction variablesListAndValues];
-	NSArray* anArrayOfSortDescriptors	 = [anAction sortDescriptors];
-	NSPredicate* anPredicate			 = [anAction predicate];
-
-	// //// //// //// //// //// 
-	// Check Parameters.
+    // Check Parameters.
 	NSString *throwMessage = @"Can't perform an Database Action because the '%@' property isn't setted.";
-	[self throwIfNilObject:anEntityName withCause:NSFormatString( throwMessage, @"entity" )];
+	[self throwIfNilObject:anAction.entity withCause:NSFormatString( throwMessage, @"entity" )];
 
-	/// // //// //// //// 
-	// Format Log.
-	NSMutableString *format = [NSMutableString stringWithString:NSFormatString( @"Querying {%@}", anEntityName )];
-	if ( anFetchName ) 
-		[format appendString:NSFormatString( @", TEMPL:(%@)", anFetchName )];
-	//// //// //// //// //// //// //// //// //// //// //// //// //// //// //// 
-	if ( anPredicate ) {
-		NSString *predicateLiteral = [anPredicate predicateFormat];
-		[format appendString:NSFormatString( @", PREDIC:(%@%@)", [predicateLiteral substringWithRange:(NSRange){0,([predicateLiteral length] > 50 ? 50 : [predicateLiteral length])}], ([predicateLiteral length] > 50 ? @"..." : @""))];
-	}
-	//// //// //// //// //// //// //// //// //// //// //// //// //// //// //// 
-	if ( anArrayOfSortDescriptors _AND_ [anArrayOfSortDescriptors count] > 0) {
-		[format appendString:@", ORD: "];
-		for ( NSString *key in anArrayOfSortDescriptors ) {
-			[format appendString:NSFormatString( @"%@, ", key)];
-		}
-	}
-		
-	/// // //// //// //// 
 	// If doesn't exist the Entity, return nothing.
-	if ( _NOT_ [self existEntity:anEntityName] ) {
-		[self throwExceptionWithCause:NSFormatString( @"The Entity '%@' doesn't exist on any Model.", anEntityName )];
+	if ( ![self existEntity:anAction.entity] ) {
+		[self throwExceptionWithCause:NSFormatString( @"The Entity '%@' doesn't exist on any Model.", anAction.entity )];
 		return nil;
 	}
 	
 	// Get the Entity.
-	NSEntityDescription *entity = [NSEntityDescription entityForName:anEntityName inManagedObjectContext:_managedObjectContext];
+	NSEntityDescription *entity = [self entity:anAction.entity];
 
-	// //// //// //// //// //// 
-	
-	//// //// //// //// //// //// //// //// //// //// //// /
 	// Create the Fetch Request.
-	NSFetchRequest *query = [[NSFetchRequest alloc] init];
+	NSFetchRequest *query = [NSFetchRequest new];
 
-	//// //// //// //// //// //// //// //// //// //// //// /	
 	// Try to use an Fetch Template, if defined.
-	if ( anFetchName ) {
+	if ( anAction.fetchTemplate ) {
 		
-		//// //// //// //// //// //// //// //// //// //// //// /	
 		// Fetch Template, replacing variables, if defined...
-		if ( variablesListAndValues ) {
-			query = [_managedObjectModel fetchRequestFromTemplateWithName:anFetchName substitutionVariables:variablesListAndValues];
+		if ( anAction.variablesListAndValues ) {
+			query = [self.managedObjectModel fetchRequestFromTemplateWithName:anAction.fetchTemplate
+                                                        substitutionVariables:anAction.variablesListAndValues];
 			
 		} 
 		
-		//// //// //// //// //// //// //// //// //// //// //// /	
 		// ..if not, just get the fetch template.
-		else						  [query setPredicate:[_managedObjectModel fetchRequestTemplateForName:anFetchName].predicate];
+		else
+            [query setPredicate:[self.managedObjectModel fetchRequestTemplateForName:anAction.fetchTemplate].predicate];
 		
-		//// //// //// //// //// //// //// //// //// //// //// /	
 		// Not Exist.
-		if ( _NOT_ query ) {
-			[self throwExceptionWithCause:NSFormatString( @"The Fetch Template '%@' for Entity '%@' doesn't  exist on the Model.", anFetchName, anEntityName )];
+		if ( !query ) {
+            NSString *cause = NSFormatString( @"The Fetch Template '%@' for Entity '%@' doesn't "
+                                              @"exist on the Model.", anAction.fetchTemplate, anAction.entity );
+			[self throwExceptionWithCause:cause];
 			return nil;
 		}	
 
 	}
 		
-	//// //// //// //// //// //// //// //// //// //// //// ///// //// //// //// //// //// //// //// //// //// //// /		
 	// If have one defined predicate (parameter). Insert on the query.
-	else if ( anPredicate ) 
-		[query setPredicate:anPredicate];
+	else if ( anAction.predicate )
+		[query setPredicate:anAction.predicate];
 
-	//// //// //// //// //// //// //// //// //// //// //// ///// //// //// //// //// //// //// //// //// //// //// /
-	// Can't perform with no predicates.
-//	else {
-//		[self throwExceptionWithCause:NSFormatString( throwMessage, @"fetchRequest' or 'predicate" )];
-//	}
-	
-	// //// //// //// //// //// 
+
 	// Set Order if defined.
-	if ( anArrayOfSortDescriptors )
-		[query setSortDescriptors:anArrayOfSortDescriptors];
+	if ( anAction.sortDescriptors )
+		[query setSortDescriptors:anAction.sortDescriptors];
 	
-	// //// //// //// //// //// 
 	// Apply Settings.
-	[query setReturnsObjectsAsFaults:[anAction returnObjectsAsFault]];			// Fault Lines?
-	[query setEntity:entity];													// Set Entity.
+    query.returnsObjectsAsFaults = anAction.returnObjectsAsFault;			// Fault Lines?
+	query.entity = entity;													// Set Entity.
 	
 	// Apply Limits.
-	[query setFetchLimit:[anAction limitFetchResults]];
-	[query setFetchOffset:[anAction startFetchInLine]];
+	query.fetchLimit = (NSUInteger) anAction.limitFetchResults;
+	query.fetchOffset = (NSUInteger) anAction.startFetchInLine;
 	
-	// //// //// //// //// //// 
 	// Error Control.
 	NSError *error = nil;
 	
-	// //// //// //// //// //// 
 	// Return Data as Arrays.
-	if ( [anAction returnActionAsArray] ) {
+	if (anAction.returnActionAsArray) {
 
 		// Run Fetch (SELECT).
-		id queryResult = [_managedObjectContext executeFetchRequest:query error:&error];
+		id queryResult = [self.managedObjectContext executeFetchRequest:query error:&error];
 		
 		// Notificate the error.
 		if ( error ) 
@@ -450,23 +394,19 @@
 		return queryResult;
 	}
 
-    // //// //// //// //// ///// 
-	// Return Data as NSFetchedResultsController 
+	// Return Data as NSFetchedResultsController
 	else {
         
-        //// //// //// //// //// //// //// //// //// //// //// //// //// 
         // Only iPhone.
         #if TARGET_OS_IPHONE 
             return [[NSFetchedResultsController alloc] initWithFetchRequest:query
-												   managedObjectContext:_managedObjectContext
-													 sectionNameKeyPath:nil
-                                                                   cacheName:nil];
-        //// //// //// //// //// //// //// //// //// //// //// //// //// 
+                                                       managedObjectContext:self.managedObjectContext
+                                                         sectionNameKeyPath:nil
+                                                                  cacheName:nil];
         #else
             return nil;
         #endif
 	}
-    //// //// //// //// //// //// //// //// //// //// //// //// //// 
 }
 
  
@@ -479,7 +419,7 @@
 // Thread Safe Database Action.
 -(id)performThreadSafeDatabaseAction:(JPDBManagerAction*)anAction {
     id object = nil;
-	// Syncronized call, so this is an thread safe operation.
+	// Synchronized call, so this is an thread safe operation.
 	@synchronized( anAction ) {
 		object = [self performDatabaseActionInternally:anAction];
 	}
@@ -489,8 +429,7 @@
 
 
 
-#pragma mark - Write Data Methods. 
-
+#pragma mark - Write Data Methods.
 
 // Commit all pendent operations to the persistent store.
 -(void)commit {
@@ -521,7 +460,7 @@
 -(id)createNewRecordForEntity:(NSString*)anEntityName {
 	
 	// If not exist, return nothing.
-	if ( _NOT_ [self existEntity:anEntityName] ) 
+	if ( ![self existEntity:anEntityName] ) 
 		return nil;
 	
 	// Create and return a new record.
