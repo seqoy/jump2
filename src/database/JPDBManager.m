@@ -313,93 +313,95 @@
 
 
 #pragma mark - Database Action Methods.
- 
+
+- (void)checkActionParameters:(JPDBManagerAction *)anAction {
+    [self throwIfNilObject:anAction
+                 withCause:@"Can't perform an Database Action because an Action wasn't passed."];
+
+    [self throwIfNilObject:anAction.entity
+                 withCause:@"Can't perform an Database Action because the 'entity' property isn't setted."];
+
+    [self throwIfNilObject:[self entity:anAction.entity]
+                 withCause:NSFormatString( @"The Entity '%@' doesn't exist on any Model.", anAction.entity )];
+}
+
+// Build fetch template using...
+- (NSFetchRequest *)buildRequestWithAction:(JPDBManagerAction *)anAction {
+
+    NSFetchRequest *request = anAction.variablesListAndValues
+
+            ? [self.managedObjectModel fetchRequestFromTemplateWithName:anAction.fetchTemplate
+                                                  substitutionVariables:anAction.variablesListAndValues]
+
+            : [self.managedObjectModel fetchRequestTemplateForName:anAction.fetchTemplate];
+
+    // Check if exist.
+    [self throwIfNilObject:request
+                 withCause:NSFormatString( @"The Fetch Template '%@' for Entity '%@' doesn't "
+                                           @"exist on the Model.", anAction.fetchTemplate, anAction.entity )];
+    return request;
+}
+
+
 // This method is called from the JPDBManagerAction as an private call. 
 -(id)performDatabaseActionInternally:(JPDBManagerAction*)anAction {
-	
-	// Can't be nil.
-	[self throwIfNilObject:anAction withCause:@"Can't perform an Database Action because an Action wasn't passed."];
 
     // Check Parameters.
-	NSString *throwMessage = @"Can't perform an Database Action because the '%@' property isn't setted.";
-	[self throwIfNilObject:anAction.entity withCause:NSFormatString( throwMessage, @"entity" )];
+    [self checkActionParameters:anAction];
 
-	// If doesn't exist the Entity, return nothing.
-	if ( ![self existEntity:anAction.entity] ) {
-		[self throwExceptionWithCause:NSFormatString( @"The Entity '%@' doesn't exist on any Model.", anAction.entity )];
-		return nil;
-	}
-	
-	// Get the Entity.
-	NSEntityDescription *entity = [self entity:anAction.entity];
+	// Create an empty fetch request.
+	NSFetchRequest *request = [NSFetchRequest new];
 
-	// Create the Fetch Request.
-	NSFetchRequest *query = [NSFetchRequest new];
+	// Build an query using Fetch template, if defined.
+	if ( anAction.fetchTemplate )
+        request = [self buildRequestWithAction:anAction];
 
-	// Try to use an Fetch Template, if defined.
-	if ( anAction.fetchTemplate ) {
-		
-		// Fetch Template, replacing variables, if defined...
-		if ( anAction.variablesListAndValues ) {
-			query = [self.managedObjectModel fetchRequestFromTemplateWithName:anAction.fetchTemplate
-                                                        substitutionVariables:anAction.variablesListAndValues];
-			
-		} 
-		
-		// ..if not, just get the fetch template.
-		else
-            [query setPredicate:[self.managedObjectModel fetchRequestTemplateForName:anAction.fetchTemplate].predicate];
-		
-		// Not Exist.
-		if ( !query ) {
-            NSString *cause = NSFormatString( @"The Fetch Template '%@' for Entity '%@' doesn't "
-                                              @"exist on the Model.", anAction.fetchTemplate, anAction.entity );
-			[self throwExceptionWithCause:cause];
-			return nil;
-		}	
-
-	}
-		
 	// If have one defined predicate (parameter). Insert on the query.
-	else if ( anAction.predicate )
-		[query setPredicate:anAction.predicate];
+	if ( anAction.predicate )
+		request.predicate = anAction.predicate;
 
-
-	// Set Order if defined.
+	// Set Order, if defined.
 	if ( anAction.sortDescriptors )
-		[query setSortDescriptors:anAction.sortDescriptors];
+		request.sortDescriptors = anAction.sortDescriptors;
 	
 	// Apply Settings.
-    query.returnsObjectsAsFaults = anAction.returnObjectsAsFault;			// Fault Lines?
-	query.entity = entity;													// Set Entity.
+    request.returnsObjectsAsFaults = anAction.returnObjectsAsFault;
+	request.entity = [self entity:anAction.entity];
 	
 	// Apply Limits.
-	query.fetchLimit = (NSUInteger) anAction.limitFetchResults;
-	query.fetchOffset = (NSUInteger) anAction.startFetchInLine;
-	
-	// Error Control.
-	NSError *error = nil;
-	
-	// Return Data as Arrays.
-	if (anAction.returnActionAsArray) {
+	request.fetchLimit = (NSUInteger) anAction.limitFetchResults;
+	request.fetchOffset = (NSUInteger) anAction.startFetchInLine;
 
-		// Run Fetch (SELECT).
-		id queryResult = [self.managedObjectContext executeFetchRequest:query error:&error];
-		
+    // Execute Fetch.
+    return [self runRequest:request withAction:anAction];
+}
+
+- (id)runRequest:(NSFetchRequest *)request withAction:(JPDBManagerAction *)anAction {
+
+    // Return Data as Arrays.
+    if (anAction.returnActionAsArray) {
+
+        // Error Control.
+        NSError *error = nil;
+
+        // Execute the Fetch Requester.
+		id queryResult = [self.managedObjectContext executeFetchRequest:request
+                                                                  error:&error];
+
 		// Notificate the error.
-		if ( error ) 
+		if ( error )
 			[self notificateError:error];
-		
+
 		// Return data.
 		return queryResult;
 	}
 
 	// Return Data as NSFetchedResultsController
 	else {
-        
+
         // Only iPhone.
-        #if TARGET_OS_IPHONE 
-            return [[NSFetchedResultsController alloc] initWithFetchRequest:query
+        #if TARGET_OS_IPHONE
+            return [[NSFetchedResultsController alloc] initWithFetchRequest:request
                                                        managedObjectContext:self.managedObjectContext
                                                          sectionNameKeyPath:nil
                                                                   cacheName:nil];
@@ -409,7 +411,7 @@
 	}
 }
 
- 
+
 // Thread Unsafe Database Action.
 -(id)performDatabaseAction:(JPDBManagerAction*)anAction {
 	return [self performDatabaseActionInternally:anAction];
@@ -458,17 +460,14 @@
 
 // Create and return a new empty Record for specified Entity.
 -(id)createNewRecordForEntity:(NSString*)anEntityName {
+
+    // Create and return a new record or nil if the entity doesn't exist.
+    return ![self existEntity:anEntityName]
+
+            ? nil
+            : [NSEntityDescription insertNewObjectForEntityForName:anEntityName
+                                            inManagedObjectContext:self.managedObjectContext];
 	
-	// If not exist, return nothing.
-	if ( ![self existEntity:anEntityName] ) 
-		return nil;
-	
-	// Create and return a new record.
-	id newRecord = [NSEntityDescription insertNewObjectForEntityForName:anEntityName
-                                                 inManagedObjectContext:_managedObjectContext];
-	
-	// Return created object.
-	return newRecord;
 }
 
 
@@ -478,7 +477,7 @@
 
 // Delete an record of database. Use the Default Setting to Commit Automatically decision.
 -(void)deleteRecord:(id)anObject {
-	[[self managedObjectContext] deleteObject:anObject];
+	[self.managedObjectContext deleteObject:anObject];
 }
 
 @end

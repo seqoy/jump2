@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="f8a905c6-e5dc-4733-9f10-fb6213f689a0" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Example.xcworkspace/xcuserdata/aoliveira.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/Example.xcworkspace/xcuserdata/aoliveira.xcuserdatad/UserInterfaceState.xcuserstate" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../navigator/Example.xcworkspace/xcuserdata/aoliveira.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/../navigator/Example.xcworkspace/xcuserdata/aoliveira.xcuserdatad/UserInterfaceState.xcuserstate" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../src/database/JPDBManager.m" afterPath="$PROJECT_DIR$/../../src/database/JPDBManager.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="database.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -49,7 +47,7 @@
       <file leaf-file-name="JPDBManager.m" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../../src/database/JPDBManager.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="431" column="35" selection-start="13274" selection-end="13274" vertical-scroll-proportion="0.6492147" vertical-offset="5969" max-vertical-offset="7350">
+            <state line="460" column="78" selection-start="14520" selection-end="14520" vertical-scroll-proportion="9.031414" vertical-offset="0" max-vertical-offset="7335">
               <folding>
                 <element signature="e#695#713#0" expanded="true" />
               </folding>
@@ -425,7 +423,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../../src/database/JPDBManager.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="431" column="35" selection-start="13274" selection-end="13274" vertical-scroll-proportion="0.6492147" vertical-offset="5969" max-vertical-offset="7350">
+        <state line="460" column="78" selection-start="14520" selection-end="14520" vertical-scroll-proportion="9.031414" vertical-offset="0" max-vertical-offset="7335">
           <folding>
             <element signature="e#695#713#0" expanded="true" />
           </folding>
