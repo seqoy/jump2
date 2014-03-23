@@ -7,20 +7,29 @@
 
 SPEC_BEGIN(ManagerAction)
 
-describe(@"ManagerAction", ^{
+describe(@"Database Action", ^{
     
     #define __entityName @"_entity_"
+    #define __entityNameNotExist @"_entity_not_exist_"
     #define __fetchTemplate @"_fetchTemplate"
 
     __block id manager;
+    __block id entity;
     __block JPDBManagerAction *action;
 
     beforeEach(^{
+        // Mock an NSEntityDescription representing our entity.
+        entity = [KWMock mockForClass:[NSEntityDescription class]];
+        [entity stub:@selector(name) andReturn:__entityName];
+
         // Mock the manager.
         manager = [KWMock mockForClass:[JPDBManager class]];
         
-        // Stub internal test.
+        // Stub internal tests.
         [manager stub:@selector(existAttribute:inEntity:) andReturn:[KWValue valueWithBool:YES]];
+        [manager stub:@selector(existEntity:) andReturn:[KWValue valueWithBool:YES] withArguments:__entityName];
+        [manager stub:@selector(existEntity:) andReturn:[KWValue valueWithBool:NO] withArguments:__entityNameNotExist];
+        [manager stub:@selector(entity:) andReturn:entity withArguments:__entityName];
 
         // Build an action.
         action = [JPDBManagerAction initWithEntityName:__entityName andManager:manager];
@@ -33,22 +42,41 @@ describe(@"ManagerAction", ^{
         it(@"Should init and store the manager", ^{
             [action shouldNotBeNil];
             [[action.manager should] equal:manager];
-        });
+            [[action.entity should] equal:entity];
+            [[action.entityName should] equal:__entityName];
+         });
 
         
         
         
         it(@"Should reset default values", ^{
-            [action setStartFetchInLine:5 setLimitFetchResults:10];
-            [[@(action.startFetchInLine) should] equal:@(5)];
-            [[@(action.limitFetchResults) should] equal:@(10)];
+            [action setFetchOffset:5 setFetchLimit:10];
+
+            [[@(action.fetchOffset) should] equal:@(5)];
+            [[@(action.fetchLimit) should] equal:@(10)];
             
             [action resetDefaultValues];
 
-            [[@(action.startFetchInLine) should] equal:@(0)];
-            [[@(action.limitFetchResults) should] equal:@(0)];
+            [[@(action.fetchOffset) should] equal:@(0)];
+            [[@(action.fetchLimit) should] equal:@(0)];
         });
         
+    });
+    
+    ////////// ///////// ///////// ///////// ///////// ///////// ///////// ///////// ///////// /////////
+    
+    context(@"Exceptions", ^{
+        
+        it(@"Should fail init with an entity that not exist", ^{
+
+            // Run the controlled exception.
+            [[theBlock(^{
+                [action initWithEntityName:__entityNameNotExist andManager:manager];
+            })
+
+                    should] raiseWithName:JPDBManagerActionException];
+        });
+
     });
     
     ////////// ///////// ///////// ///////// ///////// ///////// ///////// ///////// ///////// /////////
@@ -60,17 +88,17 @@ describe(@"ManagerAction", ^{
 
             result = [action applyFetchTemplate:__fetchTemplate];
             [[result should] equal:action];
-            [[action.fetchTemplate should] equal:__fetchTemplate];
+            [[result.fetchTemplate should] equal:__fetchTemplate];
 
             NSDictionary *emptyDictionary = [NSDictionary new];
             result = [action applyFetchReplaceWithDictionary:emptyDictionary];
             [[result should] equal:action];
-            [[action.variablesListAndValues should] equal:emptyDictionary];
+            [[result.variablesListAndValues should] equal:emptyDictionary];
 
             NSPredicate *predicate = [NSPredicate new];
             result = [action applyPredicate:predicate];
             [[result should] equal:action];
-            [[action.predicate should] equal:predicate];
+            [[result.predicate should] equal:predicate];
         });
         
         
@@ -162,14 +190,8 @@ describe(@"ManagerAction", ^{
         });
         
         it(@"Should query all data of the specified Entity", ^{
-            [action stub:finalMethod
-
-               withBlock:^id(NSArray *params) {
-                   [[params[0] should] equal:__entityName];
-                   return nil;
-               }
-
-            ];
+            [action stub:finalMethod];
+            [[action should] receive:finalMethod withArguments:any(), any(), any(), any()];
             [action queryAllData];
         });
 
@@ -180,8 +202,7 @@ describe(@"ManagerAction", ^{
             [action stub:finalMethod
 
                withBlock:^id(NSArray *params) {
-                   [[params[0] should] equal:__entityName];
-                   [params[3] each:^( NSSortDescriptor *item ) {
+                   [params[2] each:^( NSSortDescriptor *item ) {
                        [[item.key should] equal:@"_key_"];
                    }];
                    return nil;
@@ -197,15 +218,15 @@ describe(@"ManagerAction", ^{
             [action stub:finalMethod
 
                withBlock:^id(NSArray *params) {
-                   [[params[0] should] equal:__entityName];
-                   [params[3] eachWithIndex:^( NSSortDescriptor *item, NSUInteger index) {
+
+                   [params[2] eachWithIndex:^( NSSortDescriptor *item, NSUInteger index) {
                        if ( index == 0 ) [[item.key should] equal:@"keyA"];
                        if ( index == 1 ) [[item.key should] equal:@"keyB"];
                    }];
                    return nil;
                }
             ];
-            [action queryAllDataOrderedByKeys:@"keyA", @"keyB"];
+            [action queryAllDataOrderedByKeys:@"keyA", @"keyB", nil];
         });
         
         
@@ -215,8 +236,8 @@ describe(@"ManagerAction", ^{
             [action stub:finalMethod
 
                withBlock:^id(NSArray *params) {
-                   [[params[0] should] equal:__entityName];
-                   [[params[1] should] equal:__fetchTemplate];
+
+                   [[params[0] should] equal:__fetchTemplate];
                    return nil;
                }
             ];
@@ -231,9 +252,9 @@ describe(@"ManagerAction", ^{
             [action stub:finalMethod
 
                withBlock:^id(NSArray *params) {
-                   [[params[0] should] equal:__entityName];
-                   [[params[1] should] equal:__fetchTemplate];
-                   [params[3] each:^( NSSortDescriptor *item ) {
+
+                   [[params[0] should] equal:__fetchTemplate];
+                   [params[2] each:^( NSSortDescriptor *item ) {
                        [[item.key should] equal:@"_key_"];
                    }];
                    return nil;
@@ -250,16 +271,16 @@ describe(@"ManagerAction", ^{
             [action stub:finalMethod
 
                withBlock:^id(NSArray *params) {
-                   [[params[0] should] equal:__entityName];
-                   [[params[1] should] equal:__fetchTemplate];
-                   [params[3] eachWithIndex:^( NSSortDescriptor *item, NSUInteger index) {
+
+                   [[params[0] should] equal:__fetchTemplate];
+                   [params[2] eachWithIndex:^( NSSortDescriptor *item, NSUInteger index) {
                        if ( index == 0 ) [[item.key should] equal:@"keyA"];
                        if ( index == 1 ) [[item.key should] equal:@"keyB"];
                    }];
                    return nil;
                }
             ];
-            [action queryEntity:__entityName withFetchTemplate:__fetchTemplate orderedByKeys:@"keyA", @"keyB"];
+            [action queryWithFetchTemplate:__fetchTemplate orderedByKeys:@"keyA", @"keyB", nil];
 
         });
 
@@ -271,9 +292,9 @@ describe(@"ManagerAction", ^{
             [action stub:finalMethod
 
                withBlock:^id(NSArray *params) {
-                   [[params[0] should] equal:__entityName];
-                   [[params[1] should] equal:__fetchTemplate];
-                   [[params[2] should] equal:replaceWith];
+
+                   [[params[0] should] equal:__fetchTemplate];
+                   [[params[1] should] equal:replaceWith];
                    return nil;
                }
             ];
@@ -290,10 +311,10 @@ describe(@"ManagerAction", ^{
             [action stub:finalMethod
 
                withBlock:^id(NSArray *params) {
-                   [[params[0] should] equal:__entityName];
-                   [[params[1] should] equal:__fetchTemplate];
-                   [[params[2] should] equal:replaceWith];
-                   [params[3] each:^( NSSortDescriptor *item ) {
+
+                   [[params[0] should] equal:__fetchTemplate];
+                   [[params[1] should] equal:replaceWith];
+                   [params[2] each:^( NSSortDescriptor *item ) {
                        [[item.key should] equal:@"_key_"];
                    }];
                    return nil;
@@ -311,17 +332,17 @@ describe(@"ManagerAction", ^{
             [action stub:finalMethod
 
                withBlock:^id(NSArray *params) {
-                   [[params[0] should] equal:__entityName];
-                   [[params[1] should] equal:__fetchTemplate];
-                   [[params[2] should] equal:replaceWith];
-                   [params[3] eachWithIndex:^( NSSortDescriptor *item, NSUInteger index) {
+
+                   [[params[0] should] equal:__fetchTemplate];
+                   [[params[1] should] equal:replaceWith];
+                   [params[2] eachWithIndex:^( NSSortDescriptor *item, NSUInteger index) {
                        if ( index == 0 ) [[item.key should] equal:@"keyA"];
                        if ( index == 1 ) [[item.key should] equal:@"keyB"];
                    }];
                    return nil;
                }
             ];
-            [action queryWithFetchTemplate:__fetchTemplate withParams:replaceWith orderedByKeys:@"keyA", @"keyB"];
+            [action queryWithFetchTemplate:__fetchTemplate withParams:replaceWith orderedByKeys:@"keyA", @"keyB", nil];
         });
 
 
@@ -333,10 +354,10 @@ describe(@"ManagerAction", ^{
             [action stub:finalMethod
 
                withBlock:^id(NSArray *params) {
-                   [[params[0] should] equal:__entityName];
-                   [[params[1] should] equal:__fetchTemplate];
-                   [[params[2] should] equal:replaceWith];
-                   [params[3] eachWithIndex:^( NSSortDescriptor *item, NSUInteger index) {
+
+                   [[params[0] should] equal:__fetchTemplate];
+                   [[params[1] should] equal:replaceWith];
+                   [params[2] eachWithIndex:^( NSSortDescriptor *item, NSUInteger index) {
                        if ( index == 0 ) [[item.key should] equal:@"keyA"];
                        if ( index == 1 ) [[item.key should] equal:@"keyB"];
                    }];
@@ -356,8 +377,8 @@ describe(@"ManagerAction", ^{
             [action stub:finalMethod
 
                withBlock:^id(NSArray *params) {
-                   [[params[0] should] equal:__entityName];
-                   [[params[4] should] beKindOfClass:[NSPredicate class]];
+
+                   [[params[3] should] beKindOfClass:[NSPredicate class]];
                    return nil;
                }
 
@@ -372,9 +393,9 @@ describe(@"ManagerAction", ^{
             [action stub:finalMethod
 
                withBlock:^id(NSArray *params) {
-                   [[params[0] should] equal:__entityName];
-                   [[params[4] should] beKindOfClass:[NSPredicate class]];
-                   [params[3] each:^( NSSortDescriptor *item ) {
+
+                   [[params[3] should] beKindOfClass:[NSPredicate class]];
+                   [params[2] each:^( NSSortDescriptor *item ) {
                        [[item.key should] equal:@"_key_"];
                    }];
                    return nil;
@@ -391,9 +412,9 @@ describe(@"ManagerAction", ^{
             [action stub:finalMethod
 
                withBlock:^id(NSArray *params) {
-                   [[params[0] should] equal:__entityName];
-                   [[params[4] should] beKindOfClass:[NSPredicate class]];
-                   [params[3] eachWithIndex:^( NSSortDescriptor *item, NSUInteger index) {
+
+                   [[params[3] should] beKindOfClass:[NSPredicate class]];
+                   [params[2] eachWithIndex:^( NSSortDescriptor *item, NSUInteger index) {
                        if ( index == 0 ) [[item.key should] equal:@"keyA"];
                        if ( index == 1 ) [[item.key should] equal:@"keyB"];
                    }];
@@ -401,7 +422,7 @@ describe(@"ManagerAction", ^{
                }
 
             ];
-            [action queryEntity:__entityName withPredicate:[NSPredicate new] orderedByKeys:@"keyA", @"keyB"];
+            [action queryWithPredicate:[NSPredicate new] orderedByKeys:@"keyA", @"keyB", nil];
         });
 
 
@@ -411,9 +432,9 @@ describe(@"ManagerAction", ^{
             [action stub:finalMethod
 
                withBlock:^id(NSArray *params) {
-                   [[params[0] should] equal:__entityName];
-                   [[params[4] should] beKindOfClass:[NSPredicate class]];
-                   [params[3] eachWithIndex:^( NSSortDescriptor *item, NSUInteger index) {
+
+                   [[params[3] should] beKindOfClass:[NSPredicate class]];
+                   [params[2] eachWithIndex:^( NSSortDescriptor *item, NSUInteger index) {
                        if ( index == 0 ) [[item.key should] equal:@"keyA"];
                        if ( index == 1 ) [[item.key should] equal:@"keyB"];
                    }];
@@ -482,11 +503,11 @@ describe(@"ManagerAction", ^{
         it(@"Shoul delete all records queried by the specified Fetch Template", ^{
             // Stub internal query to return our data object.
             [action stub:@selector(queryWithFetchTemplate:) andReturn:@[dataObject]
-           withArguments:@"_entity_", @"_template"];
+                                                        withArguments:__fetchTemplate];
 
             // Delete all.
             [[action should] receive:finalMethod withArguments:dataObject, [KWValue valueWithBool:NO]];
-            [action deleteRecordsWithFetchTemplate:@"_template"];
+            [action deleteRecordsWithFetchTemplate:__fetchTemplate];
         });
 
         
@@ -527,16 +548,19 @@ describe(@"ManagerAction", ^{
         __block id dataObject = [KWMock mockForClass:[NSManagedObject class]];
 
         it(@"Should create and return a new empty Record for specified Entity, final call", ^{
+            #pragma clang diagnostic push
+            #pragma clang diagnostic ignored "-Wundeclared-selector"
 
             // Stub the manager to receive internal calls.
             [manager stub:@selector(createNewRecordFromAction:) andReturn:dataObject];
             [[manager should] receive:@selector(createNewRecordFromAction:) withArguments:action];
 
-
-            id result = [action createNewRecord];
+                id result = [action createNewRecord];
 
             [result shouldNotBeNil];
             [[result should] equal:dataObject];
+            
+            #pragma clang diagnostic pop
         });
         
     });
@@ -544,3 +568,7 @@ describe(@"ManagerAction", ^{
 });
 
 SPEC_END
+
+
+
+

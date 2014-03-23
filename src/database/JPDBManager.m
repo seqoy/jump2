@@ -318,15 +318,12 @@
     [self throwIfNilObject:anAction
                  withCause:@"Can't perform an Database Action because an Action wasn't passed."];
 
-    [self throwIfNilObject:anAction.entityName
-                 withCause:@"Can't perform an Database Action because the 'entityName' property isn't setted."];
-
-    [self throwIfNilObject:[self entity:anAction.entityName]
-                 withCause:NSFormatString( @"The Entity '%@' doesn't exist on any Model.", anAction.entityName )];
+    [self throwIfNilObject:anAction.entity
+                 withCause:@"Can't perform an Database Action because the 'entity' property isn't setted."];
 }
 
 // Build fetch template using...
-- (NSFetchRequest *)buildRequestWithAction:(JPDBManagerAction *)anAction {
+- (JPDBManagerAction *)buildRequestWithAction:(JPDBManagerAction *)anAction {
 
     NSFetchRequest *request = anAction.variablesListAndValues
 
@@ -339,47 +336,32 @@
     [self throwIfNilObject:request
                  withCause:NSFormatString( @"The Fetch Template '%@' for Entity '%@' doesn't "
                                            @"exist on the Model.", anAction.fetchTemplate, anAction.entityName )];
-    return request;
+
+    // Assign the predicate created.
+    anAction.predicate = request.predicate;
+
+    return anAction;
 }
 
 
 // This method is called from the JPDBManagerAction as an private call. 
--(id)performDatabaseActionInternally:(JPDBManagerAction*)anAction {
+-(id)performDatabaseActionInternally:(JPDBManagerAction*)request {
 
     // Check Parameters.
-    [self checkActionParameters:anAction];
-
-	// Create an empty fetch request.
-	NSFetchRequest *request = [NSFetchRequest new];
+    [self checkActionParameters:request];
 
 	// Build an query using Fetch template, if defined.
-	if ( anAction.fetchTemplate )
-        request = [self buildRequestWithAction:anAction];
-
-	// If have one defined predicate (parameter). Insert on the query.
-	if ( anAction.predicate )
-		request.predicate = anAction.predicate;
-
-	// Set Order, if defined.
-	if ( anAction.sortDescriptors )
-		request.sortDescriptors = anAction.sortDescriptors;
-	
-	// Apply Settings.
-    request.returnsObjectsAsFaults = anAction.returnObjectsAsFault;
-	request.entity = [self entity:anAction.entity];
-	
-	// Apply Limits.
-	request.fetchLimit = (NSUInteger) anAction.limitFetchResults;
-	request.fetchOffset = (NSUInteger) anAction.startFetchInLine;
+	if ( request.fetchTemplate )
+         request = [self buildRequestWithAction:request];
 
     // Execute Fetch.
-    return [self runRequest:request withAction:anAction];
+    return [self runRequest:request];
 }
 
-- (id)runRequest:(NSFetchRequest *)request withAction:(JPDBManagerAction *)anAction {
+- (id)runRequest:(JPDBManagerAction *)request {
 
     // Return Data as Arrays.
-    if (anAction.returnActionAsArray) {
+    if (request.returnActionAsArray) {
 
         // Error Control.
         NSError *error = nil;

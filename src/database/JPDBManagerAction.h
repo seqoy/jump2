@@ -120,9 +120,9 @@
 @property(assign) BOOL returnActionAsArray;
 
 /**
- * Deprecated you must initialize this object passing an Manager.
+ * Instance of the Manager to perform this Database Action.
  */
-@property(readonly) JPDBManager *manager;
+@property(weak) JPDBManager *manager;
 
 
 //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// 
@@ -135,23 +135,9 @@
 
 
 /**
- * Set the initial row result to return from Query Methods results.
- * Combine this set with the #limitFetchResults property.<br>
- * Default value is <b>0</b>.
+ * Convenient method to set the fetchOffset and fetchLimit properties at the same time.
  */
-@property(nonatomic,assign) int startFetchInLine;
-
-/**
- * Set the maximum rows to return from Query Methods results.
- * Combine this set with the #startFetchInLine property.<br>
- * Default value is <b>0</b>, it means that all rows in the Entity will be retrieved.
- */
-@property(nonatomic,assign) int limitFetchResults;
-
-/**
- * Convenient method to set the #startFetchInLine and #limitFetchResults properties at the same time.
- */
--(void)setStartFetchInLine:(int)anValue setLimitFetchResults:(int)anValue2; 
+-(void)setFetchOffset:(int)offset setFetchLimit:(int)limit;
 
 /**
  * Reset the default Fetch Limits values.
@@ -178,9 +164,11 @@
 ///@{ 
 
 /**
- * Deprecated you must initialize this object passing an Entity name.
+ * Set an Entity to perform this action.
+ * @param anEntityName The Entity Name.
+ * @return Return itself.
  */
--(id)applyEntity:(NSString*)anEntity DEPRECATED_ATTRIBUTE;
+-(id)applyEntity:(NSString*)anEntity;
 
 /**
  * Set an Fetch Template name to perform this action.
@@ -295,7 +283,7 @@
  *
  *  @return An unordered collection with queried data Objects. The Class of this collection is setted by #returnQueryAsArray property.
  */
-- (id)queryAllDataOrderedByKey:(id)anKey;
+- (id)queryAllDataOrderedByKey:(NSString *)anKey;
 
 /**
  * Query all data of the specified Entity ordering by specified keys.
@@ -304,14 +292,14 @@
  * @param arguments Parameters to the anKey.
  * @return One unordered collection with queried data Objects. The Class of this collection is setted by #returnQueryAsArray property.
  */
-- (id)queryAllDataOrderedByKey:(id)anKey parameters:(va_list)arguments;
+- (id)queryAllDataOrderedByKey:(NSString *)anKey parameters:(va_list)arguments;
 
 /**
  * Query all data of the specified Entity ordered with keys.
  * @param listOfKeys Accept one or more Key Attributes to sort the result.
  * @return One unordered collection with queried data Objects. The Class of this collection is setted by #returnQueryAsArray property.
  */
--(id)queryAllDataOrderedByKeys:(id)anKey, ...;
+-(id)queryAllDataOrderedByKeys:(NSString*)anKey, ... NS_REQUIRES_NIL_TERMINATION;
 
 //@}
 //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// 
@@ -344,7 +332,7 @@
  * @param listOfKeys Accept one or more Key Attributes to sort the result. Doesn't forget to terminate the list with an 'nil' token.
  * @return One unordered collection with queried data Objects. The Class of this collection is setted by #returnQueryAsArray property.
  */
--(id)queryEntity:(NSString *)anEntityName withFetchTemplate:(NSString *)anFetchName orderedByKeys:(id)listOfKeys, ...;
+-(id)queryWithFetchTemplate:(NSString *)anFetchName orderedByKeys:(id)listOfKeys, ... NS_REQUIRES_NIL_TERMINATION;
 
 //@}
 //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// 
@@ -392,7 +380,7 @@
  * @param listOfKeys Accept one or more Key Attributes to sort the result. Doesn't forget to terminate the list with an 'nil' token.
  * @return One unordered collection with queried data Objects. The Class of this collection is setted by #returnQueryAsArray property.
  */
-- (id)queryWithFetchTemplate:(NSString *)anFetchName withParams:(NSDictionary *)anDictionary orderedByKeys:(id)listOfKeys, ...;
+- (id)queryWithFetchTemplate:(NSString *)anFetchName withParams:(NSDictionary *)anDictionary orderedByKeys:(id)listOfKeys, ... NS_REQUIRES_NIL_TERMINATION;
 
 /**
  * Query specified Entity using one specified Fetch Template name.
@@ -439,7 +427,7 @@
  * @param listOfKeys Accept one or more Key Attributes to sort the result. Doesn't forget to terminate the list with an 'nil' token.
  * @return One unordered collection with queried data Objects. The Class of this collection is setted by #returnQueryAsArray property.
  */
--(id)queryEntity:(NSString *)anEntityName withPredicate:(NSPredicate *)anPredicate orderedByKeys:(id)listOfKeys, ...;
+-(id)queryWithPredicate:(NSPredicate *)anPredicate orderedByKeys:(id)listOfKeys, ... NS_REQUIRES_NIL_TERMINATION;
 
 /**
  * Query specified Entity using one custom NSPredicate Object.

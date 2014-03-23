@@ -32,18 +32,14 @@
 }
 
 - (id)initWithEntityName:(NSString *)anEntityName andManager:(JPDBManager *)anManager {
-	self = [super initWithEntityName:anEntityName];
+	self = [super init];
 	if (self != nil) {
 
 		// Initializations.
-		_manager = anManager;
+		self.manager = anManager;
 
-        // Thrown exception if Entity doesn't exist.
-        if ( ![self existEntity:anEntityName] )
-              [self throwExceptionWithCause:NSFormatString( @"The Entity '%@' doesn't exist on any Model.", anEntityName )];
-
-        // Set the entity descriptor from manager.
-        _entity = [[self getManagerOrDie] entity:anEntityName];
+        // Apply the entity.
+        [self applyEntity:anEntityName];
 
         // Reset default values.
         [self resetDefaultValues];
@@ -53,12 +49,6 @@
 
 
 #pragma mark - Getters and Setters.
-
-// Can't set an Entity after the action is initiated..
--(void)setEntity:(NSEntityDescription *)anEntity {
-    [NSException raise:NSInternalInconsistencyException
-                format:@"You can't change Entity after the action is initiated."];
-}
 
 -(void)setAscendingOrder:(BOOL)newValue {
 	// If no changes, do nothing..
@@ -118,7 +108,7 @@
 }
 
 - (id)queryWithPredicate:(NSPredicate *)anPredicate orderByKey:(id)anKey {
-	return [self queryWithPredicate:anPredicate orderedByKeys:anKey];
+	return [self queryWithPredicate:anPredicate orderedByKeys:anKey, nil];
 }
 
 - (id)queryWithPredicate:(NSPredicate *)anPredicate orderedByKeys:(id)listOfKeys, ... {
@@ -146,29 +136,37 @@
 	return [self queryWithFetchTemplate:nil ];
 }
 
-- (id)queryAllDataOrderedByKey:(id)anKey {
-	return [self queryAllDataOrderedByKeys:anKey];
+- (id)queryAllDataOrderedByKey:(NSString *)anKey {
+	return [self queryAllDataOrderedByKey:anKey parameters:nil];
 }
 
-- (id)queryAllDataOrderedByKeys:(id)anKey, ... {
-    va_list listOfKeys;
-    va_start(listOfKeys, anKey);
+- (id)queryAllDataOrderedByKeys:(NSString*)anKey, ... {
 
-    id result = [self queryAllDataOrderedByKey:anKey parameters:listOfKeys];
+    id result;
 
-    va_end(listOfKeys);
+    va_list args;
+    va_start(args, anKey);
+    result = [self queryAllDataOrderedByKey:anKey parameters:args];
+    va_end(args);
+
     return result;
 }
 
-- (id)queryAllDataOrderedByKey:(id)anKey parameters:(va_list)arguments {
+- (id)queryAllDataOrderedByKey:(NSString *)anKey parameters:(va_list)arguments {
     NSMutableArray *sorters = [[NSMutableArray alloc] init];
-    for (id arg = anKey; arg != nil; arg = va_arg(arguments, id))
+    NSString *attribute;
+
+    for (attribute  = anKey;
+         attribute != nil;
+         attribute  = arguments != nil ? va_arg(arguments, NSString*) : nil )
+
     {
-        if ( ![self existAttribute:arg inEntity:self.entityName] )
+        if ( ![self existAttribute:attribute inEntity:self.entityName] )
         {
-            [self throwExceptionWithCause:NSFormatString( @"The attribute '%@' doesn't exist on '%@' Entity.", arg, self.entityName)];
+            [self throwExceptionWithCause:NSFormatString( @"The attribute '%@' doesn't exist on '%@' Entity.", attribute, self.entityName)];
         }
-        [sorters addObject:[[NSSortDescriptor alloc] initWithKey:arg ascending:self.ascendingOrder]];
+        [sorters addObject:[[NSSortDescriptor alloc] initWithKey:attribute
+                                                       ascending:self.ascendingOrder]];
     }
 
     // Call Next Processing.
@@ -181,7 +179,7 @@
 }
 
 - (id)queryWithFetchTemplate:(NSString *)anFetchName ordereredByKey:(id)anKey {
-	return [self queryWithFetchTemplate:anFetchName orderedByKeys:anKey];
+	return [self queryWithFetchTemplate:anFetchName orderedByKeys:anKey, nil];
 }
 
 - (id)queryWithFetchTemplate:(NSString *)anFetchName orderedByKeys:(id)listOfKeys, ... {
@@ -202,7 +200,7 @@
 - (id)queryWithFetchTemplate:(NSString *)anFetchName withParams:(NSDictionary *)anDictionary orderByKey:(id)anKey {
     return [self queryWithFetchTemplate:anFetchName
                              withParams:anDictionary
-                          orderedByKeys:anKey];
+                          orderedByKeys:anKey, nil];
 }
 
 - (id)queryWithFetchTemplate:(NSString *)anFetchName withParams:(NSDictionary *)anDictionary
@@ -251,7 +249,14 @@
 
 #pragma mark - Set Action Data Methods.
 -(id)applyEntity:(NSString*)anEntity {
-    [NSException raise:JPDBManagerDeprecatedException format:@"Deprecated you must initialize this object passing an Entity name."];
+
+    // Thrown exception if Entity doesn't exist.
+    if ( ![self existEntity:anEntity] )
+          [self throwExceptionWithCause:NSFormatString( @"The Entity '%@' doesn't exist on any Model.", anEntity )];
+
+    // Set the entity descriptor from manager.
+    self.entity = [[self getManagerOrDie] entity:anEntity];
+
     return nil;
 }
 
@@ -364,13 +369,13 @@
 
 #pragma mark - Query Limits.
 
--(void)setStartFetchInLine:(int)anValue setLimitFetchResults:(int)anValue2 {
-    self.fetchOffset = (NSUInteger) anValue;
-    self.fetchLimit = (NSUInteger) anValue2;
+-(void)setFetchOffset:(int)offset setFetchLimit:(int)limit {
+    self.fetchOffset  = (NSUInteger) offset;
+    self.fetchLimit   = (NSUInteger) limit;
 }
 
 -(void)resetFetchLimits {
-    [self setStartFetchInLine:0 setLimitFetchResults:0];
+    [self setFetchOffset:0 setFetchLimit:0];
 }
 
 -(void)resetDefaultValues {
@@ -389,17 +394,6 @@
     [self applyFetchTemplate:nil];
     return self;
 }
-
--(void)setStartFetchInLine:(int)startFetchInLine {
-    [self setStartFetchInLine:startFetchInLine
-         setLimitFetchResults:self.fetchLimit];
-}
-
-- (void)setLimitFetchResults:(int)limitFetchResults {
-    [self setStartFetchInLine:self.fetchOffset
-         setLimitFetchResults:limitFetchResults];
-}
-
 
 #pragma mark - Write Data Methods.
 - (id)createNewRecord {

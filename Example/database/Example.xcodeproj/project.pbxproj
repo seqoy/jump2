@@ -21,6 +21,7 @@
 		3A02B9C418DDE440002BF12F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A02B9A618DDE440002BF12F /* UIKit.framework */; };
 		3A02B9CC18DDE440002BF12F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3A02B9CA18DDE440002BF12F /* InfoPlist.strings */; };
 		3A02B9CE18DDE440002BF12F /* JPDBManagerActionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A02B9CD18DDE440002BF12F /* JPDBManagerActionTests.m */; };
+		3A9D19F618DF555500B0BD03 /* JPManagedObjectExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A9D19F518DF555500B0BD03 /* JPManagedObjectExtensions.m */; };
 		6C14528BCA7A44CBA70AE812 /* libPods-ExampleTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C709AA3027164545B85A6DA5 /* libPods-ExampleTests.a */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +56,7 @@
 		3A02B9CB18DDE440002BF12F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3A02B9CD18DDE440002BF12F /* JPDBManagerActionTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JPDBManagerActionTests.m; sourceTree = "<group>"; };
 		3A02B9D718DDE4AD002BF12F /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		3A9D19F518DF555500B0BD03 /* JPManagedObjectExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPManagedObjectExtensions.m; sourceTree = "<group>"; };
 		C709AA3027164545B85A6DA5 /* libPods-ExampleTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ExampleTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F36AE0F00FC2436C90FBAB5F /* Pods-ExampleTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExampleTests.xcconfig"; path = "Pods/Pods-ExampleTests.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -145,6 +147,7 @@
 		3A02B9C718DDE440002BF12F /* ExampleTests */ = {
 			isa = PBXGroup;
 			children = (
+				3A9D19F518DF555500B0BD03 /* JPManagedObjectExtensions.m */,
 				3A02B9CD18DDE440002BF12F /* JPDBManagerActionTests.m */,
 				3A02B9C818DDE440002BF12F /* Supporting Files */,
 			);
@@ -303,6 +306,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A9D19F618DF555500B0BD03 /* JPManagedObjectExtensions.m in Sources */,
 				3A02B9CE18DDE440002BF12F /* JPDBManagerActionTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

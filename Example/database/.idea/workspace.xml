@@ -3,11 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="f8a905c6-e5dc-4733-9f10-fb6213f689a0" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Example.xcworkspace/xcuserdata/aoliveira.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/Example.xcworkspace/xcuserdata/aoliveira.xcuserdatad/UserInterfaceState.xcuserstate" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../navigator/Example.xcworkspace/xcuserdata/aoliveira.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/../navigator/Example.xcworkspace/xcuserdata/aoliveira.xcuserdatad/UserInterfaceState.xcuserstate" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Example.xcworkspace/xcuserdata/aoliveira.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist" afterPath="$PROJECT_DIR$/Example.xcworkspace/xcuserdata/aoliveira.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../src/database/JPDBManager.m" afterPath="$PROJECT_DIR$/../../src/database/JPDBManager.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../src/database/JPDBManagerAction.h" afterPath="$PROJECT_DIR$/../../src/database/JPDBManagerAction.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../src/database/JPDBManagerAction.m" afterPath="$PROJECT_DIR$/../../src/database/JPDBManagerAction.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ExampleTests/JPDBManagerActionTests.m" afterPath="$PROJECT_DIR$/ExampleTests/JPDBManagerActionTests.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../src/database/NSManagedObject+JPDatabase.m" afterPath="$PROJECT_DIR$/../../src/database/NSManagedObject+JPDatabase.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="database.iws" />
@@ -31,30 +32,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="JPDBManagerAction.h" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../src/database/JPDBManagerAction.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="201" column="5" selection-start="7682" selection-end="7682" vertical-scroll-proportion="0.0" vertical-offset="7246" max-vertical-offset="8040">
-              <folding>
-                <element signature="e#695#728#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="NSManagedObject+JPDatabase.m" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/../../src/database/NSManagedObject+JPDatabase.m">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="82" column="63" selection-start="2727" selection-end="2727" vertical-scroll-proportion="0.98455596" vertical-offset="420" max-vertical-offset="2355">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JPDBManagerActionTests.m" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="JPDBManagerActionTests.m" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ExampleTests/JPDBManagerActionTests.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="535" column="49" selection-start="19020" selection-end="19020" vertical-scroll-proportion="0.0" vertical-offset="7413" max-vertical-offset="8190">
+            <state line="82" column="34" selection-start="2495" selection-end="2495" vertical-scroll-proportion="0.5173745" vertical-offset="753" max-vertical-offset="8790">
               <folding />
             </state>
           </provider>
@@ -63,25 +44,7 @@
       <file leaf-file-name="JPDBManagerAction.m" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../../src/database/JPDBManagerAction.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="456" column="49" selection-start="13908" selection-end="13908" vertical-scroll-proportion="0.0" vertical-offset="6136" max-vertical-offset="7350">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JPDBManager.m" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../src/database/JPDBManager.m">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="483" column="26" selection-start="15225" selection-end="15225" vertical-scroll-proportion="0.0" vertical-offset="6541" max-vertical-offset="7305">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JPDBManager.h" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../src/database/JPDBManager.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="196" column="5" selection-start="7464" selection-end="7464" vertical-scroll-proportion="0.0" vertical-offset="2236" max-vertical-offset="3000">
+            <state line="98" column="49" selection-start="2862" selection-end="2888" vertical-scroll-proportion="-10.44" vertical-offset="1164" max-vertical-offset="7260">
               <folding />
             </state>
           </provider>
@@ -108,9 +71,9 @@
         <option value="$PROJECT_DIR$/Pods/Headers/jump2/JPDBManager.h" />
         <option value="$PROJECT_DIR$/Pods/Headers/jump2/JPDBManagerAction.h" />
         <option value="$PROJECT_DIR$/../../src/database/NSManagedObject+JPDatabase.m" />
-        <option value="$PROJECT_DIR$/../../src/database/JPDBManagerAction.h" />
         <option value="$PROJECT_DIR$/../../src/database/JPDBManager.h" />
         <option value="$PROJECT_DIR$/../../src/database/JPDBManager.m" />
+        <option value="$PROJECT_DIR$/../../src/database/JPDBManagerAction.h" />
         <option value="$PROJECT_DIR$/../../src/database/JPDBManagerAction.m" />
         <option value="$PROJECT_DIR$/ExampleTests/JPDBManagerActionTests.m" />
       </list>
@@ -319,8 +282,9 @@
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.6708075" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.6708075" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32919255" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.6708075" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.6708075" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -329,7 +293,6 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32919255" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -345,7 +308,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="4" />
+      <option name="time" value="5" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -418,39 +381,39 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../../src/database/NSManagedObject+JPDatabase.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="82" column="63" selection-start="2727" selection-end="2727" vertical-scroll-proportion="0.0" vertical-offset="420" max-vertical-offset="2355">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../src/database/JPDBManager.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="357" column="65" selection-start="11250" selection-end="11250" vertical-scroll-proportion="0.0" vertical-offset="4921" max-vertical-offset="7035">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/../../src/database/JPDBManagerAction.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="201" column="5" selection-start="7682" selection-end="7682" vertical-scroll-proportion="0.0" vertical-offset="7246" max-vertical-offset="8040">
+        <state line="429" column="112" selection-start="18770" selection-end="18770" vertical-scroll-proportion="7.782138" vertical-offset="684" max-vertical-offset="7860">
           <folding>
             <element signature="e#695#728#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../src/database/JPDBManager.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="483" column="26" selection-start="15225" selection-end="15225" vertical-scroll-proportion="0.0" vertical-offset="6541" max-vertical-offset="7305">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../../src/database/JPDBManagerAction.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="456" column="49" selection-start="13908" selection-end="13908" vertical-scroll-proportion="0.0" vertical-offset="6136" max-vertical-offset="7350">
+        <state line="98" column="49" selection-start="2862" selection-end="2888" vertical-scroll-proportion="-10.44" vertical-offset="1164" max-vertical-offset="7260">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ExampleTests/JPDBManagerActionTests.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="535" column="49" selection-start="19020" selection-end="19020" vertical-scroll-proportion="0.0" vertical-offset="7413" max-vertical-offset="8190">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../src/database/NSManagedObject+JPDatabase.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="82" column="63" selection-start="2727" selection-end="2727" vertical-scroll-proportion="0.98455596" vertical-offset="420" max-vertical-offset="2355">
+        <state line="82" column="34" selection-start="2495" selection-end="2495" vertical-scroll-proportion="0.5173745" vertical-offset="753" max-vertical-offset="8790">
           <folding />
         </state>
       </provider>
