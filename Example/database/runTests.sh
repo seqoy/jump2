@@ -1,0 +1,1 @@
+ xctool -workspace Example.xcworkspace -scheme Example  -sdk iphonesimulator test -only $1
