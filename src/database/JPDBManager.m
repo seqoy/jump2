@@ -459,13 +459,13 @@
 
 
 // Create and return a new empty Record for specified Entity.
--(id)createNewRecordForEntity:(NSString*)anEntityName {
+-(id)createNewRecordFromAction:(JPDBManagerAction *)anAction {
 
     // Create and return a new record or nil if the entity doesn't exist.
-    return ![self existEntity:anEntityName]
+    return ![self existEntity:anAction.entityName]
 
             ? nil
-            : [NSEntityDescription insertNewObjectForEntityForName:anEntityName
+            : [NSEntityDescription insertNewObjectForEntityForName:anAction.entityName
                                             inManagedObjectContext:self.managedObjectContext];
 	
 }

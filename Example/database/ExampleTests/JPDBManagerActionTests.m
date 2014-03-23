@@ -472,7 +472,7 @@ describe(@"ManagerAction", ^{
 
             // Delete all.
             [[action should] receive:finalMethod withArguments:dataObject, [KWValue valueWithBool:NO]];
-            [action deleteAllRecordsFromEntity:@"_entity_"];
+            [action deleteAllRecords];
         });
 
 
@@ -486,7 +486,7 @@ describe(@"ManagerAction", ^{
 
             // Delete all.
             [[action should] receive:finalMethod withArguments:dataObject, [KWValue valueWithBool:NO]];
-            [action deleteRecordsFromEntity:@"_entity_" withFetchTemplate:@"_template"];
+            [action deleteRecordsWithFetchTemplate:@"_template"];
         });
 
         
@@ -529,12 +529,11 @@ describe(@"ManagerAction", ^{
         it(@"Should create and return a new empty Record for specified Entity, final call", ^{
 
             // Stub the manager to receive internal calls.
-            [manager stub:@selector(createNewRecordForEntity:) andReturn:dataObject];
-            [[manager should] receive:@selector(createNewRecordForEntity:) withArguments:@"_entity_"];
+            [manager stub:@selector(createNewRecordFromAction:) andReturn:dataObject];
+            [[manager should] receive:@selector(createNewRecordFromAction:) withArguments:action];
 
 
             id result = [action createNewRecord];
-            [[action.entityName should] equal:@"_entity_"];
 
             [result shouldNotBeNil];
             [[result should] equal:dataObject];

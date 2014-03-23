@@ -405,8 +405,8 @@
 - (id)createNewRecord {
 
     // Perform creation. This is a private call.
-    id result = [[self getManagerOrDie] performSelector:@selector(createNewRecordForEntity:)
-                                             withObject:self.entityName];
+    id result = [[self getManagerOrDie] performSelector:@selector(createNewRecordFromAction:)
+                                             withObject:self];
 
     // Commit after creation if needed.
     if (_commitTransaction)
@@ -423,12 +423,12 @@
 #pragma mark - Remove Data Methods.
 
 // Delete all Records from specified entityName.
--(void)deleteAllRecordsFromEntity:(NSString*)anEntityName {
-	[self deleteRecordsFromEntity:anEntityName withFetchTemplate:nil];
+- (void)deleteAllRecords {
+	[self deleteRecordsWithFetchTemplate:nil];
 }
 
 // Delete all records, use an Fetch Template to query for an specified entityName.
--(void)deleteRecordsFromEntity:(NSString*)anEntityName withFetchTemplate:(NSString*)anFetchName {
+- (void)deleteRecordsWithFetchTemplate:(NSString *)anFetchName {
 	id entityData = [self queryWithFetchTemplate:anFetchName];
 
 	/////// /////// /////// /////// /////// /////// ///////

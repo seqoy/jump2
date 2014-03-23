@@ -53,7 +53,7 @@
 }
 
 + (void)deleteAll {
-    [[self getAction] deleteAllRecordsFromEntity:self.entity];
+    [[self getAction] deleteAllRecords];
 }
 
 + (instancetype)create {

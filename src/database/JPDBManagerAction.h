@@ -47,7 +47,7 @@
  configure the data and settings to perform some <a href="http://en.wikipedia.org/wiki/Create,_read,_update_and_delete">CRUD</a> operation and finally run this action.
  Yes, looks like a lot of work, but actually is not. Let's see some examples:
  \code
- id newRecord = [JPDatabaseManager createNewRecordForEntity:@"MyEntity"];
+ id newRecord = [JPDatabaseManager createNewRecordFromAction:@"MyEntity"];
  \endcode
  This is was really simple, isn't? Let's see this same operation on a more custom fashion:
  \code
@@ -480,14 +480,14 @@
 
  * @param anFetchName An Fetch Template to perform the query.
  */
--(void)deleteRecordsFromEntity:(NSString*)anEntityName withFetchTemplate:(NSString*)anFetchName; 
+- (void)deleteRecordsWithFetchTemplate:(NSString *)anFetchName;
 
 /**
  * Delete all Records from specified Entity.
  * This could be a consuming operation on large databases.
 
  */
--(void)deleteAllRecordsFromEntity:(NSString*)anEntityName;
+- (void)deleteAllRecords;
 
 //@}
 //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// 
