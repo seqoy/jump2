@@ -91,9 +91,9 @@ describe(@"Database Action", ^{
             [[result.fetchTemplate should] equal:__fetchTemplate];
 
             NSDictionary *emptyDictionary = [NSDictionary new];
-            result = [action applyFetchReplaceWithDictionary:emptyDictionary];
+            result = [action applyFetchVariables:emptyDictionary];
             [[result should] equal:action];
-            [[result.variablesListAndValues should] equal:emptyDictionary];
+            [[result.fetchVariables should] equal:emptyDictionary];
 
             NSPredicate *predicate = [NSPredicate new];
             result = [action applyPredicate:predicate];
@@ -128,7 +128,7 @@ describe(@"Database Action", ^{
             JPDBManagerAction *result;
             
             NSArray *emptyArray = [NSArray new];
-            result = [action applyArrayOfSortDescriptors:emptyArray];
+            result = [action applySortDescriptors:emptyArray];
             [[result should] equal:action];
             [[action.sortDescriptors should] equal:emptyArray];
 
@@ -158,7 +158,7 @@ describe(@"Database Action", ^{
         
         it(@"Should change ascending order", ^{
             // Insert some sort descriptors.
-            [action applyArrayOfSortDescriptors:
+            [action applySortDescriptors:
                     @[
                             [NSSortDescriptor sortDescriptorWithKey:@"keyA" ascending:YES],
                             [NSSortDescriptor sortDescriptorWithKey:@"keyB" ascending:YES]
@@ -182,7 +182,7 @@ describe(@"Database Action", ^{
 
         // All query methods concatenate to call one final method, we'll stub and expect data from him
         // in all query tests.
-        __block SEL finalMethod = @selector(queryWithFetchTemplate:withParams:sortDescriptors:predicate:);
+        __block SEL finalMethod = @selector(queryWithFetchTemplate:andVariables:sortDescriptors:predicate:);
 
         beforeEach(^{
             // Stub the final method.
@@ -298,7 +298,7 @@ describe(@"Database Action", ^{
                     return nil;
                 }
             ];
-            [action queryWithFetchTemplate:__fetchTemplate withParams:replaceWith];
+            [action queryWithFetchTemplate:__fetchTemplate andVariables:replaceWith];
         });
 
 
@@ -320,7 +320,7 @@ describe(@"Database Action", ^{
                     return nil;
                 }
             ];
-            [action queryWithFetchTemplate:__fetchTemplate withParams:replaceWith orderByKey:@"_key_"];
+            [action queryWithFetchTemplate:__fetchTemplate andVariables:replaceWith orderByKey:@"_key_"];
         });
 
 
@@ -342,7 +342,7 @@ describe(@"Database Action", ^{
                     return nil;
                 }
             ];
-            [action queryWithFetchTemplate:__fetchTemplate withParams:replaceWith orderedByKeys:@"keyA", @"keyB", nil];
+            [action queryWithFetchTemplate:__fetchTemplate andVariables:replaceWith orderedByKeys:@"keyA", @"keyB", nil];
         });
 
 
@@ -364,7 +364,7 @@ describe(@"Database Action", ^{
                     return nil;
                 }
             ];
-            [action queryWithFetchTemplate:__fetchTemplate withParams:replaceWith sortDescriptors:@[
+            [action queryWithFetchTemplate:__fetchTemplate andVariables:replaceWith sortDescriptors:@[
                     [NSSortDescriptor sortDescriptorWithKey:@"keyA" ascending:YES],
                     [NSSortDescriptor sortDescriptorWithKey:@"keyB" ascending:YES]
             ]];
@@ -461,10 +461,10 @@ describe(@"Database Action", ^{
             [manager stub:@selector(performDatabaseAction:) withArguments:action];
             [[manager should] receive:@selector(performDatabaseAction:) withArguments:action];
 
-            [action queryWithFetchTemplate:__fetchTemplate withParams:[NSDictionary new] sortDescriptors:@[
+            [action queryWithFetchTemplate:__fetchTemplate andVariables:[NSDictionary new] sortDescriptors:@[
                     [NSSortDescriptor sortDescriptorWithKey:@"keyA" ascending:YES],
                     [NSSortDescriptor sortDescriptorWithKey:@"keyB" ascending:YES]
-            ]                     predicate:[NSPredicate new]];
+            ]                    predicate:[NSPredicate new]];
 
             #pragma clang diagnostic pop
         });

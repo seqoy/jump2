@@ -96,7 +96,7 @@
 @property(readonly) NSString *fetchTemplate;
 
 /// Values to replace on the pre formatted Fetch Template.
-@property(readonly) NSMutableDictionary* variablesListAndValues;
+@property(readonly) NSMutableDictionary* fetchVariables;
 
 
 /**
@@ -182,10 +182,10 @@
  * @param anDictionary An Dictionary with Keys and Values to replace on the pre formatted Fetch Template
  * @return Return itself.
  */
--(id)applyFetchReplaceWithDictionary:(NSDictionary*)anDictionary;
+-(id)applyFetchVariables:(NSDictionary*)anDictionary;
 
 /**
- * Deprecated you should use 'applyFetchReplaceWithDictionary:' instead.
+ * Deprecated you should use 'applyFetchVariables:' instead.
  */
 -(id)applyFetchReplaceWithVariables:(id)variableList, ... NS_REQUIRES_NIL_TERMINATION DEPRECATED_ATTRIBUTE;
 
@@ -228,7 +228,7 @@
  * @throw An  \ref JPDBManagerActionException exception if the array contains an objects that doesn't is an <b>NSSortDescriptors</b>. See \ref errors for more informations.
  * @return Return itself.
  */
--(id)applyArrayOfSortDescriptors:(NSArray*)anArray;
+-(id)applySortDescriptors:(NSArray*)anArray;
 
 /**
  * Set the Key attributes to sort the result of this acion.
@@ -357,42 +357,42 @@
  * Query specified Entity using one specified Fetch Template name.
 
  * @param anFetchName An Fetch Template to perform the query.
- * @param variablesListAndValues An Dictionary with Keys and Values to replace on the pre formatted Fetch Template.
+ * @param fetchVariables An Dictionary with Keys and Values to replace on the pre formatted Fetch Template.
  * @return One unordered collection with queried data Objects. The Class of this collection is setted by #returnQueryAsArray property.
  */
-- (id)queryWithFetchTemplate:(NSString *)anFetchName withParams:(NSDictionary *)params;
+- (id)queryWithFetchTemplate:(NSString *)anFetchName andVariables:(NSDictionary *)params;
 
 /**
  * Query specified Entity using one specified Fetch Template name.
 
  * @param anFetchName An Fetch Template to perform the query.
- * @param variablesListAndValues An Dictionary with Keys and Values to replace on the pre formatted Fetch Template.
+ * @param fetchVariables An Dictionary with Keys and Values to replace on the pre formatted Fetch Template.
  * @param anKey One Key attribute to sort the result.
  * @return One unordered collection with queried data Objects. The Class of this collection is setted by #returnQueryAsArray property.
  */
-- (id)queryWithFetchTemplate:(NSString *)anFetchName withParams:(NSDictionary *)params orderByKey:(id)anKey;
+- (id)queryWithFetchTemplate:(NSString *)anFetchName andVariables:(NSDictionary *)params orderByKey:(id)anKey;
 
 /**
  * Query specified Entity using one specified Fetch Template name.
 
  * @param anFetchName An Fetch Template to perform the query.
- * @param variablesListAndValues An Dictionary with Keys and Values to replace on the pre formatted Fetch Template.
+ * @param fetchVariables An Dictionary with Keys and Values to replace on the pre formatted Fetch Template.
  * @param listOfKeys Accept one or more Key Attributes to sort the result. Doesn't forget to terminate the list with an 'nil' token.
  * @return One unordered collection with queried data Objects. The Class of this collection is setted by #returnQueryAsArray property.
  */
-- (id)queryWithFetchTemplate:(NSString *)anFetchName withParams:(NSDictionary *)anDictionary orderedByKeys:(id)listOfKeys, ... NS_REQUIRES_NIL_TERMINATION;
+- (id)queryWithFetchTemplate:(NSString *)anFetchName andVariables:(NSDictionary *)anDictionary orderedByKeys:(id)listOfKeys, ... NS_REQUIRES_NIL_TERMINATION;
 
 /**
  * Query specified Entity using one specified Fetch Template name.
 
  * @param anFetchName An Fetch Template to perform the query.
- * @param variablesListAndValues An Dictionary with Keys and Values to replace on the pre formatted Fetch Template.
+ * @param fetchVariables An Dictionary with Keys and Values to replace on the pre formatted Fetch Template.
  * @param anArrayOfSortDescriptors An Array of Key attributes to sort the result.
  * @return One unordered collection with queried data Objects. The Class of this collection is setted by #returnQueryAsArray property.
  */
-- (id)queryWithFetchTemplate:(NSString *)anFetchName withParams:(NSDictionary *)params sortDescriptors:(NSArray *)sortDescriptors;
+- (id)queryWithFetchTemplate:(NSString *)anFetchName andVariables:(NSDictionary *)params sortDescriptors:(NSArray *)sortDescriptors;
 
-- (id)queryWithFetchTemplate:(NSString *)anFetchName withParams:(NSDictionary *)params sortDescriptors:(NSArray *)sortDescriptors predicate:(NSPredicate *)anPredicate;
+- (id)queryWithFetchTemplate:(NSString *)anFetchName andVariables:(NSDictionary *)params sortDescriptors:(NSArray *)sortDescriptors predicate:(NSPredicate *)anPredicate;
 
 //@}
 //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// 

@@ -124,7 +124,7 @@
 }
 
 - (id)queryWithPredicate:(NSPredicate *)anPredicate sortDescriptors:(NSArray *)sortDescriptors {
-	return [self queryWithFetchTemplate:nil withParams:nil sortDescriptors:sortDescriptors predicate:anPredicate];
+	return [self queryWithFetchTemplate:nil andVariables:nil sortDescriptors:sortDescriptors predicate:anPredicate];
 	
 }
 
@@ -170,7 +170,7 @@
     }
 
     // Call Next Processing.
-    return [self queryWithFetchTemplate:nil withParams:nil sortDescriptors:sorters];
+    return [self queryWithFetchTemplate:nil andVariables:nil sortDescriptors:sorters];
 }
 
 
@@ -190,20 +190,20 @@
 	//// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// 
 	
 	// Call Next Processing.
-	return [self queryWithFetchTemplate:anFetchName withParams:nil sortDescriptors:arrayOfSorter];
+	return [self queryWithFetchTemplate:anFetchName andVariables:nil sortDescriptors:arrayOfSorter];
 }
 
-- (id)queryWithFetchTemplate:(NSString *)anFetchName withParams:(NSDictionary *)anDictionary {
-	return [self queryWithFetchTemplate:anFetchName withParams:anDictionary sortDescriptors:nil ];
+- (id)queryWithFetchTemplate:(NSString *)anFetchName andVariables:(NSDictionary *)anDictionary {
+	return [self queryWithFetchTemplate:anFetchName andVariables:anDictionary sortDescriptors:nil ];
 }
 
-- (id)queryWithFetchTemplate:(NSString *)anFetchName withParams:(NSDictionary *)anDictionary orderByKey:(id)anKey {
+- (id)queryWithFetchTemplate:(NSString *)anFetchName andVariables:(NSDictionary *)anDictionary orderByKey:(id)anKey {
     return [self queryWithFetchTemplate:anFetchName
-                             withParams:anDictionary
+                           andVariables:anDictionary
                           orderedByKeys:anKey, nil];
 }
 
-- (id)queryWithFetchTemplate:(NSString *)anFetchName withParams:(NSDictionary *)anDictionary
+- (id)queryWithFetchTemplate:(NSString *)anFetchName andVariables:(NSDictionary *)anDictionary
                orderedByKeys:(id)listOfKeys, ... {
 
 	// Create one Array of Sort Descriptors.
@@ -211,24 +211,24 @@
 	
 	//// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// 
 	// Call Next Processing.
-	return [self queryWithFetchTemplate:anFetchName withParams:anDictionary sortDescriptors:arrayOfSorter];
+	return [self queryWithFetchTemplate:anFetchName andVariables:anDictionary sortDescriptors:arrayOfSorter];
 	
 }
 
-- (id)queryWithFetchTemplate:(NSString *)anFetchName withParams:(NSDictionary *)anDictionary
+- (id)queryWithFetchTemplate:(NSString *)anFetchName andVariables:(NSDictionary *)anDictionary
              sortDescriptors:(NSArray *)sortDescriptors {
 	
-	return [self queryWithFetchTemplate:anFetchName withParams:anDictionary
+	return [self queryWithFetchTemplate:anFetchName andVariables:anDictionary
                         sortDescriptors:sortDescriptors predicate:nil ];
 	
 }
 
-- (id)queryWithFetchTemplate:(NSString *)anFetchName withParams:(NSDictionary *)anDictionary
-           sortDescriptors:(NSArray *)sortDescriptors predicate:(NSPredicate *)anPredicate {
+- (id)queryWithFetchTemplate:(NSString *)anFetchName andVariables:(NSDictionary *)anDictionary
+                                                  sortDescriptors:(NSArray *)sortDescriptors predicate:(NSPredicate *)anPredicate {
 	
 	// Apply All Data.
-	[[self applyFetchTemplate:anFetchName] applyFetchReplaceWithDictionary:anDictionary];
-	[[self applyArrayOfSortDescriptors:sortDescriptors] applyPredicate:anPredicate];
+    [[self applyFetchTemplate:anFetchName] applyFetchVariables:anDictionary];
+	[[self applySortDescriptors:sortDescriptors] applyPredicate:anPredicate];
 	
 	// Perform this action on the manager.
 	return [self runAction];
@@ -265,8 +265,8 @@
 	return self;
 }
 
--(id)applyFetchReplaceWithDictionary:(NSDictionary*)anDictionary {
-    _variablesListAndValues = [anDictionary mutableCopy];
+-(id)applyFetchVariables:(NSDictionary*)anDictionary {
+    _fetchVariables = [anDictionary mutableCopy];
 	return self;
 }
 
@@ -286,7 +286,7 @@
 	JPDatabaseCreateArrayOfKeys( listOfKeys, createdArray, self.entityName );
 
 	// Store it.
-	return [self applyArrayOfSortDescriptors:createdArray];
+	return [self applySortDescriptors:createdArray];
 }
 
 - (id)applyAsAscendingOrder:(BOOL)order {
@@ -294,7 +294,7 @@
     return self;
 }
 
--(id)applyArrayOfSortDescriptors:(NSArray*)anArray {
+-(id)applySortDescriptors:(NSArray*)anArray {
 	// Check elements.
 	for ( id element in anArray ) {
 		if ( ![element isKindOfClass:[NSSortDescriptor class]] ) {
@@ -456,7 +456,7 @@
 
 #pragma mark - Deprecated Methods.
 -(id)applyFetchReplaceWithVariables:(id)variableList, ... {
-    [NSException raise:JPDBManagerDeprecatedException format:@"Deprecated you should use 'applyFetchReplaceWithDictionary:' instead."];
+    [NSException raise:JPDBManagerDeprecatedException format:@"Deprecated you should use 'applyFetchVariables:' instead."];
     return nil;
 }
 
@@ -467,12 +467,12 @@
 }
 
 -(id)queryEntity:(NSString*)anEntityName withFetchTemplate:(NSString*)anFetchName orderWithKey:(id)anKey withVariables:(id)variableList, ... {
-    [NSException raise:JPDBManagerDeprecatedException format:@"Deprecated. Use 'queryWithFetchTemplate:withParams:orderByKey:' instead."];
+    [NSException raise:JPDBManagerDeprecatedException format:@"Deprecated. Use 'queryWithFetchTemplate:andVariables:orderByKey:' instead."];
     return nil;
 }
 
 -(id)queryEntity:(NSString*)anEntityName withFetchTemplate:(NSString*)anFetchName withVariables:(id)variableList, ...  {
-    [NSException raise:JPDBManagerDeprecatedException format:@"Deprecated. Use 'queryWithFetchTemplate:withParams:' instead."];
+    [NSException raise:JPDBManagerDeprecatedException format:@"Deprecated. Use 'queryWithFetchTemplate:andVariables:' instead."];
     return nil;
 }
 

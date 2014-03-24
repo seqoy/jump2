@@ -323,12 +323,12 @@
 }
 
 // Build fetch template using...
-- (JPDBManagerAction *)buildRequestWithAction:(JPDBManagerAction *)anAction {
+- (JPDBManagerAction *)loadFetchTemplateWithAction:(JPDBManagerAction *)anAction {
 
-    NSFetchRequest *request = anAction.variablesListAndValues
+    NSFetchRequest *request = anAction.fetchVariables
 
             ? [self.managedObjectModel fetchRequestFromTemplateWithName:anAction.fetchTemplate
-                                                  substitutionVariables:anAction.variablesListAndValues]
+                                                  substitutionVariables:anAction.fetchVariables]
 
             : [self.managedObjectModel fetchRequestTemplateForName:anAction.fetchTemplate];
 
@@ -352,7 +352,7 @@
 
 	// Build an query using Fetch template, if defined.
 	if ( request.fetchTemplate )
-         request = [self buildRequestWithAction:request];
+         request = [self loadFetchTemplateWithAction:request];
 
     // Execute Fetch.
     return [self runRequest:request];
