@@ -56,6 +56,11 @@
     [[[self class] getAction] deleteRecord:self];
 }
 
+- (void)deleteAndSave {
+    [self delete];
+    [[self class] save];
+}
+
 + (void)deleteAll {
     [[self getAction] deleteAllRecords];
 }

@@ -119,6 +119,11 @@
 - (void)delete;
 
 /**
+ * Delete this object from his Entity on the Database and commit.
+ */
+- (void)deleteAndSave;
+
+/**
  * Delete all objects from this Entity.
  * This could be a consuming time operation on large databases.
  */
