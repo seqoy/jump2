@@ -46,8 +46,11 @@
 #pragma mark -
 #pragma mark Shortcuts Macro-Functions.
 
-// Convenient macro shortcut that returns an JPDBManagerAction instance. 
-#define JPDatabaseManager [[JPDBManagerSingleton sharedInstance] getDatabaseAction]
+// Convenient macro shortcut that returns an JPDBManagerAction instance. !! DEPRECATED !!
+#define JPDatabaseManager  [NSException raise:JPDBManagerDeprecatedException format:@"JPDatabaseManager isn't "\
+                   @"used anymore. You should call 'getAction' method in your Entity class. See documentation "\
+                   @"for more details."];
+
 
 ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// 
 
