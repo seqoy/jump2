@@ -69,6 +69,15 @@ describe(@"Navigator", ^{
             [[[result value] should] equal:@"charge_value"];
         });
 
+        it(@"Should retrieve a view controller using custom subscripting", ^{
+            // Perform.
+            JPTestViewController* result = navigator[@"test://fromStoryboard/charge_value"];
+
+            [result shouldNotBeNil];
+            [[result should] beKindOfClass:[JPTestViewController class]];
+            [[[result value] should] equal:@"charge_value"];
+        });
+
         it(@"Should load and display the view controller and configure it", ^{
             
             // Mock and stub navigation controller. /////// ////////// ////////// //////////

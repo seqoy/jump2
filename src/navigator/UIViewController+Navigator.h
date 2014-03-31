@@ -15,6 +15,8 @@
  */
 #import <UIKit/UIKit.h>
 
+@class JPNavigator;
+
 @interface UIViewController (Navigator)
 
 /**
@@ -30,9 +32,16 @@
 -(void)openNavigationURL:(NSString*)url withConfigureHandler:(void (^)(UIViewController* viewController))handler;
 
 /**
- * If you're using an customzied navigation controller, override this method and return it here.
+ * If you're using an customised navigation controller, override this method and return it here.
  * The default implementation returns the default navigation controller embedded in the UIViewController
  */
 -(UINavigationController*)designatedNavigationController;
+
+/**
+ *  Convenient method to return the singleton version of the navigator.
+ *
+ *  @return An singleton JPNavigator instance.
+ */
+-(JPNavigator *)navigator;
 
 @end

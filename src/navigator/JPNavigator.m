@@ -48,6 +48,16 @@ JPSynthetizeSingleton(JPNavigator)
 
 
 
+
+#pragma mark - Custom subscripting.
+- (id)objectForKeyedSubscript:(id)key {
+    return [self viewControllerForURL:key];
+}
+
+
+
+
+
 #pragma mark - Controller Methods.
 - (id)viewControllerForURL:(NSString*)URL {
     return [_maps objectForURL:URL];
@@ -66,7 +76,7 @@ JPSynthetizeSingleton(JPNavigator)
                                                         format:@"An navigation controller must be loaded!"];
     
     // Load the View Controller.
-    UIViewController *viewController = [self viewControllerForURL:url];
+    UIViewController *viewController = self[url];
     
     // If can't load the View Controller.
     if ( viewController == nil ) [NSException raise:NSInternalInconsistencyException

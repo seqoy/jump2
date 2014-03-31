@@ -18,25 +18,28 @@
 
 @implementation UIViewController (Navigator)
 
-//////// //////// //////// //////// //////// //////// //////////////// //////// //////// ////////
+
 -(void)openNavigationURL:(NSString*)URL {
     [self openNavigationURL:URL withConfigureHandler:nil];
 }
 
-//////// //////// //////// //////// //////// //////// //////////////// //////// //////// ////////
 -(void)openNavigationURL:(NSString*)url
     withConfigureHandler:(void (^)(UIViewController* viewController))handler {
     
     // Attach an Navigation Controller.
-    [[JPNavigator navigator] setNavigationController:[self designatedNavigationController]];
+    [self.navigator setNavigationController:[self designatedNavigationController]];
     
     // Open it.
-    [[JPNavigator navigator] openNavigationURL:url withConfigureHandler:handler];
+    [self.navigator openNavigationURL:url withConfigureHandler:handler];
 }
 
-//////// //////// //////// //////// //////// //////// //////////////// //////// //////// ////////
 -(UINavigationController*)designatedNavigationController {
     return self.navigationController;
 }
+
+- (JPNavigator *)navigator {
+    return [JPNavigator navigator];
+}
+
 
 @end

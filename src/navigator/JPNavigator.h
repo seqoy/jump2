@@ -73,6 +73,14 @@
 - (id)viewControllerForURL:(NSString*)URL;
 
 /**
+ * Add dictionary style subscripting to the navigator, equivalent to the 'viewControllerForURL:' method.
+ * Example:
+ *      UIViewController* vc = navigator[@"url://viewController"];
+ *
+ */
+- (id)objectForKeyedSubscript:(id)key;
+
+/**
  * Load and display the view controller with a pattern that matches the URL.
  *
  * @return The view controller mapped to URL.
