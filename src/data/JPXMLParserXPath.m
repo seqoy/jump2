@@ -48,11 +48,6 @@
 }
 
 ////////// ////////// ////////// ////////// ////////// ////////// ////////// ////////// ////////// 
-- (id)objectOnXMLPath:(NSString*)basicPath {
-    return [self objectOnPath:basicPath];
-}
-
-////////// ////////// ////////// ////////// ////////// ////////// ////////// ////////// ////////// 
 - (NSArray*)allPaths {
     // All Paths.
     NSMutableArray *allPaths = [[NSMutableArray alloc] init];
@@ -90,9 +85,6 @@
         // Assign the plain key too.
         [allPaths addObject:key];
     }
-    
-    // Autorelease.
-    [allPaths autorelease];
     
     // Return.
     return allPaths;

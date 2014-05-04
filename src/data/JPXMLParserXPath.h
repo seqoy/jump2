@@ -43,11 +43,6 @@
 - (id)objectOnPath:(NSString*)basicPath;
 
 /**
- * Deprecated, use objectOnPath: instead.
- */
-- (id)objectOnXMLPath:(NSString*)basicPath __attribute__((deprecated));
-
-/**
  * Return one Array of Strings containing paths for all levels of this dictionary.
  * For example for a dictionary like this:
  \code
