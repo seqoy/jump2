@@ -18,6 +18,8 @@
 		3A3B71E718D93A1B005FA781 /* JPURLMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3B71E318D93A1B005FA781 /* JPURLMap.m */; };
 		3A3B71EC18D93EB5005FA781 /* UIViewController+Navigator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3B71EB18D93EB5005FA781 /* UIViewController+Navigator.m */; };
 		3A3B71ED18D93EB5005FA781 /* UIViewController+Navigator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3B71EB18D93EB5005FA781 /* UIViewController+Navigator.m */; };
+		3A7257191916E9200024CBD4 /* JPXMLParserXPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7257181916E9200024CBD4 /* JPXMLParserXPath.m */; };
+		3A72571A1916E9200024CBD4 /* JPXMLParserXPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7257181916E9200024CBD4 /* JPXMLParserXPath.m */; };
 		3ACC0A4018B6C46C00DCE1FA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AFCCEF518B699F700A7FC29 /* Foundation.framework */; };
 		3ACC0A4D18B6C46C00DCE1FA /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AFCCF0318B699F700A7FC29 /* XCTest.framework */; };
 		3ACC0A4E18B6C46C00DCE1FA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AFCCEF518B699F700A7FC29 /* Foundation.framework */; };
@@ -133,6 +135,8 @@
 		3A3B71EA18D93EB5005FA781 /* UIViewController+Navigator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIViewController+Navigator.h"; path = "navigator/UIViewController+Navigator.h"; sourceTree = "<group>"; };
 		3A3B71EB18D93EB5005FA781 /* UIViewController+Navigator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+Navigator.m"; path = "navigator/UIViewController+Navigator.m"; sourceTree = "<group>"; };
 		3A3B71EF18D946D3005FA781 /* deps */ = {isa = PBXFileReference; lastKnownFileType = text; name = deps; path = navigator/deps; sourceTree = "<group>"; };
+		3A7257171916E9200024CBD4 /* JPXMLParserXPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JPXMLParserXPath.h; path = data/JPXMLParserXPath.h; sourceTree = "<group>"; };
+		3A7257181916E9200024CBD4 /* JPXMLParserXPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JPXMLParserXPath.m; path = data/JPXMLParserXPath.m; sourceTree = "<group>"; };
 		3ACC0A3F18B6C46C00DCE1FA /* libjumpData.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libjumpData.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		3ACC0A4C18B6C46C00DCE1FA /* jumpDataTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = jumpDataTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3ACC0A6218B6C4F800DCE1FA /* JPDataConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JPDataConverter.h; path = data/JPDataConverter.h; sourceTree = "<group>"; };
@@ -289,6 +293,8 @@
 		3ACC0A6118B6C4B900DCE1FA /* src */ = {
 			isa = PBXGroup;
 			children = (
+				3A7257171916E9200024CBD4 /* JPXMLParserXPath.h */,
+				3A7257181916E9200024CBD4 /* JPXMLParserXPath.m */,
 				3ACC0A6218B6C4F800DCE1FA /* JPDataConverter.h */,
 				3ACC0A6318B6C4F800DCE1FA /* JPDataConverter.m */,
 			);
@@ -642,6 +648,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A7257191916E9200024CBD4 /* JPXMLParserXPath.m in Sources */,
 				3ACC0A6618B6C4F800DCE1FA /* JPDataConverter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -650,6 +657,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A72571A1916E9200024CBD4 /* JPXMLParserXPath.m in Sources */,
 				3ACC0A6718B6C4F800DCE1FA /* JPDataConverter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1082,6 +1090,7 @@
 				3A3B71DC18D939DC005FA781 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3A3B71DD18D939DC005FA781 /* Build configuration list for PBXNativeTarget "jumpNavigatorTests" */ = {
 			isa = XCConfigurationList;
@@ -1090,6 +1099,7 @@
 				3A3B71DF18D939DC005FA781 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3ACC0A5B18B6C46C00DCE1FA /* Build configuration list for PBXNativeTarget "jumpData" */ = {
 			isa = XCConfigurationList;

@@ -1,5 +1,5 @@
 /*
- * Created by Paulo Oliveira at 2011. JUMP version 2, Copyright (c) 2014 - SEQOY.org and Paulo Oliveira ( http://www.seqoy.org ) 
+ * Created by Paulo Oliveira at 2011. JUMP version 2, Copyright (c) 2014 - seqoy.org and Paulo Oliveira ( http://www.seqoy.org )
 
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,18 +20,18 @@
 
 //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// 
 #pragma mark -
-#pragma mark Utitly Functions. 
+#pragma mark Utility Functions.
 //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// 
 
 /// /// /// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// /// /// /// /// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ///
 // Copy the specified file from the Bundle Folder to the Documents folder if needed.
-void copyItemFromBundleToDocumentsPath( NSString* anFile ) {
-	
-	// Mount Path.
-	NSString *pathForBundle = NSFormatString( @"%@/%@", JPBundlePath(), anFile );
+void copyItemFromBundleToDocumentsPath(NSString *anFile) {
+
+    // Mount Path.
+    NSString *pathForBundle = NSFormatString( @"%@/%@", JPBundlePath(), anFile );
     NSString *pathForDocuments = NSFormatString( @"%@/%@", JPDocumentsPath(), anFile );
-	
-	// If no exist copy from Bundle.
-	if ( _NOT_ [[NSFileManager defaultManager] fileExistsAtPath:pathForDocuments] ) 
-		[[NSFileManager defaultManager] copyItemAtPath:pathForBundle toPath:pathForDocuments error:NULL];
+
+    // If no exist copy from Bundle.
+    if (_NOT_ [[NSFileManager defaultManager] fileExistsAtPath:pathForDocuments])
+        [[NSFileManager defaultManager] copyItemAtPath:pathForBundle toPath:pathForDocuments error:NULL];
 }

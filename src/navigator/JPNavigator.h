@@ -1,5 +1,5 @@
 /*
- * Created by Paulo Oliveira at 2014. JUMP version 2, Copyright (c) 2014 - SEQOY.org and Paulo Oliveira ( http://www.seqoy.org )
+ * Created by Paulo Oliveira, 2014. JUMP version 2, Copyright (c) 2014 - seqoy.org and Paulo Oliveira ( http://www.seqoy.org )
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,13 +18,14 @@
 #import "JPNavigatorFactoryInterface.h"
 
 @protocol JPNavigatorListener;
+
 @interface JPNavigator : NSObject
 
 /**
  * Take an factory that conform with the JPNavigatorFactoryInterface interface and build
  * an the URL maps from it.
  */
-+(instancetype)configureFromFactory:(id<JPNavigatorFactoryInterface>)factory;
++ (instancetype)configureFromFactory:(id <JPNavigatorFactoryInterface>)factory;
 
 /**
  * Convenient method to configure the Navigator using an block. The block must
@@ -38,13 +39,13 @@
  * }];
  * </tt>
  */
-+(instancetype)configureWithBlock:(JPURLMap* (^)())configBlock;
++ (instancetype)configureWithBlock:(JPURLMap * (^)())configBlock;
 
 /**
  * An associated UINavigationController. JPNavigator doesn't control the navigation stack, 
  * you must assign an UINavigationController in order to push view controllers automatically.
  */
-@property (strong) UINavigationController *navigationController;
+@property(strong) UINavigationController *navigationController;
 
 /**
  * An array of objects that conforms with the <tt>JPNavigatorListener</tt> protocol and receive
@@ -53,24 +54,24 @@
  *          <tt>[navigationController.listeners addObject:self];
  *          </tt>
  */
-@property (strong) NSMutableArray* listeners;
+@property(strong) NSMutableArray *listeners;
 
 /**
  * Return an Singleton Instance of this class.
  */
-+(JPNavigator*)navigator;
++ (JPNavigator *)navigator;
 
 /**
  * The URL map used to translate between URLs and view controllers.
  */
-@property (strong) JPURLMap* maps;
+@property(strong) JPURLMap *maps;
 
 /**
  * Gets a view controller for the URL without opening it.
  *
  * @return The view controller mapped to URL.
  */
-- (id)viewControllerForURL:(NSString*)URL;
+- (id)viewControllerForURL:(NSString *)URL;
 
 /**
  * Add dictionary style subscripting to the navigator, equivalent to the 'viewControllerForURL:' method.
@@ -85,7 +86,7 @@
  *
  * @return The view controller mapped to URL.
  */
--(id)openNavigationURL:(NSString*)url;
+- (id)openNavigationURL:(NSString *)url;
 
 /**
  * Load and display the view controller with a pattern that matches the URL.
@@ -93,7 +94,7 @@
  * @param handler An codeblock that will receive the initialized view controller to some extra configuration.
  * @return The view controller mapped to URL.
  */
--(id)openNavigationURL:(NSString*)url withConfigureHandler:(void (^)(UIViewController* viewController))handler;
+- (id)openNavigationURL:(NSString *)url withConfigureHandler:(void (^)(UIViewController *viewController))handler;
 
 @end
 
@@ -106,7 +107,7 @@
 /**
  * The URL is about to be opened in a controller.
  */
-- (void)navigator:(JPNavigator*)navigator willOpenViewController:(UIViewController*)controller;
+- (void)navigator:(JPNavigator *)navigator willOpenViewController:(UIViewController *)controller;
 
 
 @end

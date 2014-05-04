@@ -1,0 +1,7 @@
+/****************************************************************************/
+/* Localization file */
+
+
+"nav_load" = "An navigation controller must be loaded!";
+"controller_not_found" = "No View Controller was found for the URL: %@";
+"need_selector" = "You must pass an selector!";

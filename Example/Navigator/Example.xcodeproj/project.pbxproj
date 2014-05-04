@@ -104,6 +104,7 @@
 				3A3B71FB18D94792005FA781 /* Frameworks */,
 				3A3B71FA18D94792005FA781 /* Products */,
 				3EDC24F6647E408194BF2E18 /* Pods-ExampleTests.xcconfig */,
+				438CB15AABC1CA198B486892,
 			);
 			sourceTree = "<group>";
 		};

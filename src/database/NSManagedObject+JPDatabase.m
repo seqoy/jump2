@@ -1,5 +1,5 @@
 /*
- * Created by Paulo Oliveira at 2011. JUMP version 2, Copyright (c) 2014 - SEQOY.org and Paulo Oliveira ( http://www.seqoy.org )
+ * Created by Paulo Oliveira at 2011. JUMP version 2, Copyright (c) 2014 - seqoy.org and Paulo Oliveira ( http://www.seqoy.org )
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,15 +26,15 @@
 
 @implementation NSManagedObject (JPDatabase)
 
-+(JPDBManagerSingleton *)manager {
++ (JPDBManagerSingleton *)manager {
     return [JPDBManagerSingleton sharedInstance];
 }
 
 + (NSString *)entity {
     NSEntityDescription *entity = [[self manager] entity:NSStringFromClass(self)];
-    if ( entity == nil ) {
+    if (entity == nil ) {
         NSString *reason = [NSString stringWithFormat:@"Entity '%@' wasn't found in the Context. Maybe you're using"
-                                                      @"an different class name.", entity];
+                                                              @"an different class name.", entity];
         [NSException exceptionWithName:JPDBManagerActionException
                                 reason:reason
                               userInfo:nil
@@ -48,7 +48,7 @@
     return [[self manager] getDatabaseActionForEntity:self.entity];
 }
 
-+(void)save {
++ (void)save {
     [[self manager] commit];
 }
 
@@ -89,10 +89,10 @@
 
 + (id)query:(void (^)(JPDBManagerAction *query))configBlock {
     JPDBManagerAction *action = [self getAction];
-    
+
     // Config the block.
-    configBlock( action );
-    
+    configBlock(action);
+
     // Run.
     return [action run];
 }
@@ -103,7 +103,7 @@
     return [[[self getAction] applyPredicate:anPredicate] run];
 }
 
-+ (id)usingOrder:(NSString*)order where:(id)condition,...  {
++ (id)usingOrder:(NSString *)order where:(id)condition, ... {
     JPBuildPredicate( anPredicate );
 
     return [[[[self getAction] applyOrderKey:order] applyPredicate:anPredicate] run];
@@ -115,7 +115,7 @@
     id data = [[[self getAction] applyPredicate:anPredicate] run];
 
     // If found nothing, return nil.
-    if ( !data || [data count] == 0 )
+    if (!data || [data count] == 0)
         return nil;
 
     // Return the object.
@@ -136,7 +136,7 @@
 
 + (NSPredicate *)predicateFromDictionary:(NSDictionary *)dict {
     NSMutableArray *subpredicates = [NSMutableArray new];
-    for ( id key in [dict allKeys]) {
+    for (id key in [dict allKeys]) {
         [subpredicates addObject:
                 [NSPredicate predicateWithFormat:@"%K == %@", key, dict[key]]
         ];
