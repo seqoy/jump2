@@ -1,6 +1,6 @@
 Pod::Spec.new do |jump|
   jump.name             = "jump2"
-  jump.version          = "2.0.0"
+  jump.version          = "2.0.1"
   jump.license          = 'Apache Version 2'
   jump.homepage         = "https://github.com/seqoy/jump2"
   jump.author           = { "Paulo Oliveira" => "eu@pauloliveira.net" }
@@ -11,7 +11,7 @@ Pod::Spec.new do |jump|
   						  "From Network libraries until User Interface libraries. The framework have classes to accomplish day by day tasks" \
   						  "until very complex applications."
   
-  jump.source           = { :git => "https://github.com/seqoy/jump2.git", :tag => '2.0.0' }
+  jump.source           = { :git => "https://github.com/seqoy/jump2.git", :tag => '2.0.1' }
 
   jump.platform     = :ios, '7.0'
   jump.ios.deployment_target = '6.0'
