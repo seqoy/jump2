@@ -50,6 +50,8 @@
 		3AFCCF7318B69F6B00A7FC29 /* IAThreadSafeManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFCCF6F18B69F6B00A7FC29 /* IAThreadSafeManagedObject.m */; };
 		438CB4C270CB94F6858493E5 /* NSManagedObject+JPDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 438CBBEDE38EDA50349A8EFE /* NSManagedObject+JPDatabase.m */; };
 		438CB95D27649917BDE73DFE /* NSManagedObject+JPDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 438CBBEDE38EDA50349A8EFE /* NSManagedObject+JPDatabase.m */; };
+		48BE36051911972400AC5D99 /* JPJSONProcesser.m in Sources */ = {isa = PBXBuildFile; fileRef = 48BE36041911972400AC5D99 /* JPJSONProcesser.m */; };
+		48BE36061911972400AC5D99 /* JPJSONProcesser.m in Sources */ = {isa = PBXBuildFile; fileRef = 48BE36041911972400AC5D99 /* JPJSONProcesser.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -174,6 +176,9 @@
 		3AFCCFCF18B6A4B800A7FC29 /* Rakefile */ = {isa = PBXFileReference; lastKnownFileType = text; name = Rakefile; path = ../Rakefile; sourceTree = "<group>"; };
 		438CB8DF69EE37C02343B0A4 /* NSManagedObject+JPDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSManagedObject+JPDatabase.h"; path = "database/NSManagedObject+JPDatabase.h"; sourceTree = "<group>"; };
 		438CBBEDE38EDA50349A8EFE /* NSManagedObject+JPDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSManagedObject+JPDatabase.m"; path = "database/NSManagedObject+JPDatabase.m"; sourceTree = "<group>"; };
+		48BE36031911972400AC5D99 /* JPJSONProcesser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JPJSONProcesser.h; path = data/JPJSONProcesser.h; sourceTree = "<group>"; };
+		48BE36041911972400AC5D99 /* JPJSONProcesser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JPJSONProcesser.m; path = data/JPJSONProcesser.m; sourceTree = "<group>"; };
+		48BE36071911977F00AC5D99 /* JPDataProcessserJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JPDataProcessserJSON.h; path = data/JPDataProcessserJSON.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -289,6 +294,9 @@
 		3ACC0A6118B6C4B900DCE1FA /* src */ = {
 			isa = PBXGroup;
 			children = (
+				48BE36071911977F00AC5D99 /* JPDataProcessserJSON.h */,
+				48BE36031911972400AC5D99 /* JPJSONProcesser.h */,
+				48BE36041911972400AC5D99 /* JPJSONProcesser.m */,
 				3ACC0A6218B6C4F800DCE1FA /* JPDataConverter.h */,
 				3ACC0A6318B6C4F800DCE1FA /* JPDataConverter.m */,
 			);
@@ -642,6 +650,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				48BE36051911972400AC5D99 /* JPJSONProcesser.m in Sources */,
 				3ACC0A6618B6C4F800DCE1FA /* JPDataConverter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -650,6 +659,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				48BE36061911972400AC5D99 /* JPJSONProcesser.m in Sources */,
 				3ACC0A6718B6C4F800DCE1FA /* JPDataConverter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1082,6 +1092,7 @@
 				3A3B71DC18D939DC005FA781 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3A3B71DD18D939DC005FA781 /* Build configuration list for PBXNativeTarget "jumpNavigatorTests" */ = {
 			isa = XCConfigurationList;
@@ -1090,6 +1101,7 @@
 				3A3B71DF18D939DC005FA781 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3ACC0A5B18B6C46C00DCE1FA /* Build configuration list for PBXNativeTarget "jumpData" */ = {
 			isa = XCConfigurationList;
