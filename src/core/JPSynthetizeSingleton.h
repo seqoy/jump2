@@ -16,7 +16,7 @@
 
 /**
  * \file JPSynthetizeSingleton.h
- * \brief Automatically synthetize all needed methods to implement the Singleton Pattern on some class.
+ * \brief Automatically synthesize all needed methods to implement the Singleton Pattern on some class.
  * \author Matt Gallagher . CocoaWithLove - http://cocoawithlove.com/ | 
  * \copyright Copyright 2009 Matt Gallagher. All rights reserved. 
  */

@@ -1,5 +1,5 @@
 /*
- * Created by Paulo Oliveira at 2014. JUMP version 2, Copyright (c) 2014 - SEQOY.org and Paulo Oliveira ( http://www.seqoy.org )
+ * Created by Paulo Oliveira at 2014. JUMP version 2, Copyright (c) 2014 - seqoy.org and Paulo Oliveira ( http://www.seqoy.org )
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,7 +29,7 @@
  *      @param selector The selector to perform on the object. If there aren't enough parameters in the pattern
  *                      then the excess parameters in the selector will be nil.
  */
-- (void)from:(NSString*)URL toViewController:(id)target selector:(SEL)selector;
+- (void)from:(NSString *)URL toViewController:(id)target selector:(SEL)selector;
 
 /**
  * Adds a URL pattern which will create and present a view controller when loaded.
@@ -41,7 +41,7 @@
  *      @param selector The selector to perform on the object. If there aren't enough parameters in the pattern
  *                      then the excess parameters in the selector will be nil.
  */
-- (void)from:(NSString*)URL toStoryboardIdentifier:(NSString*)identifier selector:(SEL)selector;
+- (void)from:(NSString *)URL toStoryboardIdentifier:(NSString *)identifier selector:(SEL)selector;
 
 /**
  * Adds a URL pattern which will create and present a view controller when loaded.
@@ -55,7 +55,7 @@
  *                      then the excess parameters in the selector will be nil.
  *
  */
-- (void)from:(NSString*)URL toStoryboardIdentifier:(NSString*)identifier usingStoryboard:(NSString*)storyboard selector:(SEL)selector;
+- (void)from:(NSString *)URL toStoryboardIdentifier:(NSString *)identifier usingStoryboard:(NSString *)storyboard selector:(SEL)selector;
 
 /**
  * Gets or creates the object with a pattern that matches the URL.
@@ -64,7 +64,7 @@
  * matching is used to create a new object. A matching string must exactly match all of the static portions
  * of the pattern and provide values for each of the parameters.
  */
--(id)objectForURL:(NSString*)URL;
+- (id)objectForURL:(NSString *)URL;
 
 - (NSString *)description;
 
@@ -78,13 +78,14 @@
  */
 #pragma mark - JPURLMapDescriptor
 @class SOCPattern;
+
 @interface JPURLMapDescriptor : NSObject
 
-@property (strong) SOCPattern *pattern;
-@property (assign) SEL selector;
-@property (assign) Class class;
-@property (strong) NSString* identifier;
-@property (strong) NSString* storyboard;
+@property(strong) SOCPattern *pattern;
+@property(assign) SEL selector;
+@property(assign) Class class;
+@property(strong) NSString *identifier;
+@property(strong) NSString *storyboard;
 
 - (NSString *)description;
 

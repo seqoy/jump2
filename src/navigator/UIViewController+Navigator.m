@@ -1,5 +1,5 @@
 /*
- * Created by Paulo Oliveira at 2014. JUMP version 2, Copyright (c) 2014 - SEQOY.org and Paulo Oliveira ( http://www.seqoy.org )
+ * Created by Paulo Oliveira at 2014. JUMP version 2, Copyright (c) 2014 - seqoy.org and Paulo Oliveira ( http://www.seqoy.org )
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,21 +19,21 @@
 @implementation UIViewController (Navigator)
 
 
--(void)openNavigationURL:(NSString*)URL {
+- (void)openNavigationURL:(NSString *)URL {
     [self openNavigationURL:URL withConfigureHandler:nil];
 }
 
--(void)openNavigationURL:(NSString*)url
-    withConfigureHandler:(void (^)(UIViewController* viewController))handler {
-    
+- (void)openNavigationURL:(NSString *)url
+     withConfigureHandler:(void (^)(UIViewController *viewController))handler {
+
     // Attach an Navigation Controller.
     [self.navigator setNavigationController:[self designatedNavigationController]];
-    
+
     // Open it.
     [self.navigator openNavigationURL:url withConfigureHandler:handler];
 }
 
--(UINavigationController*)designatedNavigationController {
+- (UINavigationController *)designatedNavigationController {
     return self.navigationController;
 }
 

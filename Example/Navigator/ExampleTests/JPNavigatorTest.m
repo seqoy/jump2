@@ -29,12 +29,12 @@ describe(@"Navigator", ^{
         beforeAll(^{
             // Build and configure some map.
             JPURLMap *map = ({
-                JPURLMap *map = [JPURLMap new];
-                [map from:@"test://fromStoryboard/:value"
-                                               toStoryboardIdentifier:@"testController"
-                                                      usingStoryboard:@"TestNavigator"
-                                                             selector:@selector(setValue:)];
-                map;
+                JPURLMap *_map = [JPURLMap new];
+                [_map from:@"test://fromStoryboard/:value"
+                            toStoryboardIdentifier:@"testController"
+                                   usingStoryboard:@"TestNavigator"
+                                          selector:@selector(setValue:)];
+                _map;
             });
             
             // Mock an factory and stub an factory.
@@ -82,7 +82,7 @@ describe(@"Navigator", ^{
             
             // Mock and stub navigation controller. /////// ////////// ////////// //////////
             
-            UINavigationController *nav = [KWMock mockForClass:[UINavigationController class]];
+            UINavigationController *nav = (id) [KWMock mockForClass:[UINavigationController class]];
             [nav stub:@selector(pushViewController:animated:) withBlock:^id(NSArray *params) {
                 id controller = params[0];
                 [controller shouldNotBeNil];
@@ -149,7 +149,7 @@ describe(@"Navigator", ^{
         it(@"Should fail trying to retrieve an View Controller that doesn't exist", ^{
             
             // Mock navigation controller.
-            UINavigationController *nav = [KWMock mockForClass:[UINavigationController class]];
+            UINavigationController *nav = (id) [KWMock mockForClass:[UINavigationController class]];
             [navigator setNavigationController:nav];
 
             // Run the controlled exception.

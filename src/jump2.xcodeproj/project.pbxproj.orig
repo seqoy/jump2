@@ -298,11 +298,14 @@
 		3ACC0A6118B6C4B900DCE1FA /* src */ = {
 			isa = PBXGroup;
 			children = (
+<<<<<<< HEAD
 				48BE36071911977F00AC5D99 /* JPDataProcessserJSON.h */,
 				48BE36031911972400AC5D99 /* JPJSONProcesser.h */,
 				48BE36041911972400AC5D99 /* JPJSONProcesser.m */,
+=======
 				3A7257171916E9200024CBD4 /* JPXMLParserXPath.h */,
 				3A7257181916E9200024CBD4 /* JPXMLParserXPath.m */,
+>>>>>>> 5873c1080f102449c9ecdd5d63744f8d6e7621e9
 				3ACC0A6218B6C4F800DCE1FA /* JPDataConverter.h */,
 				3ACC0A6318B6C4F800DCE1FA /* JPDataConverter.m */,
 			);
@@ -656,8 +659,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+<<<<<<< HEAD
 				48BE36051911972400AC5D99 /* JPJSONProcesser.m in Sources */,
+=======
 				3A7257191916E9200024CBD4 /* JPXMLParserXPath.m in Sources */,
+>>>>>>> 5873c1080f102449c9ecdd5d63744f8d6e7621e9
 				3ACC0A6618B6C4F800DCE1FA /* JPDataConverter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -666,8 +672,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+<<<<<<< HEAD
 				48BE36061911972400AC5D99 /* JPJSONProcesser.m in Sources */,
+=======
 				3A72571A1916E9200024CBD4 /* JPXMLParserXPath.m in Sources */,
+>>>>>>> 5873c1080f102449c9ecdd5d63744f8d6e7621e9
 				3ACC0A6718B6C4F800DCE1FA /* JPDataConverter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

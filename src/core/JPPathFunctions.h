@@ -1,5 +1,5 @@
 /*
- * Created by Paulo Oliveira at 2011. JUMP version 2, Copyright (c) 2014 - SEQOY.org and Paulo Oliveira ( http://www.seqoy.org ) 
+ * Created by Paulo Oliveira at 2011. JUMP version 2, Copyright (c) 2014 - seqoy.org and Paulo Oliveira ( http://www.seqoy.org )
 
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -53,6 +53,6 @@
  * Copy the specified file from the Bundle Folder to the Documents folder if needed.
  * This is useful to files thar are bundled (read-only) and needs to be modified. 
  * @param anFile <b>NSString</b> parameter with the full path of the file.
- */ 
-void copyItemFromBundleToDocumentsPath( NSString* anFile );
+ */
+void copyItemFromBundleToDocumentsPath(NSString *anFile);
 

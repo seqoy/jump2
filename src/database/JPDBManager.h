@@ -1,5 +1,5 @@
 /*
- * Created by Paulo Oliveira at 2011. JUMP version 2, Copyright (c) 2014 - SEQOY.org and Paulo Oliveira ( http://www.seqoy.org ) 
+ * Created by Paulo Oliveira at 2011. JUMP version 2, Copyright (c) 2014 - seqoy.org and Paulo Oliveira ( http://www.seqoy.org )
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,6 +32,7 @@
  * Also consult \ref errors and \ref queries.
  */
 @class JPDBManagerAction;
+
 @interface JPDBManager : NSObject
 
 /**
@@ -42,7 +43,7 @@
 /**
  * Core Data Managed Object Context
  */
-@property(readonly) NSManagedObjectContext *managedObjectContext;		
+@property(readonly) NSManagedObjectContext *managedObjectContext;
 
 /**
  * Core Data Persistent Store Coordinator
@@ -53,7 +54,7 @@
  * Current full path of Loaded Model. If you don't specify one model manually using startCoreDataWithModel:
  * this value will be <tt>nil</tt>.
  */
-@property (readonly) NSString *loadedModelName;
+@property(readonly) NSString *loadedModelName;
 
 /**
  * Configure the manager to automatically commit every operation.
@@ -84,14 +85,14 @@
  * Init and Alloc the Database Manager Class. 
  * @return One autoreleseable instance.
  */
-+(id)init;
++ (id)init;
 
 /**
  * Init and Alloc the Database Manager Class. 
  * Automatically Start all Core Data Engine.
  * @return One autoreleseable instance.
  */
-+(id)initAndStartCoreData;
++ (id)initAndStartCoreData;
 
 ///@}
 //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// 
@@ -114,8 +115,8 @@
  * @throw An \ref JPDBManagerStartException exception is raised if some error ocurrs. See \ref errors  
  * for more informations.
  * @return Return itself.
- */ 
--(id)startCoreData;
+ */
+- (id)startCoreData;
 
 /** 
  * Start Core Data elements (managedObjectModel, managedObjectContext, persistentStoreCoordinator). Database Manager initiate
@@ -127,18 +128,18 @@
  * @param modelName Specific Model Name including the extension. Usually the model has the extension .momd on the bundle.
  * @throw An \ref JPDBManagerStartException exception is raised if some error ocurrs. See \ref errors  for more informations.
  * @return Return itself.
- */ 
--(id)startCoreDataWithModel:(NSString*)modelName;
+ */
+- (id)startCoreDataWithModel:(NSString *)modelName;
 
 /** 
  * Close Core Data Databases, commit pendent updates and release resources.
- */ 
--(void)closeCoreData;
+ */
+- (void)closeCoreData;
 
 /**
  * Close Core Data and remove the persistent store.
  */
--(void)removePersistentStore;
+- (void)removePersistentStore;
 
 ///@}
 //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// 
@@ -152,14 +153,14 @@
 /**
  * Return the NSEntityDescription for the specified entity.
  */
--(NSEntityDescription *)entity:(NSString *)entityName;
+- (NSEntityDescription *)entity:(NSString *)entityName;
 
 /**
  * Test if specified Entity exist on the model.
  * @param anEntityName The Entity Name.
  * @return YES if specified Entity exist on the model.
  */
--(BOOL)existEntity:(NSString*)anEntityName;
+- (BOOL)existEntity:(NSString *)anEntityName;
 
 /**
  * Test if specified Attribute exist on specified Entity.
@@ -167,7 +168,7 @@
  * @param anEntityName The Entity name.
  * @return <b>YES</b> if specified Attribute exist on specified Entity.
  */
--(BOOL)existAttribute:(NSString*)anAttributeName inEntity:(NSString*)anEntityName;
+- (BOOL)existAttribute:(NSString *)anAttributeName inEntity:(NSString *)anEntityName;
 
 /**
  * Helper method to retrieve an \link JPDBManagerAction Database Action\endlink object.
@@ -178,7 +179,7 @@
 /**
  * Return an NSURL object that contains where the SQLite file is located.
  */
--(NSURL*)SQLiteFilePath;
+- (NSURL *)SQLiteFilePath;
 
 ///@}
 //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// 
@@ -192,7 +193,7 @@
 /**
  * Commit al pendent operations to the persistent store.
  */
--(void)commit;
+- (void)commit;
 
 ///@}
 @end
