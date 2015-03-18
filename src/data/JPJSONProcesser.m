@@ -29,34 +29,26 @@
 
 ////////////// ////////////// ////////////// ////////////// 
 // Convert from JSON String to an Dictionary Object.
-+(id)convertFromJSON:(NSString*)anJSONString {
-    
-    // Create data.
-    NSData *data = [anJSONString dataUsingEncoding:NSUTF8StringEncoding];
-    
-    // Process.
-    return [self convertFromJSONData:data];
++(id)convertFromJSON:(NSString*)anJSONString
+{
+    return [JPJSONProcesser convertFromJSONData:[anJSONString dataUsingEncoding:NSUTF8StringEncoding]];
 }
 
 ////////////// ////////////// ////////////// //////////////
 // Convert from JSON Data to an Dictionary Object.
 +(id)convertFromJSONData:(NSData *)anJSONData {
     
-    NSError *serializationError = nil;
-    
+    // Error Handler.
+    NSError *anError = nil;
+
     // Try to process.
     id processed = [NSJSONSerialization JSONObjectWithData:anJSONData
                                                    options:NSJSONReadingMutableContainers
-                                                     error:&serializationError];
+                                                     error:&anError];
     
     // If some error, will raise an Exception.
-    if (serializationError != nil) {
-        
-        // Create error object.
-        NSDictionary *ui = [NSDictionary dictionaryWithObjectsAndKeys:serializationError, NSLocalizedDescriptionKey, nil];
-        NSError *error_ = [NSError errorWithDomain:NSStringFromClass([self class]) code:0 userInfo:ui];
-        
-        [self raiseExceptionWithError:error_];
+    if (anError) {
+        [self raiseExceptionWithError:anError];
         return nil;
     }
     
@@ -75,21 +67,21 @@
 +(NSString*)convertToJSON:(NSDictionary*)anJSONDictionary humanReadable:(BOOL)humanReadable {
     
     // Error Handler.
-    NSError *serializationError = nil;
+    NSError *anError = nil;
     
     // Try to process.
-    NSData* processed = [NSJSONSerialization dataWithJSONObject:anJSONDictionary
-                                                   options:NSJSONWritingPrettyPrinted
-                                                     error:&serializationError];
+    NSData* jsonData = [NSJSONSerialization dataWithJSONObject:anJSONDictionary
+                                                       options:( humanReadable ? NSJSONWritingPrettyPrinted : 0 )
+                                                         error:&anError];
     
     // If some error, will raise an Exception.
-    if (serializationError != nil) {
-        [self raiseExceptionWithError:serializationError];
+    if (anError) {
+        [self raiseExceptionWithError:anError];
         return nil;
     }
     
     // Everythink ok.
-	return [[NSString alloc] initWithData:processed encoding:NSUTF8StringEncoding];
+	return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
 }
 
 @end

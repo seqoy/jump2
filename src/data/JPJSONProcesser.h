@@ -26,3 +26,9 @@
 @end
 
 
+/**
+ JSON Framework - https://github.com/stig/json-framework
+ Copyright (C) 2009-2010 Stig Brautaset. All rights reserved.
+
+ See JSON.h file for more information about copyright and distribution.
+ */
